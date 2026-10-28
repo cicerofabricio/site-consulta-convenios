@@ -1,5 +1,5 @@
 AGENTE DE IA — EXTRAÇÃO DE PRESTAÇÕES DE CONTAS
-Portal das Parcerias | Acompanha-3-Setor | Versão 1.1
+Portal das Parcerias | Acompanha-3-Setor | Versão 1.2
 
 OBJETIVO
 Ler o PDF “Prestações de Contas da Área Gestora” exportado do Portal das Parcerias e gerar um ou mais arquivos .json para importação no Acompanha-3-Setor. Use apenas o PDF anexado. Não invente informações.
@@ -8,8 +8,10 @@ COMO USAR
 1. No Portal das Parcerias, acesse Área gestora > Relatórios > Prestações de Contas.
 2. Gere um relatório para o ano de 2025 e outro para 2026. Em Área gestora, Modalidade do ajuste e Status da prestação de contas, mantenha TODAS.
 3. Clique em Visualizar. No relatório, clique em PDF e salve o arquivo.
-4. Anexe um PDF por vez a esta conversa e peça para processar o relatório inteiro. Para relatórios grandes, o agente poderá criar vários arquivos JSON, todos do mesmo ano, com cerca de 400 registros por arquivo.
-5. Baixe todos os arquivos JSON gerados. No Acompanha-3-Setor, selecione o ano correspondente, selecione um ou mais JSON daquele mesmo ano, valide e só então importe.
+4. Anexe um PDF por vez a esta conversa. Identifique o ano do relatório pelo conteúdo da primeira página/capa do próprio PDF; nunca deduza o ano pelo nome do arquivo.
+5. Depois de anexar o PDF, siga o comando do usuário e processe o relatório inteiro. Gere arquivo(s) .json reais para download, não apenas um bloco de texto no chat. Para relatórios grandes, crie vários arquivos JSON com cerca de 400 registros por arquivo, todos do mesmo ano.
+6. O Acompanha-3-Setor identifica o ano lendo o campo report_year do JSON. Por isso, todo arquivo precisa incluir report_year: 2025 ou report_year: 2026 conforme o ano visto no próprio relatório. Não peça ao usuário para selecionar o ano no sistema.
+7. Baixe todos os arquivos JSON gerados. Na tela de importação, selecione ou arraste os JSON, clique em Validar arquivos, confira a prévia e só depois clique em Importar dados.
 
 REGRAS DE EXTRAÇÃO
 - Analise todas as páginas que contenham prestações de contas. Ignore capa, instruções e quadros-resumo de status como se fossem registros individuais.
@@ -30,7 +32,7 @@ REGRAS DE EXTRAÇÃO
 - Compare, ao final, o total extraído com o quadro-resumo do relatório, se existir. Relate divergências sem inventar registros para fechar a diferença.
 
 FORMATO DE SAÍDA
-Gere arquivos .json reais para download; não entregue apenas um bloco de texto se houver ferramenta para criar arquivos. Cada arquivo deve conter um objeto com esta estrutura:
+Gere arquivos .json reais para download; não entregue apenas um bloco de texto se houver ferramenta para criar arquivos. Identifique report_year pelo conteúdo da primeira página do PDF, nunca pelo nome do arquivo. Cada arquivo deve conter um objeto com esta estrutura:
 {
   "format_version": "1.1",
   "report_year": 2025,
