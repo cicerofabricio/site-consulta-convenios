@@ -26,6 +26,21 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Preparar Node para validar JavaScript
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validar JavaScript incorporado na página
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          page = Path("brasil-na-vida-real/index.html").read_text(encoding="utf-8")
+          if "<script>" not in page or "</script>" not in page:
+              raise SystemExit("Bloco JavaScript não encontrado na página.")
+          script = page.split("<script>", 1)[1].split("</script>", 1)[0]
+          Path("/tmp/ivr-inline.js").write_text(script, encoding="utf-8")
+          PY
+          node --check /tmp/ivr-inline.js
       - name: Instalar leitor de planilhas da ANP
         run: python -m pip install --disable-pip-version-check openpyxl requests
       - name: Coletar fontes oficiais e notícias
