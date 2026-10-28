@@ -282,15 +282,15 @@ function exposureForNews(n){
  const taxes=/imposto|tribut|icms|al[ií]quota|isen[cç][aã]o|reforma tribut/.test(title+' '+summary)||topic.includes('tributos');
  const groups=[];
  if(food)groups.push({label:'Alimentação e supermercado',spent:e.food,keys:['food'],ipca:'food'});
- if(transport)groups.push({label:'Combustível e transporte',spent:(e.fuel||0)+(e.transit||0),keys:['fuel','transit'],ipca:'transport'});
- if(housing)groups.push({label:'Moradia e contas da casa',spent:(e.housing||0)+(e.utilities||0),keys:['housing','utilities'],ipca:'housing'});
+ if(transport)groups.push({label:'Combustível e transporte',spent:(e.fuel!==null||e.transit!==null)?((e.fuel||0)+(e.transit||0)):null,keys:['fuel','transit'],ipca:'transport'});
+ if(housing)groups.push({label:'Moradia e contas da casa',spent:(e.housing!==null||e.utilities!==null)?((e.housing||0)+(e.utilities||0)):null,keys:['housing','utilities'],ipca:'housing'});
  if(health)groups.push({label:'Saúde e medicamentos',spent:e.health,keys:['health'],ipca:'health'});
  if(education)groups.push({label:'Educação e creche',spent:e.education,keys:['education'],ipca:'education'});
  if(communication)groups.push({label:'Internet e telefone',spent:e.communication,keys:['communication'],ipca:'communication'});
- if(credit)groups.push({label:'Parcelas e crédito',spent:(e.debt||0)+(e.housing||0),keys:['debt','housing'],ipca:null});
+ if(credit)groups.push({label:'Parcelas e crédito',spent:(e.debt!==null||e.housing!==null)?((e.debt||0)+(e.housing||0)):null,keys:['debt','housing'],ipca:null});
  if(benefit)groups.push({label:'Renda de benefício',spent:null,keys:[],ipca:null,income:true});
  if(taxes&&!food&&!transport&&!housing&&!health&&!education&&!communication)groups.push({label:'Compras potencialmente abrangidas pela regra tributária',spent:e.other,keys:['other'],ipca:null});
- if(groups.length===0)groups.push({label:'Despesas correntes informadas',spent:b.total,keys:BUDGET_FIELDS.filter(f=>e[f.key]!==null).map(f=>f.key),ipca:null});
+ if(groups.length===0)groups.push({label:'Despesas correntes informadas',spent:b.filled>0?b.total:null,keys:BUDGET_FIELDS.filter(f=>e[f.key]!==null).map(f=>f.key),ipca:null});
  // Avoid treating category amounts as additive when two classifiers point at the same budget.
  const unique=[];const seen=new Set();groups.forEach(g=>{const id=g.label;if(!seen.has(id)){seen.add(id);unique.push(g);}});
  return {budget:b,groups:unique,flags:{food,transport,housing,health,education,communication,credit,benefit,taxes}};
@@ -386,7 +386,7 @@ function chainAnalysis(n){
  let exposureTotal=0,exposureKnown=0;const exposureRows=[];
  exposure.groups.forEach(g=>{
   const amounts=g.keys.map(k=>exposure.budget.expenses[k]).filter(v=>v!==null);
-  const spent=g.spent!==null?g.spent:(amounts.length?amounts.reduce((a,v)=>a+v,0):null);
+  const spent=g.spent!==null&&g.spent!==undefined?g.spent:(amounts.length?amounts.reduce((a,v)=>a+v,0):null);
   if(spent!==null){exposureTotal+=spent;exposureKnown++;}
   const group=g.ipca?currentIPCAGroup(g.ipca):null;
   const pricePressure=group&&spent!==null?estimatedPricePressure(spent,group.rate):null;
@@ -480,7 +480,7 @@ function getBasketKey(income){
 function updateBudgetLive(){
  const b=readBudget();
  const fmt=money(b.total);
- $('budget-live-total').textContent=fmt+' informados / mês';
+ $('budget-live-total').textContent=b.filled===0?'Preencha seus gastos mensais':fmt+' em '+b.filled+' categoria(s) / mês';
  const incomeText=b.income===null?'renda não informada':money(b.income)+'/mês';
  const remainder=b.income!==null?b.income-b.total:null;
  $('budget-live-total').title=incomeText+(remainder===null?'':' · saldo após gastos preenchidos: '+money(remainder));
@@ -492,9 +492,9 @@ function updateBudgetSummary(){
  $('budget-income').textContent=b.income===null?'Não informada':money(b.income);
  $('budget-income-source').textContent=b.exactIncome?'Valor exato informado':'Valor representativo da faixa selecionada';
  const remainder=b.income===null?null:b.income-b.total;
- $('budget-balance').textContent=remainder===null?'—':money(remainder);
+ $('budget-balance').textContent=(remainder===null||b.filled===0)?'—':money(remainder);
  $('budget-balance').className=remainder!==null&&remainder<0?'is-negative':'';
- $('budget-balance-note').textContent=b.filled===b.categories?'Saldo após todas as categorias preenchidas':(b.filled===0?'Informe gastos para estimar o saldo':'Saldo parcial; há despesas não preenchidas');
+ $('budget-balance-note').textContent=b.filled===b.categories?'Saldo após todas as categorias preenchidas':(b.filled===0?'Informe gastos; não há saldo calculado':'Saldo parcial; há despesas não preenchidas');
  $('budget-breakdown').innerHTML=BUDGET_FIELDS.filter(f=>b.expenses[f.key]!==null).map(f=>'<div class="expense-line"><span>'+escapeHTML(f.label)+'</span><strong>'+money(b.expenses[f.key])+'</strong></div>').join('')||'<p class="hint">Nenhum gasto mensal informado ainda. Preencha os campos acima para personalizar as cadeias de impacto das notícias.</p>';
  updateBudgetLive();
 }
