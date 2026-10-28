@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-10-28T13:33:32+00:00",
+  "updated_at": "2026-10-28T14:23:21+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -693,7 +693,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-10-28T13:33:32+00:00",
+  "news_checked_at": "2026-10-28T14:23:21+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
@@ -731,8 +731,5 @@
       "type": "news-feed"
     }
   ],
-  "warnings": [
-    "BCB/SGS consulta por período falhou; tentando últimas 30 observações: HTTP Error 502: Bad Gateway",
-    "BCB/SGS indisponível: HTTP Error 502: Bad Gateway"
-  ]
+  "warnings": []
 }
