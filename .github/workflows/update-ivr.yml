@@ -37,6 +37,13 @@ jobs:
           page = Path("brasil-na-vida-real/index.html").read_text(encoding="utf-8")
           if "<script>" not in page or "</script>" not in page:
               raise SystemExit("Bloco JavaScript não encontrado na página.")
+          markup = page.split("<script>", 1)[0]
+          if r"\n" in markup:
+              raise SystemExit("Texto literal \\n encontrado no HTML fora do JavaScript.")
+          required = ["spendFood", "spendFuel", "spendHousing", "spendDebt", "monthlyBenefit", "spendTargetProducts"]
+          missing = [item for item in required if item not in page]
+          if missing:
+              raise SystemExit("Campos de orçamento ausentes: " + ", ".join(missing))
           script = page.split("<script>", 1)[1].split("</script>", 1)[0]
           Path("/tmp/ivr-inline.js").write_text(script, encoding="utf-8")
           PY
