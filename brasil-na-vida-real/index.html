@@ -89,6 +89,47 @@
  .chain-arrow:before{content:"↓";font-size:19px}
 }
 
+
+/* Orçamento pessoal: transforma perfil genérico em gastos mensais declarados */
+.budget-card{margin:22px 0;padding:20px;background:#141b16;border:1px solid #3a4938;border-radius:18px}
+.budget-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:7px}
+.budget-heading h4{font-size:17px;margin:0;letter-spacing:-.03em}
+.budget-total{font-size:11px;color:var(--lime);font-weight:850;white-space:nowrap}
+.budget-copy{font-size:11px;color:var(--muted);line-height:1.65;margin:0 0 16px;max-width:780px}
+.budget-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.budget-field{min-width:0}
+.budget-field label{display:block;color:#dce2d9;font-weight:700;font-size:11px;line-height:1.45;min-height:31px;margin-bottom:6px}
+.budget-inputwrap{position:relative}
+.budget-inputwrap span{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#879487;font-size:11px;pointer-events:none}
+.budget-field input,.budget-field select{width:100%;min-width:0;background:#0e130f;color:var(--text);border:1px solid #3b483c;border-radius:9px;min-height:42px;padding:10px;font:inherit;font-size:12px}
+.budget-field input[type=number]{padding-left:31px}
+.budget-subtitle{grid-column:1/-1;font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;color:var(--lime);padding-top:9px;border-top:1px solid #303a32;margin-top:3px}
+.budget-foot{font-size:10px;color:#94a091;line-height:1.6;margin:13px 0 0}
+.budget-summary{margin:22px 0;border:1px solid #3b4938;background:#182019;border-radius:16px;padding:18px}
+.budget-summary h4{font-size:14px;margin:0 0 5px}
+.budget-summary>p{font-size:11px;color:var(--muted);line-height:1.65;margin:0 0 14px}
+.budget-result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.budget-result{border:1px solid #303d31;background:#222b23;border-radius:11px;padding:12px;min-width:0}
+.budget-result span{font-size:10px;color:var(--muted);display:block;line-height:1.5}
+.budget-result strong{font-size:16px;display:block;margin-top:5px;overflow-wrap:anywhere}
+.budget-result small{font-size:9px;color:#909d91;display:block;margin-top:4px;line-height:1.45}
+.expense-line{display:flex;justify-content:space-between;gap:12px;align-items:center;border-top:1px solid #303a32;padding:9px 0;font-size:11px}
+.expense-line span{color:#bec8bc}
+.expense-line strong{white-space:nowrap}
+.news-money-panel{margin-top:15px;padding:14px;background:#151d17;border:1px solid #384537;border-radius:13px}
+.news-money-panel h4{font-size:12px;margin:0 0 10px}
+.news-money-row{display:grid;grid-template-columns:1fr auto;gap:7px 12px;align-items:start;padding:9px 0;border-top:1px solid #303a32}
+.news-money-row:first-of-type{border-top:0}
+.news-money-row span{font-size:11px;color:#b9c4b8;line-height:1.5}
+.news-money-row strong{font-size:12px;color:var(--lime);text-align:right}
+.news-money-row small{grid-column:1/-1;font-size:10px;color:#8f9c90;line-height:1.6}
+.news-money-row .unknown{color:#f4c17b}
+@media(max-width:850px){.budget-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.budget-result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.budget-card{padding:15px}.budget-grid{grid-template-columns:minmax(0,1fr)}.budget-result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.budget-heading{display:block}.budget-total{margin-top:6px;display:block}}
+
+
+@media(min-width:1051px){.layout{grid-template-columns:minmax(0,1fr)}.formcard,.resultcard{width:100%}.budget-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.scorehead{grid-template-columns:140px minmax(0,1fr)}}
+
 </style></head>
 <body>
 <header class="wrap nav"><a class="brand" href="#top"><span class="mark">V</span><span>BRASIL NA VIDA REAL<small>Índice da Vida Real · IVR</small></span></a><nav class="navlinks"><a href="#dados">Dados oficiais</a><a href="#radar">Notícias</a><a href="#metodo">Metodologia</a><a class="btn" href="#calcular">Calcular meu IVR ↗</a></nav></header>
@@ -112,12 +153,38 @@
 <section class="section" id="calcular"><div class="wrap"><div class="heading"><div class="eyebrow">Sua realidade importa</div><h2>Vamos olhar para<br>o seu dia a dia.</h2><p>Escolha seu perfil e sua faixa de renda. O cálculo usa a variação observada dos grupos do IPCA e ponderações experimentais baseadas na POF. Nesta primeira versão, a faixa de renda altera a cesta; composição familiar, moradia, transporte, dívidas e estado ainda não alteram o cálculo porque faltam séries comparáveis validadas para cada combinação.</p></div><div class="layout"><form class="formcard" id="form"><div class="step">01 / SEU PERFIL</div><h3>Como é sua vida hoje?</h3><p class="intro">Não precisamos saber quem você é. Só como é seu orçamento, aproximadamente.</p>
 <div class="field"><label for="profile">Qual perfil mais se aproxima de você?</label><select id="profile"><option value="family">Família com filhos</option><option value="alone">Pessoa que mora sozinha</option><option value="single">Mãe ou pai que cria filho(s) sozinho(a)</option><option value="separated">Pessoa separada que paga pensão</option><option value="young">Jovem / estudante</option><option value="unemployed">Desempregado(a)</option><option value="informal">Autônomo(a) ou trabalhador(a) informal</option><option value="benefit">Pessoa que recebe benefício assistencial</option><option value="retired">Aposentado(a) ou pensionista</option><option value="worker">Trabalhador(a) com renda regular</option></select></div>
 <div class="two"><div class="field"><label for="adults">Adultos no domicílio</label><select id="adults"><option value="1">1 adulto</option><option value="2" selected>2 adultos</option><option value="3">3 adultos</option><option value="4">4 ou mais</option></select></div><div class="field"><label for="children">Crianças / dependentes</label><select id="children"><option value="0">Nenhum</option><option value="1">1 dependente</option><option value="2" selected>2 dependentes</option><option value="3">3 dependentes</option><option value="4">4 ou mais</option></select></div></div>
-<div class="field"><label for="income">Renda líquida total da casa por mês</label><select id="income"><option value="1500">Até R$ 1.500</option><option value="2250" selected>R$ 1.501 a R$ 3.000</option><option value="4000">R$ 3.001 a R$ 5.000</option><option value="6500">R$ 5.001 a R$ 8.000</option><option value="11000">Acima de R$ 8.000</option><option value="0">Prefiro não informar</option></select><div class="hint">Os pesos de consumo são aproximados por faixa de renda com base na POF 2017–2018. “Prefiro não informar” usa a distribuição média.</div></div>
+<div class="field"><label for="income">Faixa de renda líquida da casa por mês</label><select id="income"><option value="1500">Até R$ 1.500</option><option value="2250" selected>R$ 1.501 a R$ 3.000</option><option value="4000">R$ 3.001 a R$ 5.000</option><option value="6500">R$ 5.001 a R$ 8.000</option><option value="11000">Acima de R$ 8.000</option><option value="0">Prefiro não informar</option></select><div class="hint">Usada para escolher a cesta de consumo de referência. Informe o valor exato abaixo se quiser melhorar o cálculo da parcela da renda.</div></div>
+<div class="field"><label for="exactIncome">Renda líquida mensal exata (opcional)</label><div class="budget-inputwrap"><span>R$</span><input id="exactIncome" type="number" min="0" step="50" inputmode="decimal" placeholder="Ex.: 4800"></div><div class="hint">Some salários líquidos, renda informal, pensão recebida e benefícios que entram efetivamente na casa. Não precisa informar se preferir usar apenas a faixa.</div></div>
+
+<div class="budget-card" id="budget-card">
+ <div class="budget-heading"><h4>Para onde vai o dinheiro da sua casa?</h4><span class="budget-total" id="budget-live-total">R$ 0 informados / mês</span></div>
+ <p class="budget-copy">Preencha valores aproximados do que vocês realmente desembolsam em um mês normal. Não precisa acertar centavos nem preencher tudo. Esses valores ficam no navegador e permitem estimar a despesa exposta a cada notícia — sem presumir que a notícia causou todo esse gasto.</p>
+ <div class="budget-grid">
+  <div class="budget-subtitle">Compras e deslocamento</div>
+  <div class="budget-field"><label for="spendFood">Supermercado, feira e alimentação</label><div class="budget-inputwrap"><span>R$</span><input id="spendFood" type="number" min="0" step="10" inputmode="decimal" placeholder="Ex.: 1200"></div></div>
+  <div class="budget-field"><label for="spendFuel">Combustível (gasolina, etanol ou diesel)</label><div class="budget-inputwrap"><span>R$</span><input id="spendFuel" type="number" min="0" step="10" inputmode="decimal" placeholder="Ex.: 450"></div></div>
+  <div class="budget-field"><label for="spendTransit">Ônibus, trem, metrô e aplicativos</label><div class="budget-inputwrap"><span>R$</span><input id="spendTransit" type="number" min="0" step="10" inputmode="decimal" placeholder="Ex.: 220"></div></div>
+  <div class="budget-subtitle">Moradia e contas fixas</div>
+  <div class="budget-field"><label for="spendHousing">Aluguel ou financiamento da moradia</label><div class="budget-inputwrap"><span>R$</span><input id="spendHousing" type="number" min="0" step="10" inputmode="decimal" placeholder="Ex.: 1800"></div></div>
+  <div class="budget-field"><label for="spendUtilities">Luz, água, gás e condomínio</label><div class="budget-inputwrap"><span>R$</span><input id="spendUtilities" type="number" min="0" step="10" inputmode="decimal" placeholder="Ex.: 380"></div></div>
+  <div class="budget-field"><label for="spendCommunication">Internet e telefone</label><div class="budget-inputwrap"><span>R$</span><input id="spendCommunication" type="number" min="0" step="10" inputmode="decimal" placeholder="Ex.: 140"></div></div>
+  <div class="budget-subtitle">Família, saúde e compromissos</div>
+  <div class="budget-field"><label for="spendHealth">Plano de saúde, consultas e remédios</label><div class="budget-inputwrap"><span>R$</span><input id="spendHealth" type="number" min="0" step="10" inputmode="decimal" placeholder="Ex.: 250"></div></div>
+  <div class="budget-field"><label for="spendEducation">Escola, creche, material e cursos</label><div class="budget-inputwrap"><span>R$</span><input id="spendEducation" type="number" min="0" step="10" inputmode="decimal" placeholder="Ex.: 300"></div></div>
+  <div class="budget-field"><label for="spendDebt">Parcelas, empréstimos e cartão</label><div class="budget-inputwrap"><span>R$</span><input id="spendDebt" type="number" min="0" step="10" inputmode="decimal" placeholder="Ex.: 500"></div></div>
+  <div class="budget-field"><label for="spendSupport">Pensão alimentícia paga</label><div class="budget-inputwrap"><span>R$</span><input id="spendSupport" type="number" min="0" step="10" inputmode="decimal" placeholder="Ex.: 600"></div></div>
+  <div class="budget-field"><label for="spendOther">Outras despesas regulares</label><div class="budget-inputwrap"><span>R$</span><input id="spendOther" type="number" min="0" step="10" inputmode="decimal" placeholder="Ex.: 250"></div></div>
+  <div class="budget-subtitle">Detalhe extra (opcional)</div>
+  <div class="budget-field"><label for="fuelType">Combustível do veículo principal</label><select id="fuelType"><option value="none">Não uso carro/moto</option><option value="gasoline" selected>Gasolina</option><option value="ethanol">Etanol</option><option value="diesel">Diesel</option><option value="mixed">Flex / alterno combustíveis</option></select></div>
+  <div class="budget-field"><label for="dieselLiters">Litros de diesel por mês (se aplicável)</label><div class="budget-inputwrap"><span>L</span><input id="dieselLiters" type="number" min="0" step="1" inputmode="decimal" placeholder="Ex.: 80"></div></div>
+ </div>
+ <p class="budget-foot">O total informado é a soma apenas dos campos preenchidos. Se deixar categorias vazias, o site não as tratará como gasto zero ao explicar a completude do orçamento. Não solicitamos CPF, banco ou comprovantes.</p>
+</div>
 <div class="field"><label for="housing">Como é sua moradia?</label><select id="housing"><option value="rent">Aluguel</option><option value="mortgage">Financiamento / prestação</option><option value="owned">Casa própria quitada</option><option value="family">Moro com familiares / não pago moradia</option></select></div>
 <div class="field"><label for="transport">Como você se locomove principalmente?</label><select id="transport"><option value="car">Carro ou moto</option><option value="mixed" selected>Uso carro e transporte público</option><option value="public">Ônibus / metrô / trem</option><option value="active">A pé / bicicleta / fico em casa</option></select></div>
 <div class="field"><label for="debts">Como estão as dívidas e parcelas?</label><select id="debts"><option value="0">Não tenho dívidas relevantes</option><option value="0.08">Existem, mas consigo pagar</option><option value="0.16" selected>Pesam no orçamento</option><option value="0.28">Comprometem muito a renda</option></select></div>
-<div class="field"><label for="region">Onde você mora?</label><select id="region"><option>São Paulo</option><option>Minas Gerais</option><option>Rio de Janeiro</option><option>Bahia</option><option>Paraná</option><option>Rio Grande do Sul</option><option>Santa Catarina</option><option>Distrito Federal</option><option>Outro estado</option></select></div><div class="actionsform"><button class="btn" type="submit">Calcular minha estimativa →</button><button class="btn dark" type="reset">Limpar</button></div><p class="hint">Transparência: nesta versão, as escolhas de moradia, transporte, dívidas, dependentes e estado ainda não alteram o número. O cálculo publicado é uma estimativa de variação da cesta ponderada por faixa de renda; esses fatores só serão incorporados após integração de séries específicas e validação estatística.</p></form>
-<section class="resultcard" aria-live="polite" aria-label="Resultado do índice"><div class="empty" id="empty"><div class="emptyicon">◎</div><span class="pill">SEU RESULTADO APARECE AQUI</span><h3>Seu bolso, sua realidade.</h3><p>Responda às perguntas para ver como a variação dos preços pode diferir conforme a faixa de renda escolhida.</p></div><div class="result" id="result" hidden><div class="step">02 / RESULTADO DEMONSTRATIVO</div><div class="scorehead"><div class="ring" id="ring"><div class="ringinner"><strong id="score">—</strong><small>alta em 12 meses</small></div></div><div><span class="pill" id="status">SIMULAÇÃO</span><h3 id="headline">Pressão no orçamento</h3><p id="summary"></p></div></div><div class="statgrid"><div class="stat"><span>Cesta ponderada · 12 meses</span><strong id="costs">—</strong></div><div class="stat"><span>IPCA geral · 12 meses</span><strong id="inc">—</strong></div><div class="stat"><span>Poder de compra se a renda ficasse igual</span><strong id="purchasing">—</strong></div><div class="stat"><span>Diferença vs. IPCA geral</span><strong id="ratio">—</strong></div><div class="stat"><span>Alimentação · 12 meses</span><strong id="food">—</strong></div></div><div class="eyebrow" style="margin-top:24px">Variação dos preços por grupo</div><div class="bars" id="bars"></div><div class="explain" id="explain"></div><div class="result-actions"><button class="btn" id="share" type="button">Compartilhar resultado ↗</button><button class="btn dark" id="copy" type="button">Copiar resumo</button></div><p class="hint">Cesta estimada com dados publicados do IPCA e ponderações experimentais da POF. Não é um índice individual oficial nem prova de que uma política específica causou a variação.</p></div></section></div></div></section>
+<div class="field"><label for="region">Onde você mora?</label><select id="region"><option>São Paulo</option><option>Minas Gerais</option><option>Rio de Janeiro</option><option>Bahia</option><option>Paraná</option><option>Rio Grande do Sul</option><option>Santa Catarina</option><option>Distrito Federal</option><option>Outro estado</option></select></div><div class="actionsform"><button class="btn" type="submit">Calcular minha estimativa →</button><button class="btn dark" type="reset">Limpar</button></div><p class="hint">Transparência: nesta versão, as escolhas de moradia, transporte, dívidas, dependentes e estado ainda não alteram o número. O cálculo da cesta é uma estimativa de variação ponderada por faixa de renda. Os gastos declarados agora personalizam a exposição financeira por notícia; somente medidas com uma taxa de impacto verificável poderão produzir uma estimativa específica em reais.</p></form>
+<section class="resultcard" aria-live="polite" aria-label="Resultado do índice"><div class="empty" id="empty"><div class="emptyicon">◎</div><span class="pill">SEU RESULTADO APARECE AQUI</span><h3>Seu bolso, sua realidade.</h3><p>Responda às perguntas para ver como a variação dos preços pode diferir conforme a faixa de renda escolhida.</p></div><div class="result" id="result" hidden><div class="step">02 / RESULTADO DEMONSTRATIVO</div><div class="scorehead"><div class="ring" id="ring"><div class="ringinner"><strong id="score">—</strong><small>alta em 12 meses</small></div></div><div><span class="pill" id="status">SIMULAÇÃO</span><h3 id="headline">Pressão no orçamento</h3><p id="summary"></p></div></div><div class="statgrid"><div class="stat"><span>Cesta ponderada · 12 meses</span><strong id="costs">—</strong></div><div class="stat"><span>IPCA geral · 12 meses</span><strong id="inc">—</strong></div><div class="stat"><span>Poder de compra se a renda ficasse igual</span><strong id="purchasing">—</strong></div><div class="stat"><span>Diferença vs. IPCA geral</span><strong id="ratio">—</strong></div><div class="stat"><span>Alimentação · 12 meses</span><strong id="food">—</strong></div></div><div class="budget-summary" id="budget-summary"><h4>O orçamento informado</h4><p>Preencha os seus gastos mensais acima. O resultado separa despesas declaradas de estimativas de impacto, para não confundir o que você já paga com o que uma medida pode mudar.</p><div class="budget-result-grid"><div class="budget-result"><span>Despesas informadas</span><strong id="budget-total">—</strong><small id="budget-completeness">Campos preenchidos</small></div><div class="budget-result"><span>Renda líquida usada</span><strong id="budget-income">—</strong><small id="budget-income-source">Faixa aproximada</small></div><div class="budget-result"><span>Saldo após os gastos informados</span><strong id="budget-balance">—</strong><small id="budget-balance-note">Ainda pode haver despesas não preenchidas</small></div></div><div id="budget-breakdown" style="margin-top:12px"></div></div><div class="eyebrow" style="margin-top:24px">Variação dos preços por grupo</div><div class="bars" id="bars"></div><div class="explain" id="explain"></div><div class="result-actions"><button class="btn" id="share" type="button">Compartilhar resultado ↗</button><button class="btn dark" id="copy" type="button">Copiar resumo</button></div><p class="hint">Cesta estimada com dados publicados do IPCA e ponderações experimentais da POF. Não é um índice individual oficial nem prova de que uma política específica causou a variação.</p></div></section></div></div></section>
 
 <section class="section alt" id="radar"><div class="wrap"><div class="heading"><div class="eyebrow">Radar de medidas e notícias</div>
 <h2>O que pode chegar<br>ao seu bolso?</h2><p>Cada notícia vira uma cadeia visual: o que aconteceu, como isso pode se transmitir pela economia, quem pode sentir o efeito e o que já é possível estimar em reais. O site separa efeito direto, efeito indireto e impacto ainda desconhecido.</p></div>
@@ -155,23 +222,78 @@ function renderOfficial(d){
  else if(anp.period){$('live-integrity').innerHTML='<strong>Combustíveis:</strong> a ANP já está referenciada para a semana '+escapeHTML(anp.period)+', mas o arquivo regional ainda não foi interpretado com segurança para exibir um preço médio. <a target="_blank" rel="noopener" href="'+escapeHTML(anp.file_url||anp.source_url||'https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas')+'">Consultar fonte da ANP ↗</a>';}
  renderNews(d);
 }
+const BUDGET_FIELDS=[
+ {id:'spendFood',label:'Supermercado, feira e alimentação',key:'food'},
+ {id:'spendFuel',label:'Combustível',key:'fuel'},
+ {id:'spendTransit',label:'Transporte público e aplicativos',key:'transit'},
+ {id:'spendHousing',label:'Aluguel / financiamento',key:'housing'},
+ {id:'spendUtilities',label:'Luz, água, gás e condomínio',key:'utilities'},
+ {id:'spendCommunication',label:'Internet e telefone',key:'communication'},
+ {id:'spendHealth',label:'Saúde e medicamentos',key:'health'},
+ {id:'spendEducation',label:'Escola, creche e cursos',key:'education'},
+ {id:'spendDebt',label:'Parcelas, empréstimos e cartão',key:'debt'},
+ {id:'spendSupport',label:'Pensão alimentícia paga',key:'support'},
+ {id:'spendOther',label:'Outras despesas regulares',key:'other'}
+];
+function readBudget(){
+ const expenses={};let total=0,filled=0;
+ BUDGET_FIELDS.forEach(f=>{
+  const input=$(f.id);const raw=input&&input.value!==''?Number(input.value):null;
+  expenses[f.key]=raw!==null&&Number.isFinite(raw)&&raw>=0?raw:null;
+  if(expenses[f.key]!==null){total+=expenses[f.key];filled++;}
+ });
+ const selectedIncome=Number($('income')?.value||0);
+ const exactIncome=Number($('exactIncome')?.value||0);
+ const income=exactIncome>0?exactIncome:(selectedIncome>0?selectedIncome:null);
+ return {expenses,total,filled,categories:BUDGET_FIELDS.length,income,exactIncome:exactIncome>0};
+}
+function currentIPCAGroup(key){
+ const map={food:'food',housing:'housing',utilities:'housing',fuel:'transport',transit:'transport',health:'health',education:'education',communication:'communication'};
+ const groupKey=map[key];if(!groupKey)return null;
+ const found=(indicatorData?.groups||[]).find(g=>g.key===groupKey);
+ if(!found||found.last12===null||found.last12===undefined)return null;
+ return {key:groupKey,name:found.name,rate:Number(found.last12),period:found.period_label||indicatorData?.groups_period_label||indicatorData?.ipca?.period_label};
+}
+function estimatedPricePressure(spend,rate){
+ if(!(spend>0)||!Number.isFinite(rate))return null;
+ // Current expenditure compared with the same basket at prior-year prices.
+ return spend*(rate/(100+rate));
+}
 function profileSummary(){
- const names={
-  family:'Família com filhos',alone:'Pessoa que mora sozinha',single:'Mãe ou pai solo',
-  separated:'Pessoa separada que paga pensão',young:'Jovem / estudante',unemployed:'Pessoa desempregada',
-  informal:'Autônomo(a) / informal',benefit:'Pessoa que recebe benefício assistencial',
-  retired:'Aposentado(a) / pensionista',worker:'Trabalhador(a) com renda regular'
- };
+ const names={family:'Família com filhos',alone:'Pessoa que mora sozinha',single:'Mãe ou pai solo',separated:'Pessoa separada que paga pensão',young:'Jovem / estudante',unemployed:'Pessoa desempregada',informal:'Autônomo(a) / informal',benefit:'Pessoa que recebe benefício assistencial',retired:'Aposentado(a) / pensionista',worker:'Trabalhador(a) com renda regular'};
  const transportNames={car:'usa carro ou moto',mixed:'combina carro e transporte público',public:'usa transporte público',active:'caminha, usa bicicleta ou pouco se desloca'};
  const debtNames={'0':'sem dívidas relevantes','0.08':'com parcelas administráveis','0.16':'com dívidas que pesam no orçamento','0.28':'com renda muito comprometida por dívidas'};
- const profile=$('profile')?.value||'family';
- const region=$('region')?.value||'Brasil';
- const transport=$('transport')?.value||'mixed';
- const debt=$('debts')?.value||'0.16';
- const adults=$('adults')?.value||'1';
- const dependents=$('children')?.value||'0';
- const household='domicílio com '+adults+' adulto(s) e '+dependents+' dependente(s)';
- return (names[profile]||'Perfil selecionado')+' · '+household+' · '+region+' · '+(transportNames[transport]||'locomoção não informada')+' · '+(debtNames[debt]||'situação financeira não informada');
+ const profile=$('profile')?.value||'family',region=$('region')?.value||'Brasil',transport=$('transport')?.value||'mixed',debt=$('debts')?.value||'0.16';
+ const adults=$('adults')?.value||'1',dependents=$('children')?.value||'0',budget=readBudget();
+ const incomeText=budget.income!==null?money(budget.income)+'/mês de renda líquida de referência':'renda não informada';
+ return (names[profile]||'Perfil selecionado')+' · domicílio com '+adults+' adulto(s) e '+dependents+' dependente(s) · '+region+' · '+(transportNames[transport]||'locomoção não informada')+' · '+(debtNames[debt]||'situação financeira não informada')+' · '+incomeText;
+}
+function exposureForNews(n){
+ const title=String(n.title||'').toLowerCase(),summary=String(n.summary||n.description||'').toLowerCase(),topic=String(n.topic||n.topic_label||'').toLowerCase();
+ const b=readBudget(),e=b.expenses;
+ const food=/alimenta[cç][aã]o|alimento|supermercado|safra|arroz|feij[aã]o|carne|leite|abastecimento/.test(title+' '+summary)||topic.includes('alimentação');
+ const transport=/combust[ií]vel|diesel|gasolina|etanol|frete|transporte|subven[cç][aã]o.*diesel/.test(title+' '+summary)||topic.includes('transporte');
+ const housing=/aluguel|habita[cç][aã]o|moradia|condom[ií]nio|conta de luz|energia|g[aá]s de cozinha|saneamento|tarifa de [aá]gua/.test(title+' '+summary)||topic.includes('moradia');
+ const health=/medicamento|rem[eé]dio|sa[uú]de|farm[aá]cia/.test(title+' '+summary);
+ const education=/educa[cç][aã]o|creche|escola|material escolar/.test(title+' '+summary);
+ const communication=/internet|telefonia|comunica[cç][aã]o/.test(title+' '+summary);
+ const credit=/recompra.*t[ií]tulos|t[ií]tulos.*recompra|tesouro anuncia nova recompra|juros|selic|cr[eé]dito|superendividad|financiamento|consignado/.test(title+' '+summary)||topic.includes('juros');
+ const benefit=/assist[eê]ncia social|benef[ií]cios para mei|bolsa fam[ií]lia|bpc|aux[ií]lio|benef[ií]cio|sal[aá]rio m[ií]nimo|libera r\\$/.test(title+' '+summary)||topic.includes('renda e benefícios');
+ const taxes=/imposto|tribut|icms|al[ií]quota|isen[cç][aã]o|reforma tribut/.test(title+' '+summary)||topic.includes('tributos');
+ const groups=[];
+ if(food)groups.push({label:'Alimentação e supermercado',spent:e.food,keys:['food'],ipca:'food'});
+ if(transport)groups.push({label:'Combustível e transporte',spent:(e.fuel||0)+(e.transit||0),keys:['fuel','transit'],ipca:'transport'});
+ if(housing)groups.push({label:'Moradia e contas da casa',spent:(e.housing||0)+(e.utilities||0),keys:['housing','utilities'],ipca:'housing'});
+ if(health)groups.push({label:'Saúde e medicamentos',spent:e.health,keys:['health'],ipca:'health'});
+ if(education)groups.push({label:'Educação e creche',spent:e.education,keys:['education'],ipca:'education'});
+ if(communication)groups.push({label:'Internet e telefone',spent:e.communication,keys:['communication'],ipca:'communication'});
+ if(credit)groups.push({label:'Parcelas e crédito',spent:(e.debt||0)+(e.housing||0),keys:['debt','housing'],ipca:null});
+ if(benefit)groups.push({label:'Renda de benefício',spent:null,keys:[],ipca:null,income:true});
+ if(taxes&&!food&&!transport&&!housing&&!health&&!education&&!communication)groups.push({label:'Compras potencialmente abrangidas pela regra tributária',spent:e.other,keys:['other'],ipca:null});
+ if(groups.length===0)groups.push({label:'Despesas correntes informadas',spent:b.total,keys:BUDGET_FIELDS.filter(f=>e[f.key]!==null).map(f=>f.key),ipca:null});
+ // Avoid treating category amounts as additive when two classifiers point at the same budget.
+ const unique=[];const seen=new Set();groups.forEach(g=>{const id=g.label;if(!seen.has(id)){seen.add(id);unique.push(g);}});
+ return {budget:b,groups:unique,flags:{food,transport,housing,health,education,communication,credit,benefit,taxes}};
 }
 function chainAnalysis(n){
  const title=String(n.title||'').toLowerCase();
@@ -260,7 +382,27 @@ function chainAnalysis(n){
   evidence='Resultado real ainda a observar';
   stage='Possível efeito sobre renda';
  }
- return {mechanism,profileEffect,estimate,evidence,stage};
+ const exposure=exposureForNews(n);
+ let exposureTotal=0,exposureKnown=0;const exposureRows=[];
+ exposure.groups.forEach(g=>{
+  const amounts=g.keys.map(k=>exposure.budget.expenses[k]).filter(v=>v!==null);
+  const spent=g.spent!==null?g.spent:(amounts.length?amounts.reduce((a,v)=>a+v,0):null);
+  if(spent!==null){exposureTotal+=spent;exposureKnown++;}
+  const group=g.ipca?currentIPCAGroup(g.ipca):null;
+  const pricePressure=group&&spent!==null?estimatedPricePressure(spent,group.rate):null;
+  exposureRows.push({...g,spent,group,pricePressure});
+ });
+ let directEstimate=null,directNote='A notícia não contém uma taxa de repasse ou um efeito financeiro individual validado. O valor gasto nessa categoria mostra sua exposição, não o prejuízo causado pela notícia.';
+ if(/subven[cç][aã]o.*diesel|diesel.*subven[cç][aã]o|r\$\s?2,12/.test(title+' '+summary)){
+  const dieselLiters=Number($('dieselLiters')?.value||0),fuelType=$('fuelType')?.value||'gasoline';
+  if(fuelType==='diesel'&&dieselLiters>0){
+   directEstimate=dieselLiters*2.12;
+   directNote='Cenário máximo teórico: litros de diesel declarados × R$ 2,12 citados na notícia, supondo repasse integral da subvenção ao consumidor. Não é economia comprovada nem preço observado.';
+  }else{
+   directNote='O valor da subvenção ao diesel não pode ser aplicado diretamente ao seu gasto com gasolina/etanol ou ônibus. Para uma estimativa individual, seria necessário demonstrar o repasse ao frete, tarifas e preços finais.';
+  }
+ }
+ return {mechanism,profileEffect,estimate,evidence,stage,exposureRows,directEstimate,directNote,exposureTotal,exposureKnown};
 }
 function renderNews(d){
  const items=(d.news||[]).filter(n=>{
@@ -272,15 +414,27 @@ function renderNews(d){
  $('news-updated').textContent=d.news_checked_at?'Última coleta: '+new Date(d.news_checked_at).toLocaleString('pt-BR'):'Aguardando coleta';
  const context=profileSummary();
  const contextEl=$('news-profile-context');
- if(contextEl)contextEl.innerHTML='<strong>Perfil usado para interpretar os efeitos:</strong> '+escapeHTML(context)+'. Altere o perfil, o transporte ou a situação das dívidas no questionário para atualizar esta leitura.';
+ if(contextEl)contextEl.innerHTML='<strong>Seu perfil:</strong> '+escapeHTML(context)+'. Os valores de gastos informados abaixo são usados para mostrar a exposição financeira por categoria.';
  $('news-grid').innerHTML=items.length?items.map(n=>{
   const a=chainAnalysis(n);
-  const title=escapeHTML(n.title||'Notícia econômica');
-  const url=escapeHTML(n.url||'#');
+  const title=escapeHTML(n.title||'Notícia econômica'),url=escapeHTML(n.url||'#');
   const summary=escapeHTML(n.summary||n.description||'A matéria foi selecionada para análise por poder ter relação com custo de vida, renda ou serviços.');
-  const source=escapeHTML(n.source||'Fonte consultada');
-  const published=escapeHTML(n.published||'Data não informada pela fonte');
-  const topic=escapeHTML(n.topic_label||n.topic||'Economia');
+  const source=escapeHTML(n.source||'Fonte consultada'),published=escapeHTML(n.published||'Data não informada pela fonte'),topic=escapeHTML(n.topic_label||n.topic||'Economia');
+  const moneyRows=a.exposureRows.map(row=>{
+   const spend=row.spent!==null&&row.spent!==undefined?money(row.spent)+'/mês':'Gasto não informado';
+   const rate=row.group?('IPCA '+escapeHTML(row.group.name)+' em 12 meses: '+pct(row.group.rate)):'Sem índice de preços diretamente aplicável';
+   const pressure=row.pricePressure!==null?money(row.pricePressure)+'/mês':'Não calculável';
+   const pressureNote=row.pricePressure!==null
+    ?'Estimativa de quanto do gasto mensal atual corresponde à diferença para comprar uma cesta equivalente a preços de 12 meses atrás. É uma referência de inflação do grupo, não o efeito desta notícia.'
+    :'A despesa está identificada como possível canal de exposição, mas não há taxa comprovada para converter esta notícia em aumento ou economia em reais.';
+   return '<div class="news-money-row"><span><b>'+escapeHTML(row.label)+'</b><br>'+rate+'</span><strong>'+spend+'</strong><small>Pressão de preços de referência: <b>'+pressure+'</b>. '+pressureNote+'</small></div>';
+  }).join('');
+  const direct=a.directEstimate!==null
+   ?'<div class="news-money-row"><span><b>Cenário específico da medida</b></span><strong>'+money(a.directEstimate)+'/mês</strong><small>'+escapeHTML(a.directNote)+'</small></div>'
+   :'<div class="news-money-row"><span><b>Impacto atribuível a esta notícia</b></span><strong class="unknown">Ainda não quantificável</strong><small>'+escapeHTML(a.directNote)+'</small></div>';
+  const budgetPanel='<div class="news-money-panel"><h4>Quanto do seu orçamento entra nessa conta?</h4>'+
+   (moneyRows||'<div class="news-money-row"><span>Nenhuma categoria específica identificada</span><strong class="unknown">Aguardando detalhamento</strong><small>Preencha os gastos mensais no questionário para relacionar a notícia a uma despesa real da sua casa.</small></div>')+direct+
+   '<div class="news-bottom-note">Gasto exposto não é prejuízo. A estimativa por IPCA compara preços atuais com os de 12 meses atrás; não atribui a inflação a uma notícia ou governo.</div></div>';
   return '<article class="news-card">'+
    '<div class="news-top"><div><div class="news-tags"><span>'+topic+'</span><span>'+escapeHTML(a.stage)+'</span></div><h3 class="news-title"><a href="'+url+'" target="_blank" rel="noopener">'+title+'</a></h3><div class="news-metadata"><span>'+source+'</span><span>·</span><span>'+published+'</span><span>·</span><a href="'+url+'" target="_blank" rel="noopener">Abrir notícia original ↗</a></div></div></div>'+
    '<div class="chain-flow">'+
@@ -288,11 +442,11 @@ function renderNews(d){
     '<div class="chain-arrow" aria-hidden="true"></div>'+
     '<div class="chain-box"><div class="chain-kicker">02 · MECANISMO</div><h4>Como isso se transmite?</h4><p>'+escapeHTML(a.mechanism)+'</p></div>'+
     '<div class="chain-arrow" aria-hidden="true"></div>'+
-    '<div class="chain-box"><div class="chain-kicker">03 · SEU PERFIL</div><h4>Como pode afetar você?</h4><p>'+escapeHTML(a.profileEffect)+'</p><span class="evidence-tag">'+escapeHTML(context)+'</span></div>'+
+    '<div class="chain-box"><div class="chain-kicker">03 · SUA DESPESA</div><h4>Onde pode aparecer na sua conta?</h4><p>'+escapeHTML(a.profileEffect)+'</p></div>'+
     '<div class="chain-arrow" aria-hidden="true"></div>'+
-    '<div class="chain-box"><div class="chain-kicker">04 · EM REAIS</div><h4>Quanto pode pesar ou aliviar?</h4><p>'+escapeHTML(a.estimate)+'</p><span class="evidence-tag">'+escapeHTML(a.evidence)+'</span></div>'+
-   '</div>'+
-   '<div class="news-bottom-note">Análise automatizada preliminar. O encadeamento explica um mecanismo possível, não prova causalidade. Quando não há dados para calcular um valor individual, isso é informado explicitamente.</div>'+
+    '<div class="chain-box"><div class="chain-kicker">04 · IMPACTO</div><h4>O que dá para calcular?</h4><p>'+escapeHTML(a.estimate)+'</p><span class="evidence-tag">'+escapeHTML(a.evidence)+'</span></div>'+
+   '</div>'+budgetPanel+
+   '<div class="news-bottom-note">Análise automática preliminar. Quando a informação não permite calcular uma variação individual confiável, o site mostra essa limitação em vez de inventar um valor.</div>'+
   '</article>';
  }).join(''):'<div class="news-empty">Nenhuma notícia com possível relação direta com preços, renda, crédito ou serviços foi identificada nesta coleta. Isso não significa que não existam mudanças relevantes; a lista depende das fontes disponíveis e dos filtros editoriais.</div>';
 }
@@ -308,6 +462,11 @@ async function loadOfficialData(){
 }
 $('profile').addEventListener('change',()=>{const a=profileDefaults[$('profile').value];$('adults').value=a[0];$('children').value=a[1];$('income').value=a[2];if(indicatorData)renderNews(indicatorData);});
 ['transport','debts','region','adults','children'].forEach(id=>$(id).addEventListener('change',()=>{if(indicatorData)renderNews(indicatorData);}));
+['transport','debts','region','adults','children','exactIncome','fuelType','dieselLiters',...BUDGET_FIELDS.map(f=>f.id)].forEach(id=>{
+ const el=$(id);if(!el)return;
+ const event=(el.type==='number')?'input':'change';
+ el.addEventListener(event,()=>{updateBudgetLive();if(indicatorData)renderNews(indicatorData);});
+});
 function getBasketKey(income){
  if(income===0)return 'average';
  if(income<=1908)return 'low';
@@ -318,11 +477,34 @@ function getBasketKey(income){
  if(income<=23850)return 'upper';
  return 'very_high';
 }
+function updateBudgetLive(){
+ const b=readBudget();
+ const fmt=money(b.total);
+ $('budget-live-total').textContent=fmt+' informados / mês';
+ const incomeText=b.income===null?'renda não informada':money(b.income)+'/mês';
+ const remainder=b.income!==null?b.income-b.total:null;
+ $('budget-live-total').title=incomeText+(remainder===null?'':' · saldo após gastos preenchidos: '+money(remainder));
+}
+function updateBudgetSummary(){
+ const b=readBudget();
+ $('budget-total').textContent=money(b.total);
+ $('budget-completeness').textContent=b.filled+' de '+b.categories+' categorias informadas';
+ $('budget-income').textContent=b.income===null?'Não informada':money(b.income);
+ $('budget-income-source').textContent=b.exactIncome?'Valor exato informado':'Valor representativo da faixa selecionada';
+ const remainder=b.income===null?null:b.income-b.total;
+ $('budget-balance').textContent=remainder===null?'—':money(remainder);
+ $('budget-balance').className=remainder!==null&&remainder<0?'is-negative':'';
+ $('budget-balance-note').textContent=b.filled===b.categories?'Saldo após todas as categorias preenchidas':(b.filled===0?'Informe gastos para estimar o saldo':'Saldo parcial; há despesas não preenchidas');
+ $('budget-breakdown').innerHTML=BUDGET_FIELDS.filter(f=>b.expenses[f.key]!==null).map(f=>'<div class="expense-line"><span>'+escapeHTML(f.label)+'</span><strong>'+money(b.expenses[f.key])+'</strong></div>').join('')||'<p class="hint">Nenhum gasto mensal informado ainda. Preencha os campos acima para personalizar as cadeias de impacto das notícias.</p>';
+ updateBudgetLive();
+}
 function renderResult(e){
  e.preventDefault();
  if(!indicatorData){showToast('Os dados ainda estão carregando.');return;}
  const groups=indicatorData.groups||[];
- const income=+$('income').value;
+ const selectedIncome=+$('income').value;
+ const budget=readBudget();
+ const income=budget.exactIncome?budget.income:selectedIncome;
  const key=getBasketKey(income);
  const basket=(indicatorData.profile_baskets||{})[key];
  if(!basket||basket.monthly==null||basket.last12==null){
@@ -347,17 +529,19 @@ function renderResult(e){
  $('food').textContent=food?.last12==null?'—':pct(food.last12);
  const sorted=groups.filter(g=>g.last12!=null).sort((a,b)=>Math.abs(b.contribution_12m||0)-Math.abs(a.contribution_12m||0));
  $('bars').innerHTML=sorted.map(g=>'<div class="barline"><div class="barlabel"><span>'+escapeHTML(g.name)+' · peso '+Number(basket.weights?.[g.key]||0).toLocaleString('pt-BR',{maximumFractionDigits:1})+'%</span><b class="'+(g.last12<0?'is-positive':'')+'">'+pct(g.last12)+'</b></div><div class="track"><div class="fill" style="width:'+Math.min(100,Math.max(2,Math.abs(g.last12)/20*100))+'%"></div></div></div>').join('');
- $('explain').innerHTML='<strong>Como ler:</strong><br>Esta é a variação estimada de uma cesta ponderada, não o gasto exato da sua casa. Se a renda nominal tivesse ficado igual durante 12 meses, a alta da cesta implicaria que ela compraria aproximadamente '+pct(purchasingLoss)+' menos dessa cesta hoje. Se o seu salário aumentou, o efeito pessoal pode ser diferente. Os pesos principais vêm da POF 2017–2018; os outros grupos usam pesos do IPCA. A cesta não prova que uma decisão de governo causou os preços.';
- lastResult={annual,monthly,national,diff,key,profile:$('profile').selectedOptions[0].text,income:income===0?'não informado':money(income),region:$('region').value,period:basket.period_label||indicatorData.groups_period_label};
+ $('explain').innerHTML='<strong>Como ler:</strong><br>Esta é a variação estimada de uma cesta ponderada, não o gasto exato da sua casa. Se a renda nominal tivesse ficado igual durante 12 meses, a alta da cesta implicaria que ela compraria aproximadamente '+pct(purchasingLoss)+' menos dessa cesta hoje. Se o seu salário aumentou, o efeito pessoal pode ser diferente. Os pesos principais vêm da POF 2017–2018; os outros grupos usam pesos do IPCA. A cesta não prova que uma decisão de governo causou os preços. Os valores de orçamento informados pelo usuário só são usados localmente no navegador para exibir despesas expostas; categorias vazias não são tratadas como comprovação de gasto zero.';
+ updateBudgetSummary();
+ lastResult={annual,monthly,national,diff,key,profile:$('profile').selectedOptions[0].text,income:income===0?'não informado':money(income),region:$('region').value,period:basket.period_label||indicatorData.groups_period_label,budget:readBudget()};
  $('result').scrollIntoView({behavior:'smooth',block:'start'});
 }
 $('form').addEventListener('submit',renderResult);
-$('form').addEventListener('reset',()=>setTimeout(()=>{ $('empty').hidden=false;$('result').hidden=true;lastResult=null;},0));
+$('form').addEventListener('reset',()=>setTimeout(()=>{ $('empty').hidden=false;$('result').hidden=true;lastResult=null;updateBudgetSummary();if(indicatorData)renderNews(indicatorData);},0));
 function shareText(){
  if(!lastResult)return 'Brasil na Vida Real — consulte os dados e calcule a sua cesta ponderada.';
  return 'Brasil na Vida Real — Índice da Vida Real (estimativa de cesta ponderada)\\nPerfil: '+lastResult.profile+'\\nVariação estimada da cesta em 12 meses: '+pct(lastResult.annual)+'\\nPoder de compra se a renda nominal ficasse igual: '+pct(100*(1-1/(1+lastResult.annual/100)))+' menos dessa cesta\\nIPCA nacional em 12 meses: '+(lastResult.national==null?'—':pct(lastResult.national))+'\\nDiferença em relação ao IPCA geral: '+(lastResult.diff==null?'—':(lastResult.diff>0?'+':'')+lastResult.diff.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+' p.p.')+'\\nCompetência: '+(lastResult.period||'não informada')+'\\n\\nEstimativa ponderada com pesos da POF 2017–2018. Não representa gasto individual comprovado nem atribui causalidade a decisões públicas.';
 }
 $('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(shareText());showToast('Resumo copiado!')}catch(e){showToast('Não foi possível copiar neste navegador.')}});
 $('share').addEventListener('click',async()=>{const d={title:'Meu resultado — Brasil na Vida Real',text:shareText(),url:location.href.split('#')[0]+'#calcular'};try{if(navigator.share)await navigator.share(d);else{await navigator.clipboard.writeText(d.text+'\\n'+d.url);showToast('Resumo e link copiados!')}}catch(e){}});
+updateBudgetSummary();
 loadOfficialData();
 </script></body></html>
