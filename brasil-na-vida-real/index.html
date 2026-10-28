@@ -67,12 +67,10 @@
 .news-empty{padding:24px;border:1px dashed #3a4739;border-radius:14px;color:var(--muted);font-size:13px;line-height:1.7}
 @media(max-width:1050px){
  .statgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
- .chain-flow{grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr);gap:9px}
- .chain-flow .chain-box:nth-of-type(3){grid-column:1}
- .chain-flow .chain-arrow:nth-of-type(4){grid-column:2}
- .chain-flow .chain-box:nth-of-type(5){grid-column:3}
- .chain-flow .chain-arrow:nth-of-type(6){display:none}
- .chain-flow .chain-box:nth-of-type(7){grid-column:1/-1}
+ .chain-flow{grid-template-columns:minmax(0,1fr);gap:7px}
+ .chain-flow .chain-box,.chain-flow .chain-box:nth-of-type(3),.chain-flow .chain-box:nth-of-type(5),.chain-flow .chain-box:nth-of-type(7){grid-column:1}
+ .chain-flow .chain-arrow,.chain-flow .chain-arrow:nth-of-type(2),.chain-flow .chain-arrow:nth-of-type(4),.chain-flow .chain-arrow:nth-of-type(6){display:flex;grid-column:1;height:18px;font-size:0}
+ .chain-arrow:before{content:"↓";font-size:19px}
 }
 @media(max-width:680px){
  .layout{gap:16px}
@@ -192,7 +190,7 @@ function chainAnalysis(n){
   estimate='R$ 0 de cobrança direta identificada nesta notícia. O efeito indireto no seu orçamento não pode ser convertido em reais apenas com o anúncio.';
   evidence='Efeito doméstico indireto · confiança baixa';
   stage='Intervenção no mercado financeiro';
- }else if(/subven[cç][aã]o.*diesel|diesel.*subven[cç][aã]o|r\\$\\s?2,12/.test(title+' '+summary)){
+ }else if(/subven[cç][aã]o.*diesel|diesel.*subven[cç][aã]o|r\$\s?2,12/.test(title+' '+summary)){
   mechanism='A subvenção anunciada busca compensar parte do custo do diesel para conter sua alta na cadeia de fornecimento. O apoio não garante que todo o valor seja repassado ao consumidor final.';
   profileEffect=transport==='car'
    ?'Se seu veículo usa diesel, o canal pode ser direto, mas depende do preço efetivamente praticado no posto. Se usa gasolina ou etanol, o efeito tende a ser indireto, por frete e transporte de mercadorias.'
@@ -224,7 +222,7 @@ function chainAnalysis(n){
   estimate='Não há taxa contratual, saldo devedor e prazo suficientes para estimar quanto sua parcela mudaria. A notícia macroeconômica, sozinha, não informa esse valor.';
   evidence='Depende dos contratos pessoais';
   stage='Canal de crédito';
- }else if(/assist[eê]ncia social|benef[ií]cios para mei|bolsa fam[ií]lia|bpc|aux[ií]lio|benef[ií]cio|sal[aá]rio m[ií]nimo|libera r\\$/.test(title+' '+summary)||topic.includes('renda e benefícios')){
+ }else if(/assist[eê]ncia social|benef[ií]cios para mei|bolsa fam[ií]lia|bpc|aux[ií]lio|benef[ií]cio|sal[aá]rio m[ií]nimo|libera r\$/.test(title+' '+summary)||topic.includes('renda e benefícios')){
   mechanism='Anúncio de verba, benefício ou mudança de regra não significa necessariamente depósito na conta de cada pessoa. É preciso verificar a destinação, a execução do orçamento, a elegibilidade e o calendário de pagamento.';
   profileEffect=profile==='benefit'||profile==='unemployed'
    ?'Pode haver efeito direto se a medida alcançar o programa que você recebe ou para o qual é elegível. A notícia, por si só, não confirma que seu benefício individual mudou.'
