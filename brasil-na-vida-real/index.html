@@ -168,7 +168,10 @@ function profileSummary(){
  const region=$('region')?.value||'Brasil';
  const transport=$('transport')?.value||'mixed';
  const debt=$('debts')?.value||'0.16';
- return (names[profile]||'Perfil selecionado')+' · '+region+' · '+(transportNames[transport]||'locomoção não informada')+' · '+(debtNames[debt]||'situação financeira não informada');
+ const adults=$('adults')?.value||'1';
+ const dependents=$('children')?.value||'0';
+ const household='domicílio com '+adults+' adulto(s) e '+dependents+' dependente(s)';
+ return (names[profile]||'Perfil selecionado')+' · '+household+' · '+region+' · '+(transportNames[transport]||'locomoção não informada')+' · '+(debtNames[debt]||'situação financeira não informada');
 }
 function chainAnalysis(n){
  const title=String(n.title||'').toLowerCase();
@@ -187,7 +190,7 @@ function chainAnalysis(n){
   profileEffect=debt==='0.28'||debt==='0.16'
    ?'Como você informou que as dívidas pesam no orçamento, o canal a acompanhar são juros e condições de crédito futuros. A recompra, por si só, não muda automaticamente suas parcelas nem reduz sua dívida.'
    :'Para o seu perfil, não há cobrança direta identificada. Um eventual efeito chegaria indiretamente por juros, crédito, câmbio ou inflação — e pode ser pequeno ou não aparecer.';
-  estimate='R$ 0 de cobrança direta identificada nesta notícia. O efeito indireto no seu orçamento não pode ser convertido em reais apenas com o anúncio.';
+  estimate='A notícia não prevê uma cobrança direta às famílias, mas o efeito indireto em juros, crédito ou inflação não pode ser calculado em reais apenas com o anúncio.';
   evidence='Efeito doméstico indireto · confiança baixa';
   stage='Intervenção no mercado financeiro';
  }else if(/subven[cç][aã]o.*diesel|diesel.*subven[cç][aã]o|r\$\s?2,12/.test(title+' '+summary)){
@@ -304,7 +307,7 @@ async function loadOfficialData(){
  }
 }
 $('profile').addEventListener('change',()=>{const a=profileDefaults[$('profile').value];$('adults').value=a[0];$('children').value=a[1];$('income').value=a[2];if(indicatorData)renderNews(indicatorData);});
-['transport','debts','region'].forEach(id=>$(id).addEventListener('change',()=>{if(indicatorData)renderNews(indicatorData);}));
+['transport','debts','region','adults','children'].forEach(id=>$(id).addEventListener('change',()=>{if(indicatorData)renderNews(indicatorData);}));
 function getBasketKey(income){
  if(income===0)return 'average';
  if(income<=1908)return 'low';
