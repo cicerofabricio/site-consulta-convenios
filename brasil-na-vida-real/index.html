@@ -462,7 +462,7 @@ async function loadOfficialData(){
 }
 $('profile').addEventListener('change',()=>{const a=profileDefaults[$('profile').value];$('adults').value=a[0];$('children').value=a[1];$('income').value=a[2];if(indicatorData)renderNews(indicatorData);});
 ['transport','debts','region','adults','children'].forEach(id=>$(id).addEventListener('change',()=>{if(indicatorData)renderNews(indicatorData);}));
-['transport','debts','region','adults','children','exactIncome','fuelType','dieselLiters',...BUDGET_FIELDS.map(f=>f.id)].forEach(id=>{
+['income','transport','debts','region','adults','children','exactIncome','fuelType','dieselLiters',...BUDGET_FIELDS.map(f=>f.id)].forEach(id=>{
  const el=$(id);if(!el)return;
  const event=(el.type==='number')?'input':'change';
  el.addEventListener(event,()=>{updateBudgetLive();if(indicatorData)renderNews(indicatorData);});
