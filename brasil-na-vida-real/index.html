@@ -278,6 +278,7 @@ function exposureForNews(n){
  const education=/educa[cç][aã]o|creche|escola|material escolar/.test(title+' '+summary);
  const communication=/internet|telefonia|comunica[cç][aã]o/.test(title+' '+summary);
  const credit=/recompra.*t[ií]tulos|t[ií]tulos.*recompra|tesouro anuncia nova recompra|juros|selic|cr[eé]dito|superendividad|financiamento|consignado/.test(title+' '+summary)||topic.includes('juros');
+ const housingType=$('housing')?.value||'rent';
  const benefit=/assist[eê]ncia social|benef[ií]cios para mei|bolsa fam[ií]lia|bpc|aux[ií]lio|benef[ií]cio|sal[aá]rio m[ií]nimo|libera r\\$/.test(title+' '+summary)||topic.includes('renda e benefícios');
  const taxes=/imposto|tribut|icms|al[ií]quota|isen[cç][aã]o|reforma tribut/.test(title+' '+summary)||topic.includes('tributos');
  const groups=[];
@@ -287,7 +288,10 @@ function exposureForNews(n){
  if(health)groups.push({label:'Saúde e medicamentos',spent:e.health,keys:['health'],ipca:'health'});
  if(education)groups.push({label:'Educação e creche',spent:e.education,keys:['education'],ipca:'education'});
  if(communication)groups.push({label:'Internet e telefone',spent:e.communication,keys:['communication'],ipca:'communication'});
- if(credit)groups.push({label:'Parcelas e crédito',spent:(e.debt!==null||e.housing!==null)?((e.debt||0)+(e.housing||0)):null,keys:['debt','housing'],ipca:null});
+ if(credit){
+  const debtHousing=(housingType==='mortgage')?e.housing:null;
+  groups.push({label:'Parcelas e crédito',spent:(e.debt!==null||debtHousing!==null)?((e.debt||0)+(debtHousing||0)):null,keys:(housingType==='mortgage'?['debt','housing']:['debt']),ipca:null});
+ }
  if(benefit)groups.push({label:'Renda de benefício',spent:null,keys:[],ipca:null,income:true});
  if(taxes&&!food&&!transport&&!housing&&!health&&!education&&!communication)groups.push({label:'Compras potencialmente abrangidas pela regra tributária',spent:e.other,keys:['other'],ipca:null});
  if(groups.length===0)groups.push({label:'Despesas correntes informadas',spent:b.filled>0?b.total:null,keys:BUDGET_FIELDS.filter(f=>e[f.key]!==null).map(f=>f.key),ipca:null});
@@ -462,7 +466,7 @@ async function loadOfficialData(){
 }
 $('profile').addEventListener('change',()=>{const a=profileDefaults[$('profile').value];$('adults').value=a[0];$('children').value=a[1];$('income').value=a[2];if(indicatorData)renderNews(indicatorData);});
 ['transport','debts','region','adults','children'].forEach(id=>$(id).addEventListener('change',()=>{if(indicatorData)renderNews(indicatorData);}));
-['income','transport','debts','region','adults','children','exactIncome','fuelType','dieselLiters',...BUDGET_FIELDS.map(f=>f.id)].forEach(id=>{
+['income','transport','debts','region','adults','children','housing','exactIncome','fuelType','dieselLiters',...BUDGET_FIELDS.map(f=>f.id)].forEach(id=>{
  const el=$(id);if(!el)return;
  const event=(el.type==='number')?'input':'change';
  el.addEventListener(event,()=>{updateBudgetLive();if(indicatorData)renderNews(indicatorData);});
