@@ -177,8 +177,10 @@
   <div class="budget-subtitle">Detalhe extra (opcional)</div>
   <div class="budget-field"><label for="fuelType">Combustível do veículo principal</label><select id="fuelType"><option value="none">Não uso carro/moto</option><option value="gasoline" selected>Gasolina</option><option value="ethanol">Etanol</option><option value="diesel">Diesel</option><option value="mixed">Flex / alterno combustíveis</option></select></div>
   <div class="budget-field"><label for="dieselLiters">Litros de diesel por mês (se aplicável)</label><div class="budget-inputwrap"><span>L</span><input id="dieselLiters" type="number" min="0" step="1" inputmode="decimal" placeholder="Ex.: 80"></div></div>
+  <div class="budget-field"><label for="monthlyBenefit">Benefício social recebido por mês (opcional)</label><div class="budget-inputwrap"><span>R$</span><input id="monthlyBenefit" type="number" min="0" step="10" inputmode="decimal" placeholder="Ex.: 600"></div></div>
+  <div class="budget-field"><label for="spendTargetProducts">Gasto em produtos citados pela notícia (opcional)</label><div class="budget-inputwrap"><span>R$</span><input id="spendTargetProducts" type="number" min="0" step="10" inputmode="decimal" placeholder="Ex.: 80"></div></div>
  </div>
- <p class="budget-foot">O total informado é a soma apenas dos campos preenchidos. Se deixar categorias vazias, o site não as tratará como gasto zero ao explicar a completude do orçamento. Não solicitamos CPF, banco ou comprovantes.</p>
+ <p class="budget-foot">O total informado é a soma apenas dos campos de despesa preenchidos. Benefício social e gasto em produtos específicos são campos complementares: não entram no total para evitar dupla contagem. Categorias vazias não são tratadas como gasto zero. Não solicitamos CPF, banco ou comprovantes.</p>
 </div>
 <div class="field"><label for="housing">Como é sua moradia?</label><select id="housing"><option value="rent">Aluguel</option><option value="mortgage">Financiamento / prestação</option><option value="owned">Casa própria quitada</option><option value="family">Moro com familiares / não pago moradia</option></select></div>
 <div class="field"><label for="transport">Como você se locomove principalmente?</label><select id="transport"><option value="car">Carro ou moto</option><option value="mixed" selected>Uso carro e transporte público</option><option value="public">Ônibus / metrô / trem</option><option value="active">A pé / bicicleta / fico em casa</option></select></div>
@@ -245,7 +247,9 @@ function readBudget(){
  const selectedIncome=Number($('income')?.value||0);
  const exactIncome=Number($('exactIncome')?.value||0);
  const income=exactIncome>0?exactIncome:(selectedIncome>0?selectedIncome:null);
- return {expenses,total,filled,categories:BUDGET_FIELDS.length,income,exactIncome:exactIncome>0};
+ const monthlyBenefit=$('monthlyBenefit')?.value!==''&&$('monthlyBenefit')?.value!==undefined?Math.max(0,Number($('monthlyBenefit').value)):null;
+ const targetProducts=$('spendTargetProducts')?.value!==''&&$('spendTargetProducts')?.value!==undefined?Math.max(0,Number($('spendTargetProducts').value)):null;
+ return {expenses,total,filled,categories:BUDGET_FIELDS.length,income,exactIncome:exactIncome>0,monthlyBenefit,targetProducts};
 }
 function currentIPCAGroup(key){
  const map={food:'food',housing:'housing',utilities:'housing',fuel:'transport',transit:'transport',health:'health',education:'education',communication:'communication'};
@@ -292,8 +296,8 @@ function exposureForNews(n){
   const debtHousing=(housingType==='mortgage')?e.housing:null;
   groups.push({label:'Parcelas e crédito',spent:(e.debt!==null||debtHousing!==null)?((e.debt||0)+(debtHousing||0)):null,keys:(housingType==='mortgage'?['debt','housing']:['debt']),ipca:null});
  }
- if(benefit)groups.push({label:'Renda de benefício',spent:null,keys:[],ipca:null,income:true});
- if(taxes&&!food&&!transport&&!housing&&!health&&!education&&!communication)groups.push({label:'Compras potencialmente abrangidas pela regra tributária',spent:e.other,keys:['other'],ipca:null});
+ if(benefit)groups.push({label:'Benefício social recebido (renda, não despesa)',spent:b.monthlyBenefit,keys:[],ipca:null,income:true});
+ if(taxes)groups.push({label:'Produtos citados na medida tributária',spent:b.targetProducts,keys:[],ipca:null,targetProducts:true});
  if(groups.length===0)groups.push({label:'Despesas correntes informadas',spent:b.filled>0?b.total:null,keys:BUDGET_FIELDS.filter(f=>e[f.key]!==null).map(f=>f.key),ipca:null});
  // Avoid treating category amounts as additive when two classifiers point at the same budget.
  const unique=[];const seen=new Set();groups.forEach(g=>{const id=g.label;if(!seen.has(id)){seen.add(id);unique.push(g);}});
@@ -425,12 +429,16 @@ function renderNews(d){
   const summary=escapeHTML(n.summary||n.description||'A matéria foi selecionada para análise por poder ter relação com custo de vida, renda ou serviços.');
   const source=escapeHTML(n.source||'Fonte consultada'),published=escapeHTML(n.published||'Data não informada pela fonte'),topic=escapeHTML(n.topic_label||n.topic||'Economia');
   const moneyRows=a.exposureRows.map(row=>{
-   const spend=row.spent!==null&&row.spent!==undefined?money(row.spent)+'/mês':'Gasto não informado';
-   const rate=row.group?('IPCA '+escapeHTML(row.group.name)+' em 12 meses: '+pct(row.group.rate)):'Sem índice de preços diretamente aplicável';
-   const pressure=row.pricePressure!==null?money(row.pricePressure)+'/mês':'Não calculável';
-   const pressureNote=row.pricePressure!==null
-    ?'Estimativa de quanto do gasto mensal atual corresponde à diferença para comprar uma cesta equivalente a preços de 12 meses atrás. É uma referência de inflação do grupo, não o efeito desta notícia.'
-    :'A despesa está identificada como possível canal de exposição, mas não há taxa comprovada para converter esta notícia em aumento ou economia em reais.';
+   const spend=row.spent!==null&&row.spent!==undefined?money(row.spent)+'/mês':(row.income?'Benefício não informado':'Gasto não informado');
+   const rate=row.income?'Valor de renda complementar informado':(row.targetProducts?'Valor de compra potencialmente exposto, informado pelo usuário':(row.group?('IPCA '+escapeHTML(row.group.name)+' em 12 meses: '+pct(row.group.rate)):'Sem índice de preços diretamente aplicável'));
+   const pressure=row.income||row.targetProducts?'Não calculável':(row.pricePressure!==null?money(row.pricePressure)+'/mês':'Não calculável');
+   const pressureNote=row.income
+    ?'Esse é o valor de benefício informado. Para estimar mudança de renda, a notícia precisa indicar a regra, o público elegível e o valor novo que será efetivamente pago.'
+    :row.targetProducts
+     ?'Esse é o gasto que você informou nos produtos relacionados à medida. Sem a alíquota aplicável e o repasse ao preço final, ele não pode ser convertido em custo adicional.'
+     :row.pricePressure!==null
+      ?'Estimativa de quanto do gasto mensal atual corresponde à diferença para comprar uma cesta equivalente a preços de 12 meses atrás. É uma referência de inflação do grupo, não o efeito desta notícia.'
+      :'A despesa está identificada como possível canal de exposição, mas não há taxa comprovada para converter esta notícia em aumento ou economia em reais.';
    return '<div class="news-money-row"><span><b>'+escapeHTML(row.label)+'</b><br>'+rate+'</span><strong>'+spend+'</strong><small>Pressão de preços de referência: <b>'+pressure+'</b>. '+pressureNote+'</small></div>';
   }).join('');
   const direct=a.directEstimate!==null
@@ -466,7 +474,7 @@ async function loadOfficialData(){
 }
 $('profile').addEventListener('change',()=>{const a=profileDefaults[$('profile').value];$('adults').value=a[0];$('children').value=a[1];$('income').value=a[2];if(indicatorData)renderNews(indicatorData);});
 ['transport','debts','region','adults','children'].forEach(id=>$(id).addEventListener('change',()=>{if(indicatorData)renderNews(indicatorData);}));
-['income','transport','debts','region','adults','children','housing','exactIncome','fuelType','dieselLiters',...BUDGET_FIELDS.map(f=>f.id)].forEach(id=>{
+['income','transport','debts','region','adults','children','housing','exactIncome','fuelType','dieselLiters','monthlyBenefit','spendTargetProducts',...BUDGET_FIELDS.map(f=>f.id)].forEach(id=>{
  const el=$(id);if(!el)return;
  const event=(el.type==='number')?'input':'change';
  el.addEventListener(event,()=>{updateBudgetLive();if(indicatorData)renderNews(indicatorData);});
