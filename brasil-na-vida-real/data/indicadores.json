@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-10-28T22:36:39+00:00",
+  "updated_at": "2026-10-29T05:50:10+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "28/10/2026",
+    "date": "29/10/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=13%2F09%2F2026&dataFinal=28%2F10%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=14%2F09%2F2026&dataFinal=29%2F10%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -292,6 +292,22 @@
     "price_gasoline_unit": "R$/litro"
   },
   "news": [
+    {
+      "title": "Governo estuda restringir crédito a empresas por assédio eleitoral",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/governo-estuda-restringir-credito-empresas-por-assedio-eleitoral",
+      "published": "Wed, 28 Oct 2026 19:36:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "juros e crédito",
+      "topic_label": "Juros E Crédito",
+      "summary": "O governo federal e instituições como o Ministério Público do Trabalho (MPT) e o Tribunal Superior do Trabalho (TST) garantiram, nesta quarta (28), que empresas que cometerem assédio eleitoral, incluindo pressão ou demissões por conta de opiniões políticas, serão punidas com o rigor da lei. Em coletiva de imprensa, o ministro do Trabalho, Luiz Marinho, disse que o governo estuda a criação de uma “lista suja” de empresas que cometem assédio eleitoral no Brasil , incluindo pressão ou demissão por conta de opção política. Segundo ele, a empresa que cometer essa ilegalidade vai sofrer sanções de restrição de créditos públicos.",
+      "description": "O governo federal e instituições como o Ministério Público do Trabalho (MPT) e o Tribunal Superior do Trabalho (TST) garantiram, nesta quarta (28), que empresas que cometerem assédio eleitoral, incluindo pressão ou demissões por conta de opiniões políticas, serão punidas com o rigor da lei. Em coletiva de imprensa, o ministro do Trabalho, Luiz Marinho, disse que o governo estuda a criação de uma “lista suja” de empresas que cometem assédio eleitoral no Brasil , incluindo pressão ou demissão por ",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
     {
       "title": "União libera R$ 950 milhões para instalar Comitê do IBS",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/uniao-libera-r-950-milhoes-para-instalar-comite-do-ibs",
@@ -399,38 +415,6 @@
       "description": "O número de brasileiros em situação de endividamento de risco chegou a 20,3 milhões em junho de 2026, alta de 75% em cinco anos, informou nesta terça-feira (27) o Relatório de Estabiliadde Financeira do Banco Central (BC) . O contingente representa 17% dos devedores do Sistema Financeiro Nacional. Diante do avanço do problema, o presidente do BC, Gabriel Galípolo, afirmou que a instituição pretende anunciar novas medidas para conter ofertas agressivas de crédito ainda este ano.",
       "stage_label": "Triagem temática",
       "impact_label": "possível pressão; verificar efeitos; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Governo buscará cumprir meta fiscal com diálogo, diz Durigan",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/governo-buscara-cumprir-meta-fiscal-com-dialogo-diz-durigan",
-      "published": "Tue, 27 Oct 2026 13:04:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "mercados e câmbio",
-      "topic_label": "Mercados E Câmbio",
-      "summary": "O ministro da Fazenda, Dario Durigan, assegurou, nesta terça-feira (27), em Brasília, que o governo federal vai discutir com agentes do mercado financeiro e do setor privado em geral medidas de ajuste que favoreçam o cumprimento da meta fiscal. “Nosso compromisso é com a responsabilidade fiscal, com a estabilidade fiscal e isso vai ser buscado com diálogo”, disse o ministro a jornalistas ao chegar, nesta manhã, ao Ministério da Fazenda.",
-      "description": "O ministro da Fazenda, Dario Durigan, assegurou, nesta terça-feira (27), em Brasília, que o governo federal vai discutir com agentes do mercado financeiro e do setor privado em geral medidas de ajuste que favoreçam o cumprimento da meta fiscal. “Nosso compromisso é com a responsabilidade fiscal, com a estabilidade fiscal e isso vai ser buscado com diálogo”, disse o ministro a jornalistas ao chegar, nesta manhã, ao Ministério da Fazenda.",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Governo prorroga por um mês subvenção de R$ 2,12 ao diesel",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/governo-prorroga-por-um-mes-subvencao-de-r-212-ao-diesel",
-      "published": "Tue, 27 Oct 2026 12:41:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "combustíveis e transporte",
-      "topic_label": "Combustíveis E Transporte",
-      "summary": "O governo federal informou nesta terça-feira (27) que renovará por mais um mês a subvenção de R$ 2,12 por litro ao óleo diesel. A medida será formalizada por meio de portaria a ser publicada no Diário Oficial da União . A renovação já havia sido sinalizada mais cedo pelo ministro da Fazenda, Dario Durigan. Ao ser questionado sobre o tema, ele disse que o governo ainda discutia os detalhes para a publicação da medida.",
-      "description": "O governo federal informou nesta terça-feira (27) que renovará por mais um mês a subvenção de R$ 2,12 por litro ao óleo diesel. A medida será formalizada por meio de portaria a ser publicada no Diário Oficial da União . A renovação já havia sido sinalizada mais cedo pelo ministro da Fazenda, Dario Durigan. Ao ser questionado sobre o tema, ele disse que o governo ainda discutia os detalhes para a publicação da medida.",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
       "causal_status": "evidência necessária",
       "confidence": "baixa",
@@ -677,7 +661,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-10-28T22:36:39+00:00",
+  "news_checked_at": "2026-10-29T05:50:10+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
