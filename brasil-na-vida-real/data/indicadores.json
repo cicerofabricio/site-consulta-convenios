@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-10-29T05:50:10+00:00",
+  "updated_at": "2026-10-29T13:03:24+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -293,6 +293,22 @@
   },
   "news": [
     {
+      "title": "Economistas criticam usar corte de gastos para conter dívida pública",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/economistas-criticam-usar-corte-de-gastos-para-conter-divida-publica",
+      "published": "Thu, 29 Oct 2026 07:36:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "mercados e câmbio",
+      "topic_label": "Mercados E Câmbio",
+      "summary": "A trajetória da dívida pública brasileira, que saiu de 71,7% do Produto Interno Bruto (PIB) em 2022 para cerca de 82,9% do PIB em agosto de 2026, vem sendo apontada pelo mercado financeiro e por economistas considerados “liberais” ou “ortodoxos” como o “maior problema” do próximo governo que colocaria em risco a economia brasileira. Para esta ala, reduzir gastos é o principal caminho para manter o equilíbrio fiscal. De outro lado, há economistas de outras correntes de pensamento, consideradas “heterodoxas” ou “desenvolvimentistas”, que apontam essa proposta do mercado financeiro como prejudicial à população por tirar recursos de áreas fundamentais, como saúde, educação, previdência e assistê",
+      "description": "A trajetória da dívida pública brasileira, que saiu de 71,7% do Produto Interno Bruto (PIB) em 2022 para cerca de 82,9% do PIB em agosto de 2026, vem sendo apontada pelo mercado financeiro e por economistas considerados “liberais” ou “ortodoxos” como o “maior problema” do próximo governo que colocaria em risco a economia brasileira. Para esta ala, reduzir gastos é o principal caminho para manter o equilíbrio fiscal. De outro lado, há economistas de outras correntes de pensamento, consideradas “h",
+      "stage_label": "Triagem temática",
+      "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
       "title": "Governo estuda restringir crédito a empresas por assédio eleitoral",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/governo-estuda-restringir-credito-empresas-por-assedio-eleitoral",
       "published": "Wed, 28 Oct 2026 19:36:00 -0300",
@@ -399,22 +415,6 @@
       "description": "O mercado financeiro apresentou movimentos de acomodação nesta terça-feira (27), após a forte reação da véspera à reeleição do presidente Luiz Inácio Lula da Silva. O dólar fechou em queda próxima de 1% e ficou abaixo de R$ 5,35. A bolsa recuou cerca de 0,5%. A sessão foi marcada pela correção cambial após a disparada da véspera e pela continuidade das perdas na bolsa, em meio às incertezas sobre a política econômica do próximo mandato, como a falta de definição do próximo ministro da Fazenda.",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Número de superendividados no Brasil cresceu 75% em cinco anos, diz BC",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/numero-de-superendividados-no-brasil-cresceu-75-em-cinco-anos-diz-bc",
-      "published": "Tue, 27 Oct 2026 17:58:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "juros e crédito",
-      "topic_label": "Juros E Crédito",
-      "summary": "O número de brasileiros em situação de endividamento de risco chegou a 20,3 milhões em junho de 2026, alta de 75% em cinco anos, informou nesta terça-feira (27) o Relatório de Estabiliadde Financeira do Banco Central (BC) . O contingente representa 17% dos devedores do Sistema Financeiro Nacional. Diante do avanço do problema, o presidente do BC, Gabriel Galípolo, afirmou que a instituição pretende anunciar novas medidas para conter ofertas agressivas de crédito ainda este ano.",
-      "description": "O número de brasileiros em situação de endividamento de risco chegou a 20,3 milhões em junho de 2026, alta de 75% em cinco anos, informou nesta terça-feira (27) o Relatório de Estabiliadde Financeira do Banco Central (BC) . O contingente representa 17% dos devedores do Sistema Financeiro Nacional. Diante do avanço do problema, o presidente do BC, Gabriel Galípolo, afirmou que a instituição pretende anunciar novas medidas para conter ofertas agressivas de crédito ainda este ano.",
-      "stage_label": "Triagem temática",
-      "impact_label": "possível pressão; verificar efeitos; sem quantificação causal",
       "impact_direction": "unknown",
       "causal_status": "evidência necessária",
       "confidence": "baixa",
@@ -597,6 +597,22 @@
       "classification": "rule-based"
     },
     {
+      "title": "MME abre consulta pública para modernizar diretrizes do Plano de Outorgas de Transmissão de Energia Elétrica",
+      "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/outubro-26/mme-abre-consulta-publica-para-modernizar-diretrizes-do-plano-de-outorgas-de-transmissao-de-energia-eletrica",
+      "published": "",
+      "source": "Ministério de Minas e Energia",
+      "topic": "moradia e contas",
+      "topic_label": "Moradia E Contas",
+      "summary": "MME abre consulta pública para modernizar diretrizes do Plano de Outorgas de Transmissão de Energia Elétrica",
+      "description": "MME abre consulta pública para modernizar diretrizes do Plano de Outorgas de Transmissão de Energia Elétrica",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
       "title": "MME: Recursos minerais são estratégicos para ampliar a produção nacional de fertilizantes e segurança alimentar no país",
       "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/julho-26/mme-recursos-minerais-sao-estrategicos-para-ampliar-a-producao-nacional-de-fertilizantes-e-seguranca-alimentar-no-pais",
       "published": "",
@@ -643,25 +659,9 @@
       "causal_status": "evidência necessária",
       "confidence": "baixa",
       "classification": "rule-based"
-    },
-    {
-      "title": "Saiba como evitar acidentes elétricos dentro de casa",
-      "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/julho-26/saiba-como-evitar-acidentes-eletricos-dentro-de-casa",
-      "published": "",
-      "source": "Ministério de Minas e Energia",
-      "topic": "tributos e preços",
-      "topic_label": "Tributos E Preços",
-      "summary": "Saiba como evitar acidentes elétricos dentro de casa",
-      "description": "Saiba como evitar acidentes elétricos dentro de casa",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-10-29T05:50:10+00:00",
+  "news_checked_at": "2026-10-29T13:03:24+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
