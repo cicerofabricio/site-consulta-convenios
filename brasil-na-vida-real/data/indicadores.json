@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-10-29T22:46:33+00:00",
+  "updated_at": "2026-10-30T05:51:33+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "29/10/2026",
+    "date": "30/10/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=14%2F09%2F2026&dataFinal=29%2F10%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=15%2F09%2F2026&dataFinal=30%2F10%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -292,6 +292,22 @@
     "price_gasoline_unit": "R$/litro"
   },
   "news": [
+    {
+      "title": "Petrobras anuncia 3ª descoberta de petróleo em poço na Foz do Amazonas",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/petrobras-anuncia-3a-descoberta-de-petroleo-em-poco-na-foz-do-amazonas",
+      "published": "Thu, 29 Oct 2026 20:08:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "combustíveis e transporte",
+      "topic_label": "Combustíveis E Transporte",
+      "summary": "A Petrobras anunciou nesta quinta-feira (29) a terceira descoberta de petróleo no poço Morpho, no bloco FZA-M-59, localizado em águas ultraprofundas na costa do estado do Amapá, na Foz do Amazonas, em lâmina d’água de 2.886 metros. “Nossa persistência técnica permitiu que fossem realizadas três descobertas no mesmo poço, o que nos deixa ainda mais otimistas em relação ao potencial exploratório da Margem Equatorial\", disse a presidente da Petrobras, Magda Chambriard.",
+      "description": "A Petrobras anunciou nesta quinta-feira (29) a terceira descoberta de petróleo no poço Morpho, no bloco FZA-M-59, localizado em águas ultraprofundas na costa do estado do Amapá, na Foz do Amazonas, em lâmina d’água de 2.886 metros. “Nossa persistência técnica permitiu que fossem realizadas três descobertas no mesmo poço, o que nos deixa ainda mais otimistas em relação ao potencial exploratório da Margem Equatorial\", disse a presidente da Petrobras, Magda Chambriard.",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
     {
       "title": "FGTS mantém orçamento de R$ 144,5 bilhões para habitação em 2027",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/fgts-mantem-orcamento-de-r-1445-bilhoes-para-habitacao-em-2027",
@@ -363,24 +379,8 @@
       "source": "Agência Brasil — Economia",
       "topic": "alimentação",
       "topic_label": "Alimentação",
-      "summary": "O Consumo nos Lares Brasileiros registrou alta de 2,70% no acumulado de janeiro a setembro, segundo balanço da Associação Brasileira de Supermercados (Abras), que considera o percentual praticamente estável em relação aos 2,71% acumulados até agosto. Em setembro houve alta de 0,59% em relação ao mesmo mês de 2025.",
-      "description": "O Consumo nos Lares Brasileiros registrou alta de 2,70% no acumulado de janeiro a setembro, segundo balanço da Associação Brasileira de Supermercados (Abras), que considera o percentual praticamente estável em relação aos 2,71% acumulados até agosto. Em setembro houve alta de 0,59% em relação ao mesmo mês de 2025.",
-      "stage_label": "Triagem temática",
-      "impact_label": "possível pressão; verificar efeitos; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Governo autoriza contrato de R$ 30 bi para motoristas de aplicativos",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/governo-autoriza-contrato-de-r-30-bi-para-motoristas-de-aplicativos",
-      "published": "Thu, 29 Oct 2026 11:54:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "juros e crédito",
-      "topic_label": "Juros E Crédito",
-      "summary": "O Ministério da Fazenda autorizou a disponibilização de até R$ 30 bilhões para linhas de financiamento voltadas a motoristas de aplicativos e taxistas, no âmbito do programa Move Brasil . Despacho assinado pelo ministro da Fazenda , Dario Durigan, e publicado na edição desta quinta-feira (29) do Diário Oficial da União autoriza a assinatura de termo aditivo com o Banco Nacional de Desenvolvimento Econômico e Social (BNDES), para gerir os recursos.",
-      "description": "O Ministério da Fazenda autorizou a disponibilização de até R$ 30 bilhões para linhas de financiamento voltadas a motoristas de aplicativos e taxistas, no âmbito do programa Move Brasil . Despacho assinado pelo ministro da Fazenda , Dario Durigan, e publicado na edição desta quinta-feira (29) do Diário Oficial da União autoriza a assinatura de termo aditivo com o Banco Nacional de Desenvolvimento Econômico e Social (BNDES), para gerir os recursos.",
+      "summary": "O Consumo nos Lares Brasileiros registrou alta de 2,70% no acumulado de janeiro a setembro, segundo balanço da Associação Brasileira de Supermercados (Abras), que considera o percentual praticamente estável em relação aos 2,71% acumulados até agosto. Em setembro houve alta de 0,59% em relação ao mesmo mês de 2025. Na comparação mensal, houve queda de 1,46%, depois de dois meses de crescimento, sendo 3,01% em julho e 2,21% em agosto. O levantamento indica que também foram registradas quedas em setembro de 2024 (-1,30%) e de 2025 (-0,94%).",
+      "description": "O Consumo nos Lares Brasileiros registrou alta de 2,70% no acumulado de janeiro a setembro, segundo balanço da Associação Brasileira de Supermercados (Abras), que considera o percentual praticamente estável em relação aos 2,71% acumulados até agosto. Em setembro houve alta de 0,59% em relação ao mesmo mês de 2025. Na comparação mensal, houve queda de 1,46%, depois de dois meses de crescimento, sendo 3,01% em julho e 2,21% em agosto. O levantamento indica que também foram registradas quedas em se",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
@@ -549,22 +549,6 @@
       "classification": "rule-based"
     },
     {
-      "title": "Governo Federal prorroga desoneração da gasolina e do etanol",
-      "url": "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/outubro/governo-federal-prorroga-desoneracao-da-gasolina-e-do-etanol",
-      "published": "",
-      "source": "Ministério da Fazenda",
-      "topic": "combustíveis e transporte",
-      "topic_label": "Combustíveis E Transporte",
-      "summary": "Governo Federal prorroga desoneração da gasolina e do etanol",
-      "description": "Governo Federal prorroga desoneração da gasolina e do etanol",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
       "title": "MME abre consulta pública para modernizar diretrizes do Plano de Outorgas de Transmissão de Energia Elétrica",
       "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/outubro-26/mme-abre-consulta-publica-para-modernizar-diretrizes-do-plano-de-outorgas-de-transmissao-de-energia-eletrica",
       "published": "",
@@ -613,7 +597,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-10-29T22:46:33+00:00",
+  "news_checked_at": "2026-10-30T05:51:33+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
