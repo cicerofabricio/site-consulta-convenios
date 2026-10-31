@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-10-31T12:32:40+00:00",
+  "updated_at": "2026-10-31T21:36:43+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -293,6 +293,22 @@
   },
   "news": [
     {
+      "title": "Economistas propõem taxar ricos em vez de cortar gastos sociais",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/economistas-propoem-taxar-ricos-em-vez-de-cortar-gastos-sociais",
+      "published": "Sat, 31 Oct 2026 14:02:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "mercados e câmbio",
+      "topic_label": "Mercados E Câmbio",
+      "summary": "Economistas e outros especialistas divulgaram um manifesto, nesta sexta-feira (30), denunciando a pressão do mercado financeiro para que o governo eleito adote um programa de corte de gastos com a finalidade de estabilizar a dívida pública. O texto pede novo regime fiscal no país, menos rígido do que o atual arcabouço, além da mudança na meta de inflação e da tributação dos ricos no lugar de corte em despesas sociais.",
+      "description": "Economistas e outros especialistas divulgaram um manifesto, nesta sexta-feira (30), denunciando a pressão do mercado financeiro para que o governo eleito adote um programa de corte de gastos com a finalidade de estabilizar a dívida pública. O texto pede novo regime fiscal no país, menos rígido do que o atual arcabouço, além da mudança na meta de inflação e da tributação dos ricos no lugar de corte em despesas sociais.",
+      "stage_label": "Triagem temática",
+      "impact_label": "possível pressão; verificar efeitos; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
       "title": "Dólar fecha a R$ 5,44 e registra maior alta semanal desde 2008",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/dolar-fecha-r-544-e-registra-maior-alta-semanal-desde-2008",
       "published": "Fri, 30 Oct 2026 19:40:00 -0300",
@@ -317,22 +333,6 @@
       "topic_label": "Moradia E Contas",
       "summary": "Pelo segundo mês consecutivo, as contas de luz não terão cobrança de tarifa extra, informou nesta sexta-feira (30) a Agência Nacional de Energia Elétrica (Aneel). A manutenção da bandeira verde permanece em novembro devido às condições favoráveis de geração. A bandeira tarifária verde voltou a vigorar em outubro, após cinco meses de bandeira amarela, que tem custo adicional de R$ 1,885 a cada 100 kWh consumidos para todos os consumidores conectados ao Sistema Interligado Nacional (SIN).",
       "description": "Pelo segundo mês consecutivo, as contas de luz não terão cobrança de tarifa extra, informou nesta sexta-feira (30) a Agência Nacional de Energia Elétrica (Aneel). A manutenção da bandeira verde permanece em novembro devido às condições favoráveis de geração. A bandeira tarifária verde voltou a vigorar em outubro, após cinco meses de bandeira amarela, que tem custo adicional de R$ 1,885 a cada 100 kWh consumidos para todos os consumidores conectados ao Sistema Interligado Nacional (SIN).",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "SP amplia ofensiva contra fraude fiscal no combate à ocultação patrimonial no mercado financeiro e bloqueia mais de R$10 bi",
-      "url": "https://www.agenciasp.sp.gov.br/governo/sp-amplia-ofensiva-contra-fraude-fiscal-no-combate-a-ocultacao-patrimonial-no-mercado-financeiro/",
-      "published": "Fri, 30 Oct 2026 19:13:44 +0000",
-      "source": "Agência SP",
-      "topic": "mercados e câmbio",
-      "topic_label": "Mercados E Câmbio",
-      "summary": "Em desdobramento da Operação Carbono Oculto, Justiça acolhe pedido da PGE/SP para preservar ativos de créditos tributários bilionários",
-      "description": "Em desdobramento da Operação Carbono Oculto, Justiça acolhe pedido da PGE/SP para preservar ativos de créditos tributários bilionários",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
@@ -373,22 +373,6 @@
       "classification": "rule-based"
     },
     {
-      "title": "Governo de São Paulo simplifica regime tributário de 74 produtos, de material de construção a micro-ondas",
-      "url": "https://www.agenciasp.sp.gov.br/desenvolvimento/governo-de-sao-paulo-simplifica-regime-tributario-de-74-produtos-de-material-de-construcao-a-micro-ondas/",
-      "published": "Fri, 30 Oct 2026 15:30:00 +0000",
-      "source": "Agência SP",
-      "topic": "tributos e preços",
-      "topic_label": "Tributos E Preços",
-      "summary": "Número de produtos sujeitos à substituição tributária do ICMS passou de 749 em 2025 para 208, redução foi de 72,2%",
-      "description": "Número de produtos sujeitos à substituição tributária do ICMS passou de 749 em 2025 para 208, redução foi de 72,2%",
-      "stage_label": "Triagem temática",
-      "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
       "title": "Desemprego em 5,2% no 3° trimestre é o menor para o período desde 2012",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/desemprego-em-52-no-3deg-trimestre-e-o-menor-para-o-periodo-desde-2012",
       "published": "Fri, 30 Oct 2026 09:50:00 -0300",
@@ -413,38 +397,6 @@
       "topic_label": "Tributos E Preços",
       "summary": "Os micro e pequenos empresários precisam ficar atentos. Acaba nesta sexta-feira (30) o prazo para a escolha do regime tributário que entrará em vigor em janeiro, com a reforma tributária. Os negócios que desejarem recolher o Imposto sobre Bens e Serviços (IBS) e a Contribuição sobre Bens e Serviços (CBS) pelo regime regular terão até esta sexta para registrar a opção.",
       "description": "Os micro e pequenos empresários precisam ficar atentos. Acaba nesta sexta-feira (30) o prazo para a escolha do regime tributário que entrará em vigor em janeiro, com a reforma tributária. Os negócios que desejarem recolher o Imposto sobre Bens e Serviços (IBS) e a Contribuição sobre Bens e Serviços (CBS) pelo regime regular terão até esta sexta para registrar a opção.",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Receita paga nesta sexta-feira lote da malha fina do Imposto de Renda",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/receita-paga-nesta-sexta-feira-lote-da-malha-fina-do-imposto-de-renda",
-      "published": "Fri, 30 Oct 2026 07:10:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "tributos e preços",
-      "topic_label": "Tributos E Preços",
-      "summary": "Cerca de 184 mil contribuintes que caíram na malha fina e regularizaram as pendências com o Fisco acertaram as contas com o Leão. A Receita Federal paga nesta sexta-feira (30) o lote da malha fina de outubro. O lote também contempla restituições residuais de anos anteriores. O pagamento será feito ao longo do dia. Ao todo, 184.442 contribuintes recebem R$ 531,6 milhões. Desse total, R$ 293,4 milhões vão para contribuintes com prioridade legal no reembolso.",
-      "description": "Cerca de 184 mil contribuintes que caíram na malha fina e regularizaram as pendências com o Fisco acertaram as contas com o Leão. A Receita Federal paga nesta sexta-feira (30) o lote da malha fina de outubro. O lote também contempla restituições residuais de anos anteriores. O pagamento será feito ao longo do dia. Ao todo, 184.442 contribuintes recebem R$ 531,6 milhões. Desse total, R$ 293,4 milhões vão para contribuintes com prioridade legal no reembolso.",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Petrobras anuncia 3ª descoberta de petróleo em poço na Foz do Amazonas",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/petrobras-anuncia-3a-descoberta-de-petroleo-em-poco-na-foz-do-amazonas",
-      "published": "Thu, 29 Oct 2026 20:08:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "combustíveis e transporte",
-      "topic_label": "Combustíveis E Transporte",
-      "summary": "A Petrobras anunciou nesta quinta-feira (29) a terceira descoberta de petróleo no poço Morpho, no bloco FZA-M-59, localizado em águas ultraprofundas na costa do estado do Amapá, na Foz do Amazonas, em lâmina d’água de 2.886 metros. “Nossa persistência técnica permitiu que fossem realizadas três descobertas no mesmo poço, o que nos deixa ainda mais otimistas em relação ao potencial exploratório da Margem Equatorial\", disse a presidente da Petrobras, Magda Chambriard.",
-      "description": "A Petrobras anunciou nesta quinta-feira (29) a terceira descoberta de petróleo no poço Morpho, no bloco FZA-M-59, localizado em águas ultraprofundas na costa do estado do Amapá, na Foz do Amazonas, em lâmina d’água de 2.886 metros. “Nossa persistência técnica permitiu que fossem realizadas três descobertas no mesmo poço, o que nos deixa ainda mais otimistas em relação ao potencial exploratório da Margem Equatorial\", disse a presidente da Petrobras, Magda Chambriard.",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
@@ -661,7 +613,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-10-31T12:32:40+00:00",
+  "news_checked_at": "2026-10-31T21:36:43+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
