@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-10-31T21:36:43+00:00",
+  "updated_at": "2026-11-01T06:07:11+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "31/10/2026",
+    "date": "01/11/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=16%2F09%2F2026&dataFinal=31%2F10%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=17%2F09%2F2026&dataFinal=01%2F11%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -613,7 +613,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-10-31T21:36:43+00:00",
+  "news_checked_at": "2026-11-01T06:07:11+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
