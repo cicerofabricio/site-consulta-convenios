@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-01T13:26:48+00:00",
+  "updated_at": "2026-11-01T22:03:14+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -293,6 +293,38 @@
   },
   "news": [
     {
+      "title": "Entenda como é tomada a decisão da atualização do ICMS dos combustíveis",
+      "url": "https://www.agenciasp.sp.gov.br/governo/entenda-como-e-tomada-a-decisao-da-atualizacao-do-icms-dos-combustiveis/",
+      "published": "Sun, 01 Nov 2026 19:05:43 +0000",
+      "source": "Agência SP",
+      "topic": "tributos e preços",
+      "topic_label": "Tributos E Preços",
+      "summary": "A atualização do ICMS é uma decisão do Confaz, que é presidido pelo Ministério da Fazenda e reúne todos os estados e o DF; deliberação foi aprovada por unanimidade e aplicação será igual em todos os estados",
+      "description": "A atualização do ICMS é uma decisão do Confaz, que é presidido pelo Ministério da Fazenda e reúne todos os estados e o DF; deliberação foi aprovada por unanimidade e aplicação será igual em todos os estados",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Petrobras reajusta combustível de aviação em R$ 0,45 por litro",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/petrobras-reajusta-combustivel-de-aviacao-em-r-045-por-litro",
+      "published": "Sun, 01 Nov 2026 15:41:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "combustíveis e transporte",
+      "topic_label": "Combustíveis E Transporte",
+      "summary": "A Petrobras anunciou reajuste médio de 7,2% no querosene de aviação vendido às distribuidoras, a partir deste domingo (1°). Isso corresponde a um aumento de R$ 0,45 por litro em relação ao mês anterior. Em outubro, o combustível utilizado em aviões e helicópteros já havia sofrido reajuste médio de 11,76%, ou 0,65 centavos por litro.",
+      "description": "A Petrobras anunciou reajuste médio de 7,2% no querosene de aviação vendido às distribuidoras, a partir deste domingo (1°). Isso corresponde a um aumento de R$ 0,45 por litro em relação ao mês anterior. Em outubro, o combustível utilizado em aviões e helicópteros já havia sofrido reajuste médio de 11,76%, ou 0,65 centavos por litro.",
+      "stage_label": "Triagem temática",
+      "impact_label": "possível pressão; verificar efeitos; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
       "title": "Economistas propõem taxar ricos em vez de cortar gastos sociais",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/economistas-propoem-taxar-ricos-em-vez-de-cortar-gastos-sociais",
       "published": "Sat, 31 Oct 2026 14:02:00 -0300",
@@ -383,22 +415,6 @@
       "description": "A taxa de desocupação para o terceiro trimestre caiu para 5,2%, a menor já registrada para esse período desde 2012. O desemprego era de 5,4% no segundo trimestre deste ano e de 5,6% no terceiro trimestre de 2025. Os dados são da Pesquisa Nacional por Amostra de Domicílios (Pnad) Contínua, divulgada nesta sexta-feira (30), pelo Instituto Brasileiro de Geografia e Estatística (IBGE) .",
       "stage_label": "Triagem temática",
       "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Acaba nesta sexta prazo para empresas escolherem modelo do Simples",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/acaba-nesta-sexta-prazo-para-empresas-escolherem-modelo-do-simples",
-      "published": "Fri, 30 Oct 2026 08:00:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "tributos e preços",
-      "topic_label": "Tributos E Preços",
-      "summary": "Os micro e pequenos empresários precisam ficar atentos. Acaba nesta sexta-feira (30) o prazo para a escolha do regime tributário que entrará em vigor em janeiro, com a reforma tributária. Os negócios que desejarem recolher o Imposto sobre Bens e Serviços (IBS) e a Contribuição sobre Bens e Serviços (CBS) pelo regime regular terão até esta sexta para registrar a opção.",
-      "description": "Os micro e pequenos empresários precisam ficar atentos. Acaba nesta sexta-feira (30) o prazo para a escolha do regime tributário que entrará em vigor em janeiro, com a reforma tributária. Os negócios que desejarem recolher o Imposto sobre Bens e Serviços (IBS) e a Contribuição sobre Bens e Serviços (CBS) pelo regime regular terão até esta sexta para registrar a opção.",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
       "causal_status": "evidência necessária",
       "confidence": "baixa",
@@ -613,7 +629,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-01T13:26:48+00:00",
+  "news_checked_at": "2026-11-01T22:03:14+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
