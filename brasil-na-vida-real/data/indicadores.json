@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-03T00:59:05+00:00",
+  "updated_at": "2026-11-03T14:17:29+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -292,6 +292,38 @@
     "price_gasoline_unit": "R$/litro"
   },
   "news": [
+    {
+      "title": "Mercado eleva projeção para inflação, juros e dólar em 2026",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/mercado-eleva-projecao-para-inflacao-juros-e-dolar-em-2026",
+      "published": "Tue, 03 Nov 2026 10:43:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "mercados e câmbio",
+      "topic_label": "Mercados E Câmbio",
+      "summary": "O mercado financeiro elevou as projeções para a taxa básica de juros (Selic), a inflação e o dólar neste ano e reduziu, pela terceira semana consecutiva, a estimativa de crescimento da economia. Os dados constam do Boletim Focus, relatório semanal divulgado pelo Banco Central com projeções do mercado financeiro para inflação, câmbio, taxa Selic, entre outros indicadores.",
+      "description": "O mercado financeiro elevou as projeções para a taxa básica de juros (Selic), a inflação e o dólar neste ano e reduziu, pela terceira semana consecutiva, a estimativa de crescimento da economia. Os dados constam do Boletim Focus, relatório semanal divulgado pelo Banco Central com projeções do mercado financeiro para inflação, câmbio, taxa Selic, entre outros indicadores.",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Polícia de SP faz operação contra esquema de agiotagem com cobrança de juros abusivos e ameaças",
+      "url": "https://www.agenciasp.sp.gov.br/seguranca-publica/policia-de-sp-faz-operacao-contra-esquema-de-agiotagem-com-cobranca-de-juros-abusivos-e-ameacas/",
+      "published": "Tue, 03 Nov 2026 13:08:02 +0000",
+      "source": "Agência SP",
+      "topic": "juros e crédito",
+      "topic_label": "Juros E Crédito",
+      "summary": "Operação BarbaCred cumpre 28 mandados de busca e apreensão em endereços na capital, Guarulhos, Carapicuíba e Mongaguá",
+      "description": "Operação BarbaCred cumpre 28 mandados de busca e apreensão em endereços na capital, Guarulhos, Carapicuíba e Mongaguá",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
     {
       "title": "Economista de Plano Real acusa BC de causar rombo fiscal via juros",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/economista-de-plano-real-acusa-bc-de-causar-rombo-fiscal-juros",
@@ -595,25 +627,9 @@
       "causal_status": "evidência necessária",
       "confidence": "baixa",
       "classification": "rule-based"
-    },
-    {
-      "title": "MME coloca em consulta pública Taxa de Fiscalização dos Serviços de Energia Elétrica para comercializadores",
-      "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/julho-26/mme-coloca-em-consulta-publica-taxa-de-fiscalizacao-dos-servicos-de-energia-eletrica-para-comercializadores",
-      "published": "",
-      "source": "Ministério de Minas e Energia",
-      "topic": "moradia e contas",
-      "topic_label": "Moradia E Contas",
-      "summary": "MME coloca em consulta pública Taxa de Fiscalização dos Serviços de Energia Elétrica para comercializadores",
-      "description": "MME coloca em consulta pública Taxa de Fiscalização dos Serviços de Energia Elétrica para comercializadores",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-03T00:59:05+00:00",
+  "news_checked_at": "2026-11-03T14:17:29+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
