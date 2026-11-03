@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-02T15:55:27+00:00",
+  "updated_at": "2026-11-03T00:59:05+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "02/11/2026",
+    "date": "03/11/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=18%2F09%2F2026&dataFinal=02%2F11%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=19%2F09%2F2026&dataFinal=03%2F11%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -293,16 +293,16 @@
   },
   "news": [
     {
-      "title": "Entenda como é tomada a decisão da atualização do ICMS dos combustíveis",
-      "url": "https://www.agenciasp.sp.gov.br/governo/entenda-como-e-tomada-a-decisao-da-atualizacao-do-icms-dos-combustiveis/",
-      "published": "Sun, 01 Nov 2026 19:05:43 +0000",
-      "source": "Agência SP",
-      "topic": "tributos e preços",
-      "topic_label": "Tributos E Preços",
-      "summary": "A atualização do ICMS é uma decisão do Confaz, que é presidido pelo Ministério da Fazenda e reúne todos os estados e o DF; deliberação foi aprovada por unanimidade e aplicação será igual em todos os estados",
-      "description": "A atualização do ICMS é uma decisão do Confaz, que é presidido pelo Ministério da Fazenda e reúne todos os estados e o DF; deliberação foi aprovada por unanimidade e aplicação será igual em todos os estados",
+      "title": "Economista de Plano Real acusa BC de causar rombo fiscal via juros",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/economista-de-plano-real-acusa-bc-de-causar-rombo-fiscal-juros",
+      "published": "Mon, 02 Nov 2026 14:09:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "juros e crédito",
+      "topic_label": "Juros E Crédito",
+      "summary": "O artigo de um dos economistas da equipe que elaborou o Plano Real, professor André Lara Resende, tem ganhado destaque nos últimos dias por acusar o Banco Central (BC) de causar desequilíbrio fiscal no Brasil por meio das altas taxas de juros. O especialista defende novas regras para as despesas e os juros no país. “Acuso o Banco Central de sustentar, em nome de uma teoria anacrônica, a taxa de juros que é a principal causa do desequilíbrio fiscal que diz combater.”",
+      "description": "O artigo de um dos economistas da equipe que elaborou o Plano Real, professor André Lara Resende, tem ganhado destaque nos últimos dias por acusar o Banco Central (BC) de causar desequilíbrio fiscal no Brasil por meio das altas taxas de juros. O especialista defende novas regras para as despesas e os juros no país. “Acuso o Banco Central de sustentar, em nome de uma teoria anacrônica, a taxa de juros que é a principal causa do desequilíbrio fiscal que diz combater.”",
       "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_label": "possível pressão; verificar efeitos; sem quantificação causal",
       "impact_direction": "unknown",
       "causal_status": "evidência necessária",
       "confidence": "baixa",
@@ -399,22 +399,6 @@
       "description": "A Agência Nacional de Energia Elétrica (Aneel) leiloou nesta sexta-feira (30), na sede da B3, na capital paulista, oito projetos de transmissão de energia. Foi o último leilão do ano. O certame prevê investimentos de R$ 8,9 bilhões e previsão de mais de 20,3 mil empregos diretos e indiretos.",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Desemprego em 5,2% no 3° trimestre é o menor para o período desde 2012",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/desemprego-em-52-no-3deg-trimestre-e-o-menor-para-o-periodo-desde-2012",
-      "published": "Fri, 30 Oct 2026 09:50:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "emprego e renda",
-      "topic_label": "Emprego E Renda",
-      "summary": "A taxa de desocupação para o terceiro trimestre caiu para 5,2%, a menor já registrada para esse período desde 2012. O desemprego era de 5,4% no segundo trimestre deste ano e de 5,6% no terceiro trimestre de 2025. Os dados são da Pesquisa Nacional por Amostra de Domicílios (Pnad) Contínua, divulgada nesta sexta-feira (30), pelo Instituto Brasileiro de Geografia e Estatística (IBGE) .",
-      "description": "A taxa de desocupação para o terceiro trimestre caiu para 5,2%, a menor já registrada para esse período desde 2012. O desemprego era de 5,4% no segundo trimestre deste ano e de 5,6% no terceiro trimestre de 2025. Os dados são da Pesquisa Nacional por Amostra de Domicílios (Pnad) Contínua, divulgada nesta sexta-feira (30), pelo Instituto Brasileiro de Geografia e Estatística (IBGE) .",
-      "stage_label": "Triagem temática",
-      "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
       "impact_direction": "unknown",
       "causal_status": "evidência necessária",
       "confidence": "baixa",
@@ -629,7 +613,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-02T15:55:27+00:00",
+  "news_checked_at": "2026-11-03T00:59:05+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
