@@ -1,33 +1,37 @@
 #!/usr/bin/env python3
-"""Diagnóstico temporário: apenas nomes de campos, sem divulgar dados bancários."""
-import json, urllib.request, urllib.error, socket
-sources = {
- "especiais_spec": "https://api-publica.transferegov.gestao.gov.br/especiais/openapi.json",
- "especiais_spec_v2": "https://api-publica.transferegov.gestao.gov.br/especiais/docs/openapi.json",
- "especiais_root": "https://api-publica.transferegov.gestao.gov.br/especiais/",
- "especiais_executores": "https://api-publica.transferegov.gestao.gov.br/especiais/executores-especiais?pagina=1&tamanho_da_pagina=1",
- "especiais_executor": "https://api-publica.transferegov.gestao.gov.br/especiais/executor_especial?limit=1",
- "legacy_executor": "https://api.transferegov.gestao.gov.br/transferenciasespeciais/executor_especial?limit=1&order=id_executor.asc&offset=0",
- "legacy_planos": "https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?limit=1&order=id_plano_acao.asc&offset=0",
- "fns": "https://consultafns.saude.gov.br/",
-}
-for name,url in sources.items():
+"""Inspeciona esquema da API, só imprime metadados e identificadores não bancários."""
+import json,urllib.request
+BASE="https://api-publica.transferegov.gestao.gov.br/especiais"
+def get(path):
+ req=urllib.request.Request(BASE+path,headers={"Accept":"application/json","User-Agent":"EmendasSBC/1.0"})
+ with urllib.request.urlopen(req,timeout=30) as resp:return json.loads(resp.read())
+doc=get("/openapi.json")
+print("PATHS")
+for path in doc.get("paths",{}):
+ if any(x in path.lower() for x in ["executor","plano","emenda","beneficiar","banco","pagamento"]):
+  print(path)
+  obj=doc["paths"][path]
+  if "get" in obj:
+   print("PARAMS",[(p.get("name"),p.get("in"),str(p.get("schema",{}).get("type")),str(p.get("schema",{}).get("default"))) for p in obj["get"].get("parameters",[])])
+for path in [
+ "/planos-acao-especiais?cnpj_beneficiario_plano_acao=46523239000147&pagina=1&tamanho_da_pagina=2",
+ "/planos-acao-especiais?cnpj_beneficiario=46523239000147&pagina=1&tamanho_da_pagina=2",
+ "/executores-especiais?cnpj_executor=46523239000147&pagina=1&tamanho_da_pagina=2",
+ "/executores-especiais?cnpj_executor=13961905000170&pagina=1&tamanho_da_pagina=2",
+ ]:
  try:
-  req=urllib.request.Request(url, headers={"Accept":"application/json","User-Agent":"Mozilla/5.0 (compatible; SBC-Consultas/1.0)"})
-  with urllib.request.urlopen(req,timeout=20) as r:
-   data=r.read(80000)
-   print(name,"STATUS",r.status,"content-type",r.headers.get("content-type"),"final-url",r.geturl(),"first",repr(data[:65]))
-  try:
-   doc=json.loads(data)
-   if isinstance(doc,dict):
-    print(name,"DICT_KEYS",list(doc)[:30])
-    if isinstance(doc.get("paths"),dict): print(name,"OPENAPI_PATHS",list(doc["paths"])[:100])
-    for prop in ["data","items","results","resultado","value"]:
-     value=doc.get(prop)
-     if isinstance(value,list) and value:
-      print(name,"FIRST_RECORD_KEYS",list(value[0])[:60] if isinstance(value[0],dict) else str(type(value[0])))
-   elif isinstance(doc,list):
-    print(name,"ARRAY_LENGTH",len(doc),"FIRST_RECORD_KEYS",list(doc[0]) if doc and isinstance(doc[0],dict) else [])
-  except (ValueError,UnicodeDecodeError): pass
- except Exception as exc:
-  print(name,"ERROR",type(exc).__name__,str(exc)[:130])
+  data=get(path)
+  print("QUERY",path,"TOTAL",data.get("total_items"),"PAGES",data.get("total_pages"))
+  for item in data.get("data",[])[:2]:
+   print("RECORD",{"id_plano_acao":item.get("id_plano_acao"),
+     "cnpj_executor":item.get("cnpj_executor"),
+     "cnpj_beneficiario_plano_acao":item.get("cnpj_beneficiario_plano_acao"),
+     "ano_plano_acao":item.get("ano_plano_acao"),
+     "numero_emenda_parlamentar_plano_acao":item.get("numero_emenda_parlamentar_plano_acao"),
+     "codigo_emenda_parlamentar_formatado_plano_acao":item.get("codigo_emenda_parlamentar_formatado_plano_acao"),
+     "sequencial_emenda_parlamentar_plano_acao":item.get("sequencial_emenda_parlamentar_plano_acao"),
+     "codigo_plano_acao":item.get("codigo_plano_acao"),
+     "banco_preenchido":bool(item.get("codigo_banco_executor") or item.get("codigo_banco_plano_acao")),
+     "agencia_preenchida":bool(item.get("numero_agencia_executor") or item.get("numero_agencia_plano_acao")),
+     "conta_preenchida":bool(item.get("numero_conta_executor") or item.get("numero_conta_plano_acao"))})
+ except Exception as e:print("ERROR",path,type(e).__name__,str(e)[:120])
