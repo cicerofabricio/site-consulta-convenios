@@ -3,169 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#122543">
-  <meta name="description" content="Consulta de emendas parlamentares federais e estaduais destinadas ao Município de São Bernardo do Campo/SP.">
-  <title>Emendas Parlamentares destinadas a São Bernardo do Campo — SP</title>
+  <meta name="theme-color" content="#142b45">
+  <meta name="description" content="Consulta de emendas parlamentares federais relacionadas a São Bernardo do Campo, com dados abertos da CGU.">
+  <title>Emendas Federais — São Bernardo do Campo</title>
   <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./cgu.css">
-  <script src="./app.js" defer></script>
-  <script src="./fontes.js" defer></script>
   <script src="./cgu.js" defer></script>
 </head>
 <body>
   <header class="masthead">
     <div class="container masthead-inner">
       <div class="brand-mark" aria-hidden="true">EP</div>
-      <div>
-        <p class="eyebrow light">TRANSPARÊNCIA • DADOS ABERTOS</p>
+      <div class="brand-text">
+        <p class="eyebrow light">TRANSPARÊNCIA · DADOS OFICIAIS</p>
         <h1>Emendas para São Bernardo do Campo</h1>
-        <p class="subtitle">Destinatário: Município de São Bernardo do Campo · SP</p>
+        <p class="subtitle">Consulta federal consolidada por favorecido · SP</p>
       </div>
-      <a class="source" href="https://api-publica.transferegov.gestao.gov.br/especiais/docs" target="_blank" rel="noopener noreferrer">Fonte oficial ↗</a>
+      <a class="source" href="https://portaldatransparencia.gov.br/download-de-dados/emendas-parlamentares" target="_blank" rel="noopener noreferrer">Dados abertos da CGU ↗</a>
     </div>
   </header>
-  <main class="container">
-    <section class="intro" aria-label="Sobre a consulta">
+  <main class="container" id="consultaCGU">
+    <section class="intro">
       <div>
-        <p class="eyebrow">CONSULTA PÚBLICA</p>
-        <h2>Emendas destinadas ao Município de São Bernardo do Campo</h2>
-        <p>Acompanhe emendas federais e estaduais de São Paulo destinadas à Prefeitura ou ao Fundo Municipal de Saúde. O painel consolidado da CGU traz emendas federais por favorecido; abaixo permanece a consulta específica de transferências especiais (Pix). Emendas estaduais são acompanhadas no portal paulista.</p>
+        <p class="eyebrow">PAINEL DE CONSULTA</p>
+        <h2>Quem recebeu os recursos das emendas?</h2>
+        <p>Consulte os valores recebidos pela Prefeitura, pelo Fundo Municipal de Saúde e por outras pessoas jurídicas de São Bernardo do Campo. Emendas associadas apenas à localidade são identificadas separadamente: <strong>não representam necessariamente recursos recebidos pela Prefeitura.</strong></p>
       </div>
-      <div class="sync">
+      <div class="sync" aria-label="Situação da atualização">
         <span class="sync-dot" aria-hidden="true"></span>
-        <div><strong>Fonte: Transferegov.br</strong><small id="updatedAt">Verificando atualização...</small></div>
+        <div><strong>Base: Portal da Transparência — CGU</strong><small id="cguUpdated">Verificando atualização...</small></div>
       </div>
     </section>
-    <section id="fontesOficiais" class="panel source-hub" aria-labelledby="sourcesTitle">
-      <div class="source-title">
-        <div><p class="eyebrow">COBERTURA MULTIFONTE</p><h2 id="sourcesTitle">Fontes federais e estaduais de São Paulo</h2>
-          <p class="muted">As consultas estão orientadas exclusivamente a São Bernardo do Campo. <strong>Consulta direta</strong>: resultados nesta página. <strong>Portal oficial</strong>: no portal de origem, aplique o filtro do Município/CNPJ indicado.</p>
-        </div>
-        <span class="source-total" id="sourceCount">Carregando fontes...</span>
-      </div>
-      <div class="source-filters">
-        <label>Esfera
-          <select id="sourceScope"><option value="">Federal e estadual</option><option value="federal">Federal</option><option value="estadual">Estadual</option></select>
-        </label>
-        <label>Tipo de emenda
-          <select id="sourceType">
-            <option value="">Todos os tipos</option><option value="individual">Individual</option><option value="bancada">Bancada</option>
-            <option value="comissao">Comissão</option><option value="relator">Relator</option>
-            <option value="estadual">Emenda estadual</option><option value="fundoafundo">Fundo a fundo (saúde)</option>
-          </select>
-        </label>
-        <label>Forma de repasse
-          <select id="sourceForm">
-            <option value="">Todas as formas</option>
-            <option value="especial">Transferência especial (Pix)</option>
-            <option value="fundoafundo">Fundo a fundo</option>
-            <option value="convenio">Convênio</option>
-            <option value="contratorepasse">Contrato de repasse</option>
-            <option value="outra">Outras / não identificadas</option>
-          </select>
-        </label>
-        <label>Buscar fonte
-          <input id="sourceSearch" type="search" placeholder="Portal, dados abertos, execução..." autocomplete="off">
-        </label>
-      </div>
-      <p id="sourceExplanation" class="source-explanation">Para todas as fontes, considere o Município de São Bernardo do Campo (CNPJ 46.523.239/0001-47) e seu Fundo Municipal de Saúde (CNPJ 13.961.905/0001-70), identificados separadamente.</p>
-      <div id="sourceCards" class="source-cards" aria-live="polite"></div>
-      <p class="source-limit"><strong>Critério de inclusão:</strong> destinatário Prefeitura de São Bernardo do Campo, CNPJ <strong>46.523.239/0001-47</strong>, ou Fundo Municipal de Saúde, CNPJ <strong>13.961.905/0001-70</strong>. O endereço de uma obra na cidade não comprova que o Município recebeu recursos. Nos portais externos, filtre por beneficiário e confira CNPJ; não use somente a localidade. Os dois destinatários serão identificados por CNPJ e exibidos separadamente. Outros CNPJs não são incluídos automaticamente. Valores de planos, empenhos e pagamentos não são somáveis entre fontes.</p>
-    </section>
-    
-    <section class="panel" id="consultaCGU" aria-labelledby="cguTitle">
+    <section class="panel" aria-labelledby="filterTitle">
       <div class="panel-title">
         <div>
-          <p class="eyebrow">CONSULTA AUTOMÁTICA · CGU</p>
-          <h2 id="cguTitle">Emendas federais de todos os tipos</h2>
-          <p class="cgu-info">Pagamentos à Prefeitura, ao Fundo Municipal de Saúde e a outros CNPJs situados em São Bernardo do Campo. Emendas identificadas apenas pela localidade de aplicação são apresentadas separadamente, sem atribuir recebimentos ao Município.</p>
+          <p class="eyebrow">EMENDAS FEDERAIS</p>
+          <h2 id="filterTitle">Filtros da consulta</h2>
         </div>
         <button id="cguClear" type="button" class="btn-ghost">Limpar filtros</button>
       </div>
-      <p id="cguStatus" class="cgu-notice" role="status">Carregando base da CGU...</p>
+      <div id="cguStatus" class="cgu-notice" role="status" aria-live="polite">Carregando dados da CGU...</div>
       <div class="cgu-grid">
-        <label>Destinatário<select id="cguCategory"><option value="">Todos</option><option value="prefeitura">Prefeitura</option><option value="saude">Fundo Municipal de Saúde</option><option value="terceiro">Outros CNPJs na cidade</option><option value="localidade">Somente localidade de aplicação</option></select></label>
-        <label>Ano da emenda<select id="cguYear"><option value="">Todos</option></select></label>
-        <label>Tipo de emenda<select id="cguType"><option value="">Todos</option><option value="individual">Individual</option><option value="bancada">Bancada</option><option value="comissão">Comissão</option><option value="relator">Relator</option></select></label>
-        <label>Pesquisar<input id="cguSearch" type="search" placeholder="Autor, emenda, CNPJ, favorecido..." autocomplete="off"></label>
+        <label>Destinatário
+          <select id="cguCategory">
+            <option value="municipio" selected>Prefeitura + Fundo Municipal de Saúde</option>
+            <option value="prefeitura">Somente Prefeitura</option>
+            <option value="saude">Somente Fundo Municipal de Saúde</option>
+            <option value="">Todos os registros</option>
+            <option value="terceiro">Outros CNPJs na cidade</option>
+            <option value="localidade">Somente localidade de aplicação</option>
+          </select>
+        </label>
+        <label>Ano da emenda
+          <select id="cguYear"><option value="">Todos os anos</option></select>
+        </label>
+        <label>Tipo de emenda
+          <select id="cguType">
+            <option value="">Todos os tipos</option>
+            <option value="individual">Individual</option>
+            <option value="bancada">Bancada</option>
+            <option value="comissão">Comissão</option>
+            <option value="relator">Relator</option>
+          </select>
+        </label>
+        <label>Busca livre
+          <input id="cguSearch" type="search" placeholder="Autor, número, favorecido ou CNPJ" autocomplete="off">
+        </label>
       </div>
-      <div class="cgu-kpis">
-        <div><span>Registros filtrados</span><strong id="cguCount">—</strong></div>
-        <div><span>Recebido Prefeitura + Fundo</span><strong id="cguPublic">—</strong></div>
-        <div><span>Recebido por outros CNPJs locais</span><strong id="cguThird">—</strong></div>
-        <div><span>Somente localidade de aplicação</span><strong id="cguLocality">—</strong></div>
+      <div class="cgu-kpis" aria-label="Resumo dos resultados filtrados">
+        <div><span>Registros encontrados</span><strong id="cguCount">—</strong></div>
+        <div><span>Total recebido na seleção</span><strong id="cguPublic">—</strong></div>
+        <div><span>Recebido pela Prefeitura</span><strong id="cguPrefeitura">—</strong></div>
+        <div><span>Recebido pelo Fundo de Saúde</span><strong id="cguSaude">—</strong></div>
       </div>
-      <div class="cgu-actions"><button id="cguExport" type="button" disabled>Exportar CSV para Excel</button><a href="https://portaldatransparencia.gov.br/download-de-dados/emendas-parlamentares" target="_blank" rel="noopener noreferrer">Fonte dos dados: CGU</a></div>
-      <div class="cgu-table"><table>
-        <thead><tr><th>Ano</th><th>Código</th><th>Autor</th><th>Tipo</th><th>Vínculo</th><th>Favorecido</th><th>Valor recebido</th><th>Origem</th></tr></thead>
-        <tbody id="cguRows"><tr><td colspan="8">Aguardando dados...</td></tr></tbody>
-      </table></div>
-      <div class="cgu-pager"><button id="cguPrev" class="btn-outline" type="button" disabled>Anterior</button><span id="cguPages">Página —</span><button id="cguNext" class="btn-outline" type="button" disabled>Próxima</button></div>
-      <p class="cgu-info"><strong>Critério:</strong> valores recebidos provêm da CGU por emenda e favorecido. A mesma emenda pode beneficiar vários destinatários. Registros apenas de localidade não são comprovantes de transferência ao Município. Os valores previstos de planos de ação Pix, abaixo, não devem ser somados aos pagamentos da CGU. <strong>Emendas estaduais:</strong> <a href="https://www.transparencia.sp.gov.br/EmendasParlamentares/Concedidas" target="_blank" rel="noopener noreferrer">consulte o portal paulista</a>; a integração automática do CSV estadual ainda depende de validação do endereço de download.</p>
+      <p class="cgu-info"><strong>Consolidado Prefeitura + Fundo:</strong> reúne os registros dos CNPJs <strong>46.523.239/0001-47</strong> e <strong>13.961.905/0001-70</strong>. A tabela preserva o destinatário individual e o resumo soma os recebimentos dos dois. Os valores acima acompanham todos os filtros ativos.</p>
     </section>
-
-    <section class="panel" id="consultaPix" aria-labelledby="filtersTitle">
-      <div class="panel-title"><div><p class="eyebrow">PESQUISA</p><h2 id="filtersTitle">Consulta direta — transferências especiais federais (Pix)</h2></div><button type="button" class="btn-ghost" id="clearBtn">Limpar filtros</button></div>
-      <form id="filterForm">
-        <div class="filters">
-          <div class="fixed-recipient"><span class="fixed-recipient-title">Destinatários oficiais da consulta</span><strong>São Bernardo do Campo · SP</strong><small>Prefeitura: 46.523.239/0001-47 · Fundo Municipal de Saúde: 13.961.905/0001-70. Beneficiários privados não estão incluídos.</small></div>
-          <label>Destinatário
-            <select id="recipientFilter"><option value="ambos">Ambos — Prefeitura e Fundo de Saúde</option><option value="prefeitura">Somente Prefeitura</option><option value="saude">Somente Fundo Municipal de Saúde</option></select>
-          </label>
-          <div class="fixed-hidden" aria-hidden="true"><select id="uf"><option value="SP">SP</option></select><select id="beneficiary" disabled><option value="">Identificando município...</option></select></div>
-          <label>Ano da emenda
-            <select id="year"><option value="">Todos os anos</option></select>
-          </label>
-          <label>Nome do parlamentar (contém)
-            <input id="parliamentarian" type="search" placeholder="Ex.: Maria" autocomplete="off">
-          </label>
-          <label>Número / código da emenda
-            <input id="amendment" type="search" placeholder="Número ou parte do código">
-          </label>
-          <label>Situação do plano
-            <select id="situation"><option value="">Todas as situações</option><option value="CIENTE">Ciente</option><option value="IMPEDIDO">Impedido</option></select>
-          </label>
-          <label>Categoria de despesa
-            <select id="category"><option value="">Todas as categorias</option><option value="CUSTEIO">Custeio</option><option value="INVESTIMENTO">Investimento</option><option value="CUSTEIO E INVESTIMENTO">Custeio e investimento</option></select>
-          </label>
-        </div>
-        <div class="filter-actions">
-          <button id="searchBtn" class="btn-primary" type="submit">Consultar emendas</button>
-          <span class="hint">Somente os dois CNPJs oficiais são elegíveis; filtre individualmente ou visualize o consolidado.</span>
-        </div>
-      </form>
-    </section>
-    <div id="status" class="status info" role="status" aria-live="polite">Identificando os cadastros da Prefeitura e do Fundo Municipal de Saúde...</div>
-    <section aria-label="Resumo da consulta" class="kpis">
-      <article class="kpi"><span>Planos de ação localizados</span><strong id="countMetric">—</strong><small>Registros da consulta</small></article>
-      <article class="kpi"><span>Valor total dos planos</span><strong id="totalMetric">—</strong><small>Custeio + investimento</small></article>
-      <article class="kpi"><span>Valores de custeio</span><strong id="costMetric">—</strong><small>Previstos nos planos</small></article>
-      <article class="kpi"><span>Valores de investimento</span><strong id="investMetric">—</strong><small>Previstos nos planos</small></article>
-      <article class="kpi"><span>Total Prefeitura</span><strong id="prefeituraMetric">—</strong><small>CNPJ 46.523.239/0001-47 · somente planos Pix</small></article>
-      <article class="kpi"><span>Total Fundo de Saúde</span><strong id="saudeMetric">—</strong><small>CNPJ 13.961.905/0001-70 · somente planos Pix</small></article>
-    </section>
-    <section class="panel results" aria-labelledby="resultsTitle">
+    <section class="panel" aria-labelledby="resultsTitle">
       <div class="results-head">
-        <div><p class="eyebrow">RESULTADOS</p><h2 id="resultsTitle">Emendas Pix federais encontradas</h2><p id="resultInfo" class="muted">Consulta aos CNPJs 46.523.239/0001-47 e 13.961.905/0001-70.</p></div>
-        <button id="exportBtn" class="btn-outline" type="button" disabled>Exportar CSV (Excel)</button>
+        <div>
+          <p class="eyebrow">RESULTADOS</p>
+          <h2 id="resultsTitle">Emendas parlamentares federais</h2>
+          <p class="muted">Registros de emenda por favorecido, conforme a base histórica disponível da CGU.</p>
+        </div>
+        <button id="cguExport" type="button" class="btn-outline" disabled>Exportar CSV (Excel)</button>
       </div>
-      <div class="table-scroll">
+      <div class="cgu-table">
         <table>
-          <thead><tr><th>Ano</th><th>Nº emenda</th><th>Parlamentar</th><th>Destinatário</th><th>CNPJ destinatário</th><th>Objeto</th><th>Situação</th><th>Custeio</th><th>Investimento</th><th>Total</th><th>Detalhes</th></tr></thead>
-          <tbody id="resultBody"><tr><td class="empty" colspan="11">Use os filtros e clique em “Consultar emendas”.</td></tr></tbody>
+          <thead><tr><th>Ano</th><th>Código da emenda</th><th>Autor</th><th>Tipo</th><th>Destinatário</th><th>Favorecido</th><th>CNPJ</th><th>Valor recebido</th><th>Consulta oficial</th></tr></thead>
+          <tbody id="cguRows"><tr><td colspan="9" class="empty">Carregando informações...</td></tr></tbody>
         </table>
       </div>
-      <nav class="pagination" aria-label="Paginação"><button id="prevBtn" type="button" class="btn-outline" disabled>Anterior</button><span id="paginationLabel">Página —</span><button id="nextBtn" type="button" class="btn-outline" disabled>Próxima</button></nav>
+      <nav class="cgu-pager" aria-label="Paginação de resultados">
+        <button id="cguPrev" type="button" class="btn-outline" disabled>Anterior</button>
+        <span id="cguPages">Página —</span>
+        <button id="cguNext" type="button" class="btn-outline" disabled>Próxima</button>
+      </nav>
     </section>
     <aside class="footnote">
-      <strong>Sobre os valores e a abrangência:</strong> os valores de custeio e investimento representam os montantes informados nos planos de ação, não o pagamento efetivamente realizado. A tabela acima abrange somente <strong>transferências especiais federais (emendas Pix) de ambos os CNPJs públicos selecionados</strong>. As demais modalidades estão relacionadas no catálogo de fontes oficiais no início desta página.
-      <p>Consulta independente, sem vínculo institucional com o Governo Federal. Os registros e a disponibilidade dependem da API pública do <a href="https://api-publica.transferegov.gestao.gov.br/especiais/docs" target="_blank" rel="noopener noreferrer">Transferegov.br</a>.</p>
+      <strong>Origem e limites:</strong> exclusivamente arquivos públicos de emendas parlamentares federais da <a href="https://portaldatransparencia.gov.br/download-de-dados/emendas-parlamentares" target="_blank" rel="noopener noreferrer">Controladoria-Geral da União (CGU)</a>, processados automaticamente. Valores recebidos por favorecido não devem ser confundidos com valores previstos, empenhados ou com a totalidade de transferências ordinárias. Uma emenda pode ter vários favorecidos. As emendas apenas vinculadas à localidade não entram na soma de recursos recebidos. Emendas estaduais não estão incluídas nesta consulta.
     </aside>
   </main>
-  <dialog id="detailDialog" aria-labelledby="detailTitle">
-    <div class="dialog-head"><h2 id="detailTitle">Detalhes do plano de ação</h2><button type="button" id="closeDialog" class="btn-ghost" aria-label="Fechar">Fechar ×</button></div>
-    <dl id="detailList" class="detail-list"></dl>
-    <p class="muted small">Valores e situação conforme o registro retornado pela API oficial.</p>
-  </dialog>
 </body>
 </html>
