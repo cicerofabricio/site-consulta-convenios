@@ -7,14 +7,17 @@
  */
 const API_BASE = "https://api-publica.transferegov.gestao.gov.br/especiais";
 const API_PAGE_SIZE = 200;
-const TARGET_CNPJ = "46523239000147"; // Município de São Bernardo do Campo/SP
+const RECIPIENTS = Object.freeze([
+  {key:"prefeitura", cnpj:"46523239000147", name:"Prefeitura do Município de São Bernardo do Campo"},
+  {key:"saude", cnpj:"13961905000170", name:"Fundo Municipal de Saúde de São Bernardo do Campo"}
+]);
 const MAX_ROWS = 20000;
 const TABLE_PAGE_SIZE = 25;
 const UF_LIST = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
 const money = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 const numberFmt = new Intl.NumberFormat("pt-BR");
 const node = id => document.getElementById(id);
-const state = { beneficiaries: new Map(), currentBeneficiaries: [], rows: [], filtered: [], page: 1, beneficiaryToken: 0, searchToken: 0, busy: false, selectedName: "" };
+const state = { beneficiaries: new Map(), currentBeneficiaries: [], rows: [], filtered: [], page: 1, beneficiaryToken: 0, searchToken: 0, busy: false, selectedName: "", missingRecipients: [] };
 
 function normalized(value) {
   return String(value == null ? "" : value).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleUpperCase("pt-BR").trim();
@@ -120,31 +123,46 @@ async function loadBeneficiaries() {
   const token = ++state.beneficiaryToken;
   const select = node("beneficiary");
   select.disabled = true;
-  select.replaceChildren(new Option("Identificando o cadastro municipal...", ""));
+  select.replaceChildren(new Option("Identificando os dois destinatários...", ""));
   state.currentBeneficiaries = [];
-  status("Validando o CNPJ 46.523.239/0001-47 na base oficial do Transferegov...", "info");
+  state.missingRecipients = [];
+  status("Consultando os cadastros oficiais da Prefeitura e do Fundo Municipal de Saúde, por CNPJ...", "info");
   try {
-    // Consulta pelo CNPJ EXATO; não basta estar situado em São Bernardo.
-    const data = await fetchAll("beneficiarios-especiais", { cnpj_beneficiario: TARGET_CNPJ });
+    const entries = await Promise.all(RECIPIENTS.map(async recipient => {
+      try {
+        const data = await fetchAll("beneficiarios-especiais", { cnpj_beneficiario: recipient.cnpj });
+        if (!data.complete) throw new Error("Cadastro de beneficiário excedeu o limite de segurança.");
+        const matching = data.rows.filter(item =>
+          String(item.cnpj_beneficiario || "").replace(/\D/g, "") === recipient.cnpj &&
+          normalized(item.uf_beneficiario) === "SP"
+        ).map(item => ({ ...item, _recipientKey: recipient.key, _recipientName: recipient.name, _recipientCnpj: recipient.cnpj }));
+        return {recipient,matching,failed:false};
+      } catch(error) {
+        return {recipient,matching:[],failed:true,error};
+      }
+    }));
     if (token !== state.beneficiaryToken) return;
-    if (!data.complete) throw new Error("Cadastro de beneficiários incompleto; a consulta foi interrompida.");
-    const items = data.rows.filter(item =>
-      String(item.cnpj_beneficiario || "").replace(/\D/g, "") === TARGET_CNPJ &&
-      String(item.uf_beneficiario || "").toUpperCase() === "SP"
-    );
-    if (items.length !== 1) {
-      select.replaceChildren(new Option("Cadastro municipal não confirmado", ""));
-      status(items.length === 0
-        ? "O Transferegov não retornou o CNPJ oficial de São Bernardo do Campo. Não exibiremos dados de outros destinatários. Confira a disponibilidade da API."
-        : "A API retornou mais de um cadastro para o mesmo CNPJ. Não é seguro escolher o beneficiário automaticamente.", "warning");
+    const unique = new Map();
+    for (const entry of entries) {
+      if (!entry.matching.length) state.missingRecipients.push(entry.recipient.name);
+      for (const item of entry.matching) unique.set(String(item.id_beneficiario),item);
+    }
+    state.currentBeneficiaries = Array.from(unique.values());
+    if (!state.currentBeneficiaries.length) {
+      select.replaceChildren(new Option("Destinatários não localizados", ""));
+      const issues = entries.filter(e=>e.failed).map(e => friendlyError(e.error));
+      status(issues.length
+        ? "A API não permitiu confirmar os dois CNPJs. " + issues.join(" ")
+        : "Nenhum dos dois CNPJs retornou cadastro de beneficiário na API de transferências especiais. Isso não prova ausência de emendas, especialmente fundo a fundo.", "warning");
       return;
     }
-    state.currentBeneficiaries = items;
-    const item = items[0];
-    select.replaceChildren(new Option(item.nome_beneficiario || "Município de São Bernardo do Campo", String(item.id_beneficiario)));
-    select.value = String(item.id_beneficiario);
-    select.disabled = true; // destino fixo mesmo quando a seleção já foi feita
-    status("Cadastro municipal confirmado pelo CNPJ. Carregando emendas Pix destinadas a São Bernardo do Campo...", "success");
+    select.replaceChildren(new Option("Cadastro(s) oficial(is) confirmado(s)", String(state.currentBeneficiaries[0].id_beneficiario)));
+    select.disabled = true;
+    if (state.missingRecipients.length) {
+      status("Consulta parcial: a base não confirmou " + state.missingRecipients.join(" e ") + ". Carregando somente os destinatários validados.", "warning");
+    } else {
+      status("Os dois destinatários foram identificados por CNPJ. Consultando emendas Pix...", "success");
+    }
     await runSearch();
   } catch (error) {
     if (token !== state.beneficiaryToken) return;
@@ -152,9 +170,16 @@ async function loadBeneficiaries() {
     status(friendlyError(error), "error");
   }
 }
+function beneficiaryRecord(id) {
+  return state.currentBeneficiaries.find(item => String(item.id_beneficiario) === String(id));
+}
 function beneficiaryName(id) {
-  const b = state.currentBeneficiaries.find(item => String(item.id_beneficiario) === String(id));
-  return b ? String(b.nome_beneficiario || "") : state.selectedName;
+  const b = beneficiaryRecord(id);
+  return b ? b._recipientName : "Destinatário não identificado";
+}
+function beneficiaryCnpj(id) {
+  const b = beneficiaryRecord(id);
+  return b ? b._recipientCnpj : "";
 }
 function clearResultRows() {
   state.rows = [];
@@ -164,41 +189,48 @@ function clearResultRows() {
 }
 async function runSearch(event) {
   if (event) event.preventDefault();
-  const id = node("beneficiary").value;
-  if (!id) {
-    status("Cadastro do Município ainda não foi confirmado na API oficial. Não é possível consultar registros sem identificar o destinatário.", "warning");
+  const beneficiaries = state.currentBeneficiaries;
+  if (!beneficiaries.length) {
+    status("Os cadastros dos destinatários ainda não foram confirmados. A consulta não será feita sem validar o CNPJ.", "warning");
     return;
   }
   const token = ++state.searchToken;
-  state.selectedName = beneficiaryName(id);
-  const filters = { id_beneficiario: id };
-  if (node("year").value) filters.ano_emenda_parlamentar_plano_acao = node("year").value;
-  if (node("situation").value) filters.situacao_plano_acao = node("situation").value;
-  if (node("category").value) filters.categoria_despesa_plano_acao = node("category").value;
+  state.selectedName = "São Bernardo do Campo — Prefeitura e Fundo Municipal de Saúde";
+  const common = {};
+  if (node("year").value) common.ano_emenda_parlamentar_plano_acao = node("year").value;
+  if (node("situation").value) common.situacao_plano_acao = node("situation").value;
+  if (node("category").value) common.categoria_despesa_plano_acao = node("category").value;
   clearResultRows();
   setBusy(true);
   try {
-    status("Consultando emendas Pix do CNPJ 46.523.239/0001-47 no Transferegov...", "info");
-    const result = await fetchAll("planos-acao-especiais", filters, (n,total) => {
-      if (token !== state.searchToken) return;
-      const suffix = Number.isFinite(Number(total)) && total != null ? " de " + numberFmt.format(Number(total)) : "";
-      status("Recebendo planos de ação: " + numberFmt.format(n) + suffix + " registros...", "info");
-    });
+    // Uma busca por ID de beneficiário confirmado; nunca por nome ou por obras na cidade.
+    const grouped = await Promise.all(beneficiaries.map(async (recipient, index) => {
+      status("Consultando destinatário " + (index + 1) + " de " + beneficiaries.length + ": " + recipient._recipientName + "...", "info");
+      const response = await fetchAll("planos-acao-especiais", {
+        ...common, id_beneficiario: recipient.id_beneficiario
+      });
+      if (!response.complete) throw new Error("Resultados excederam o limite seguro. Refine pelo ano.");
+      return response.rows.filter(row => String(row.id_beneficiario) === String(recipient.id_beneficiario));
+    }));
     if (token !== state.searchToken) return;
-    if (!result.complete) {
-      throw new Error("A consulta ultrapassou o limite seguro de " + numberFmt.format(MAX_ROWS) + " registros. Refine os filtros; não serão apresentados totais parciais como se fossem completos.");
+    const unique = new Map();
+    for (const row of grouped.flat()) {
+      const key = String(row.id_beneficiario) + ":" + String(row.id_plano_acao ?? row.codigo_plano_acao ?? "");
+      unique.set(key,row);
     }
-    state.rows = result.rows.filter(row => String(row.id_beneficiario) === String(id));
+    state.rows = [...unique.values()];
     applyLocalFilters();
-    if (!result.rows.length) {
-      status("A API retornou zero planos de ação para os filtros. Isso pode significar ausência de registros OU indisponibilidade temporária da base governamental. Confirme na fonte oficial.", "warning");
+    if (!state.rows.length) {
+      status("Nenhum plano Pix retornado para os CNPJs confirmados. Para emendas fundo a fundo destinadas à Saúde, consulte também a fonte federal específica. Resposta vazia não prova inexistência de emendas.", "warning");
+    } else if (state.missingRecipients.length) {
+      status(numberFmt.format(state.filtered.length) + " plano(s) encontrado(s), mas a consulta está PARCIAL: a API não confirmou " + state.missingRecipients.join(" e ") + ".", "warning");
     } else {
-      status(numberFmt.format(state.filtered.length) + " resultado(s) após os filtros. Consulta concluída com a API oficial.", "success");
+      status(numberFmt.format(state.filtered.length) + " plano(s) encontrado(s) para Prefeitura e Fundo Municipal de Saúde, por CNPJ oficial.", "success");
     }
-  } catch (error) {
+  } catch(error) {
     if (token === state.searchToken) {
       clearResultRows();
-      status(friendlyError(error), "error");
+      status("Consulta interrompida sem apresentar totais incompletos. " + friendlyError(error), "error");
     }
   } finally {
     if (token === state.searchToken) setBusy(false);
@@ -207,7 +239,10 @@ async function runSearch(event) {
 function applyLocalFilters() {
   const parlamentar = normalized(node("parliamentarian").value);
   const emenda = normalized(node("amendment").value);
+  const recipientFilter = node("recipientFilter").value;
   state.filtered = state.rows.filter(row => {
+    const recipient = beneficiaryRecord(row.id_beneficiario);
+    if (!recipient || (recipientFilter !== "ambos" && recipient._recipientKey !== recipientFilter)) return false;
     if (parlamentar && !normalized(row.nome_parlamentar_emenda_plano_acao).includes(parlamentar)) return false;
     if (emenda) {
       const identifiers = [row.codigo_emenda_parlamentar_formatado_plano_acao, row.numero_emenda_parlamentar_plano_acao, row.codigo_plano_acao].map(normalized).join(" ");
@@ -283,7 +318,7 @@ function renderResults() {
   node("investMetric").textContent = state.rows.length ? money.format(invest) : "—";
   node("exportBtn").disabled = rows.length === 0;
   node("resultInfo").textContent = rows.length
-    ? numberFmt.format(rows.length) + " registro(s) de " + state.selectedName + " · página " + state.page + " de " + totalPages
+    ? numberFmt.format(rows.length) + " plano(s) · " + (node("recipientFilter").selectedOptions[0]?.textContent || "") + " · página " + state.page + " de " + totalPages
     : (state.rows.length ? "Os filtros de texto não retornaram correspondência." : "Nenhum dado carregado.");
   node("paginationLabel").textContent = rows.length ? "Página " + state.page + " de " + totalPages : "Página —";
   node("prevBtn").disabled = state.page <= 1 || rows.length === 0;
@@ -297,6 +332,7 @@ function showDetail(row) {
     ["Número da emenda", emendaLabel(row)],
     ["Parlamentar", row.nome_parlamentar_emenda_plano_acao],
     ["Beneficiário", beneficiaryName(row.id_beneficiario)],
+    ["CNPJ do beneficiário", beneficiaryCnpj(row.id_beneficiario)],
     ["Situação", row.situacao_plano_acao],
     ["Modalidade", row.modalidade_plano_acao],
     ["Categoria", row.categoria_despesa_plano_acao],
@@ -326,12 +362,12 @@ function excelSafe(value) {
   return '"' + output.replace(/"/g,'""') + '"';
 }
 function exportCSV() {
-  const headers = ["Ano da emenda","Código da emenda","Parlamentar","UF","Beneficiário","Código do plano","Situação","Categoria de despesa","Objeto","Detalhamento","Custeio","Investimento","Total"];
+  const headers = ["Ano da emenda","Código da emenda","Parlamentar","UF","Beneficiário","CNPJ destinatário","Código do plano","Situação","Categoria de despesa","Objeto","Detalhamento","Custeio","Investimento","Total"];
   const csv = [headers.map(excelSafe).join(";")];
   for (const row of state.filtered) {
     const cols = [
       row.ano_emenda_parlamentar_plano_acao, emendaLabel(row), row.nome_parlamentar_emenda_plano_acao,
-      node("uf").value, beneficiaryName(row.id_beneficiario), row.codigo_plano_acao, row.situacao_plano_acao,
+      node("uf").value, beneficiaryName(row.id_beneficiario), beneficiaryCnpj(row.id_beneficiario), row.codigo_plano_acao, row.situacao_plano_acao,
       row.categoria_despesa_plano_acao,row.nome_objeto,row.detalhamento_objeto,
       asNumber(row.valor_custeio_plano_acao).toFixed(2).replace(".",","),
       asNumber(row.valor_investimento_plano_acao).toFixed(2).replace(".",","),
@@ -360,6 +396,7 @@ async function updateDate() {
   }
 }
 function resetFilters() {
+  node("recipientFilter").value = "ambos";
   node("uf").value = "SP";
   node("year").value = "";
   node("parliamentarian").value = "";
@@ -373,6 +410,7 @@ function resetFilters() {
 }
 function setup() {
   populateUF();
+  node("recipientFilter").addEventListener("change", () => { if (state.rows.length) applyLocalFilters(); });
   node("filterForm").addEventListener("submit", runSearch);
   node("clearBtn").addEventListener("click", resetFilters);
   node("exportBtn").addEventListener("click", exportCSV);
