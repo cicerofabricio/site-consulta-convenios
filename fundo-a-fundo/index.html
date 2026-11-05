@@ -38,7 +38,7 @@ footer a{white-space:nowrap}
 <header><div class="wrap">
   <div class="tag">Transferegov • dados abertos</div>
   <h1>Transferências Fundo a Fundo</h1>
-  <p>Consulte planos de ação de transferências federais para fundos estaduais e municipais. Dados públicos obtidos diretamente da API oficial, sem cadastro.</p>
+  <p>Consulte planos de ação de transferências federais para fundos estaduais e municipais. Dados públicos da API oficial, atualizados automaticamente no GitHub. Consulta local, sem cadastro.</p>
 </div></header>
 <main>
 <section class="panel" aria-labelledby="titulo-filtros">
@@ -112,8 +112,26 @@ footer a{white-space:nowrap}
     $("proxima").disabled=loading||page>=totalPages;
     $("csv").disabled=loading||!records.length;
   }
-  function query(){
-    const q=new URLSearchParams({pagina:String(page),tamanho_da_pagina:String(SIZE)});
+  let allRecords=[], updatedAt="";
+  async function fetchData(){
+    setLoading(true);
+    status("Carregando base local de São Bernardo do Campo…",false);
+    try{
+      const response=await fetch("./dados.json",{cache:"no-store"});
+      if(!response.ok)throw new Error("A base ainda não foi gerada pelo GitHub Actions (HTTP "+response.status+").");
+      const body=await response.json();
+      if(!body||!Array.isArray(body.data)||body.codigo_ibge!=="3548708")throw new Error("Arquivo de dados inválido.");
+      allRecords=body.data;
+      updatedAt=body.atualizado_em||"";
+      applyFilters();
+    }catch(err){
+      records=[];totalPages=0;totalItems=0;
+      status("Base local indisponível: "+err.message+" Verifique a execução do workflow no GitHub.",true);
+      render();
+    }finally{setLoading(false);}
+  }
+  function applyFilters(){
+    const normalize=s=>String(s??"").normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").toUpperCase().trim();
     const map=[
       ["uf","uf_ente_recebedor_plano_acao"],
       ["municipio","nome_municipio_ente_recebedor_plano_acao"],
@@ -122,43 +140,28 @@ footer a{white-space:nowrap}
       ["situacao","situacao_plano_acao"],
       ["cnpj","cnpj_fundo_vinculado_plano_acao"]
     ];
-    map.forEach(([id,param])=>{if(val(id))q.set(param,id==="cnpj"?val(id).replace(/\D/g,""):val(id));});
-    return API+"?"+q.toString();
-  }
-  async function fetchData(){
-    if(controller)controller.abort();
-    controller=new AbortController();
-    const current=controller;
-    const timeout=setTimeout(()=>current.abort(),20000);
-    records=[];totalPages=0;totalItems=0;
-    setLoading(true);status("Consultando a API oficial…",false);
-    try{
-      const response=await fetch(query(),{signal:current.signal,headers:{"Accept":"application/json"},cache:"no-store"});
-      if(!response.ok)throw new Error("A API respondeu com HTTP "+response.status+".");
-      const body=await response.json();
-      if(!body||!Array.isArray(body.data)||!Number.isFinite(Number(body.total_items)))throw new Error("Resposta inesperada da API oficial.");
-      records=body.data;
-      totalItems=Number(body.total_items);
-      totalPages=Math.max(0,Number(body.total_pages)||Math.ceil(totalItems/SIZE));
-      status(totalItems.toLocaleString("pt-BR")+" registro(s) correspondem aos filtros. Exibindo "+records.length+" nesta página.",false);
-    }catch(err){
-      if(current.signal.aborted&&controller!==current)return;
-      const detail=err.name==="AbortError"?"A requisição expirou ou foi interrompida.":err.message;
-      status("Não foi possível consultar os dados: "+detail+" A conexão com a API oficial também pode ser bloqueada pelo navegador (CORS).",true);
-    }finally{
-      clearTimeout(timeout);
-      if(controller===current){setLoading(false);render();}
-    }
+    const filtered=allRecords.filter(r=>map.every(([id,key])=>{
+      let wanted=val(id);if(!wanted)return true;
+      if(id==="cnpj")return String(r[key]??"").replace(/\\D/g,"")===wanted.replace(/\\D/g,"");
+      return normalize(r[key])===normalize(wanted);
+    }));
+    totalItems=filtered.length;
+    totalPages=Math.ceil(totalItems/SIZE);
+    page=Math.max(1,Math.min(page,totalPages||1));
+    records=filtered.slice((page-1)*SIZE,page*SIZE);
+    const date=updatedAt?new Date(updatedAt).toLocaleString("pt-BR"):"não informada";
+    status(totalItems.toLocaleString("pt-BR")+" registro(s) encontrados. Base atualizada em "+date+".",false);
+    render();
   }
   $("form").addEventListener("submit",e=>{
     e.preventDefault();
     if(val("ibge")&&!/^\d{7}$/.test(val("ibge"))){status("Informe um código IBGE de 7 dígitos ou deixe o campo vazio.",true);return;}
     if(val("cnpj")&&val("cnpj").replace(/\D/g,"").length!==14){status("Informe um CNPJ de 14 dígitos ou deixe o campo vazio.",true);return;}
-    page=1;fetchData();
+    page=1;applyFilters();
   });
   $("limpar").addEventListener("click",()=>{$("form").reset();controls.forEach(id=>{if(id==="uf")$(id).value="SP";});page=1;records=[];totalPages=0;totalItems=0;status("Filtros limpos. Clique em Consultar.",false);render();});
-  $("anterior").addEventListener("click",()=>{if(!loading&&page>1){page--;fetchData();}});
-  $("proxima").addEventListener("click",()=>{if(!loading&&page<totalPages){page++;fetchData();}});
+  $("anterior").addEventListener("click",()=>{if(!loading&&page>1){page--;applyFilters();}});
+  $("proxima").addEventListener("click",()=>{if(!loading&&page<totalPages){page++;applyFilters();}});
   $("csv").addEventListener("click",()=>{
     if(!records.length)return;
     const headings=["Código do plano","ID do plano","Município","UF","Ente recebedor","CNPJ fundo vinculado","Fundo vinculado","Órgão repassador","Situação","Repasse previsto (R$)","Parcela emendas (R$)"];
@@ -169,7 +172,7 @@ footer a{white-space:nowrap}
     const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));
     const a=document.createElement("a");a.href=url;a.download="fundo-a-fundo-pagina-"+page+".csv";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
-  $("uf").value="SP";
+  $("uf").value="SP";$("municipio").value="SÃO BERNARDO DO CAMPO";
   fetchData();
 })();
 </script>
