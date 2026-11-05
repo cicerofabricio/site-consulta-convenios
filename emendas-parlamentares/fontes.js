@@ -1,4 +1,4 @@
-/* Catálogo de fontes oficiais verificado em 05/11/2026.
+/* Catálogo de fontes oficiais verificado em 05/11/2026. Exibição restrita a São Bernardo do Campo/SP.
  * Somente links reais e documentados. Sem agregação de cifras de origens distintas.
  * Todas as fontes externas abrem as consultas oficiais em nova aba.
  */
@@ -169,7 +169,7 @@
   ];
   const byId = id => document.getElementById(id);
   const norm = value => String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
-  const titles = {federal:"Federal",estadual:"Estadual"};
+  const titles = {federal:"União",estadual:"Estado de SP"};
   const typeTitles = {individual:"Individual",especial:"Transferência especial",bancada:"Bancada",comissao:"Comissão",relator:"Relator",estadual:"Emenda estadual"};
   const kindTitles = {api:"API oficial",consulta:"Consulta interativa",painel:"Painel oficial",csv:"Dados abertos / CSV"};
   function buildCard(source) {
@@ -194,16 +194,22 @@
     if(source.mode!=="local"){link.target="_blank";link.rel="noopener noreferrer";}
     footer.append(link);
     card.append(row,h,prov,desc);
+    if (source.mode !== "local") {
+      const rule=document.createElement("p");rule.className="recipient-instruction";
+      rule.textContent="Neste portal, filtre pelo destinatário Município de São Bernardo do Campo (CNPJ 46.523.239/0001-47), quando o filtro estiver disponível. Não selecione apenas a localização da despesa.";
+      card.append(rule);
+    }
     if(source.detail){const detail=document.createElement("p");detail.className="source-detail";detail.textContent=source.detail;card.append(detail);}
     card.append(tags,footer);
     return card;
   }
   function refresh() {
     const scope=byId("sourceScope").value;
-    const uf=byId("sourceUF").value;
+    const uf="SP"; // O destinatário é permanentemente São Bernardo do Campo/SP.
     const type=byId("sourceType").value;
     const search=norm(byId("sourceSearch").value);
     const matches=FONTES.filter(src=>{
+      if(src.sphere==="estadual" && src.uf!=="SP") return false;
       if(scope && src.sphere!==scope) return false;
       if(uf && src.sphere==="estadual" && src.uf!==uf) return false;
       if(type && !src.types.includes(type)) return false;
@@ -223,16 +229,10 @@
     }
     const qty=matches.length;
     byId("sourceCount").textContent=qty+" "+(qty===1?"fonte localizada":"fontes localizadas");
-    byId("sourceExplanation").textContent=uf
-      ? "Fontes federais de abrangência nacional continuam visíveis para "+uf+". Fontes estaduais exibidas somente se estiverem mapeadas para essa UF."
-      : "Fontes federais têm abrangência nacional. As estaduais listadas foram verificadas individualmente, sem promessa de cobertura integral das 27 UFs.";
+    byId("sourceExplanation").textContent="Destinatário único: Município de São Bernardo do Campo/SP, CNPJ 46.523.239/0001-47. Os links externos exigem selecionar o Município no portal de origem; dados de outros beneficiários na cidade ficam fora do escopo.";
   }
   function setup(){
-    const uf=byId("sourceUF");
-    if(!uf) return;
-    const states=[...new Set(FONTES.filter(x=>x.sphere==="estadual").map(x=>x.uf))].sort();
-    states.forEach(value=>uf.append(new Option(value,value)));
-    ["sourceScope","sourceUF","sourceType","sourceSearch"].forEach(id=>{
+    ["sourceScope","sourceType","sourceSearch"].forEach(id=>{
       byId(id).addEventListener(id==="sourceSearch"?"input":"change",refresh);
     });
     refresh();
