@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#122543">
+  <meta name="description" content="Consulta pública de emendas parlamentares federais de transferência especial, com dados do Transferegov.br.">
+  <title>Consulta de Emendas Parlamentares | Transferências Especiais</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="container masthead-inner">
+      <div class="brand-mark" aria-hidden="true">EP</div>
+      <div>
+        <p class="eyebrow light">TRANSPARÊNCIA • DADOS ABERTOS</p>
+        <h1>Emendas Parlamentares</h1>
+        <p class="subtitle">Consulta de transferências especiais — emendas Pix</p>
+      </div>
+      <a class="source" href="https://api-publica.transferegov.gestao.gov.br/especiais/docs" target="_blank" rel="noopener noreferrer">Fonte oficial ↗</a>
+    </div>
+  </header>
+  <main class="container">
+    <section class="intro" aria-label="Sobre a consulta">
+      <div>
+        <p class="eyebrow">CONSULTA PÚBLICA</p>
+        <h2>Explore as emendas destinadas a estados e municípios</h2>
+        <p>Filtre por beneficiário, exercício, parlamentar e situação. Dados públicos diretamente da API do Governo Federal.</p>
+      </div>
+      <div class="sync">
+        <span class="sync-dot" aria-hidden="true"></span>
+        <div><strong>Fonte: Transferegov.br</strong><small id="updatedAt">Verificando atualização...</small></div>
+      </div>
+    </section>
+    <section class="panel" aria-labelledby="filtersTitle">
+      <div class="panel-title"><div><p class="eyebrow">PESQUISA</p><h2 id="filtersTitle">Filtros da consulta</h2></div><button type="button" class="btn-ghost" id="clearBtn">Limpar filtros</button></div>
+      <form id="filterForm">
+        <div class="filters">
+          <label>Unidade federativa
+            <select id="uf" required aria-label="Unidade federativa">
+              <option value="">Selecione a UF</option>
+            </select>
+          </label>
+          <label>Beneficiário / Município
+            <select id="beneficiary" required aria-label="Beneficiário ou município" disabled><option value="">Carregando beneficiários...</option></select>
+          </label>
+          <label>Ano da emenda
+            <select id="year"><option value="">Todos os anos</option></select>
+          </label>
+          <label>Nome do parlamentar (contém)
+            <input id="parliamentarian" type="search" placeholder="Ex.: Maria" autocomplete="off">
+          </label>
+          <label>Número / código da emenda
+            <input id="amendment" type="search" placeholder="Número ou parte do código">
+          </label>
+          <label>Situação do plano
+            <select id="situation"><option value="">Todas as situações</option><option value="CIENTE">Ciente</option><option value="IMPEDIDO">Impedido</option></select>
+          </label>
+          <label>Categoria de despesa
+            <select id="category"><option value="">Todas as categorias</option><option value="CUSTEIO">Custeio</option><option value="INVESTIMENTO">Investimento</option><option value="CUSTEIO E INVESTIMENTO">Custeio e investimento</option></select>
+          </label>
+        </div>
+        <div class="filter-actions">
+          <button id="searchBtn" class="btn-primary" type="submit">Consultar emendas</button>
+          <span class="hint">Selecione um beneficiário para evitar consultas nacionais incompletas.</span>
+        </div>
+      </form>
+    </section>
+    <div id="status" class="status info" role="status" aria-live="polite">Selecione uma UF e um beneficiário para começar.</div>
+    <section aria-label="Resumo da consulta" class="kpis">
+      <article class="kpi"><span>Emendas / planos localizados</span><strong id="countMetric">—</strong><small>Registros da consulta</small></article>
+      <article class="kpi"><span>Valor total dos planos</span><strong id="totalMetric">—</strong><small>Custeio + investimento</small></article>
+      <article class="kpi"><span>Valores de custeio</span><strong id="costMetric">—</strong><small>Previstos nos planos</small></article>
+      <article class="kpi"><span>Valores de investimento</span><strong id="investMetric">—</strong><small>Previstos nos planos</small></article>
+    </section>
+    <section class="panel results" aria-labelledby="resultsTitle">
+      <div class="results-head">
+        <div><p class="eyebrow">RESULTADOS</p><h2 id="resultsTitle">Emendas encontradas</h2><p id="resultInfo" class="muted">Nenhuma consulta realizada.</p></div>
+        <button id="exportBtn" class="btn-outline" type="button" disabled>Exportar CSV (Excel)</button>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Ano</th><th>Nº emenda</th><th>Parlamentar</th><th>Beneficiário</th><th>Objeto</th><th>Situação</th><th>Custeio</th><th>Investimento</th><th>Total</th><th>Detalhes</th></tr></thead>
+          <tbody id="resultBody"><tr><td class="empty" colspan="10">Use os filtros e clique em “Consultar emendas”.</td></tr></tbody>
+        </table>
+      </div>
+      <nav class="pagination" aria-label="Paginação"><button id="prevBtn" type="button" class="btn-outline" disabled>Anterior</button><span id="paginationLabel">Página —</span><button id="nextBtn" type="button" class="btn-outline" disabled>Próxima</button></nav>
+    </section>
+    <aside class="footnote">
+      <strong>Sobre os valores:</strong> os valores de custeio e investimento representam os montantes informados nos planos de ação, não o pagamento efetivamente realizado. Esta consulta abrange apenas <strong>transferências especiais (emendas Pix)</strong>, não todas as modalidades de emendas parlamentares.
+      <p>Consulta independente, sem vínculo institucional com o Governo Federal. Os registros e a disponibilidade dependem da API pública do <a href="https://api-publica.transferegov.gestao.gov.br/especiais/docs" target="_blank" rel="noopener noreferrer">Transferegov.br</a>.</p>
+    </aside>
+  </main>
+  <dialog id="detailDialog" aria-labelledby="detailTitle">
+    <div class="dialog-head"><h2 id="detailTitle">Detalhes do plano de ação</h2><button type="button" id="closeDialog" class="btn-ghost" aria-label="Fechar">Fechar ×</button></div>
+    <dl id="detailList" class="detail-list"></dl>
+    <p class="muted small">Valores e situação conforme o registro retornado pela API oficial.</p>
+  </dialog>
+</body>
+</html>
