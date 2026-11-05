@@ -1,31 +1,50 @@
-# Consulta de Emendas Parlamentares — Transferências Especiais
+# Emendas Parlamentares — São Bernardo do Campo/SP
 
-Site estático isolado na pasta \`emendas-parlamentares/\` deste repositório. Não interfere na página de consulta de convênios nem em outros projetos.
+Página estática independente em `emendas-parlamentares/` no repositório `cicerofabricio/site-consulta-convenios`. Não altera a aplicação de convênios existente nem qualquer projeto SIGPC.
 
-## Fonte de dados
+## Destinatários aceitos
 
-- API oficial: https://api-publica.transferegov.gestao.gov.br/especiais/docs
-- Base URL: https://api-publica.transferegov.gestao.gov.br/especiais
-- Tabelas: \`beneficiarios-especiais\`, \`planos-acao-especiais\`; data da última atualização: \`data-atualizacao\`.
-- A API registra **transferências especiais** (emendas Pix), não todas as emendas parlamentares.
-- **Valor de plano não equivale a valor empenhado, pago ou executado.** Os indicadores desta tela mostram apenas valores previstos de custeio e investimento dos planos de ação.
+A consulta é **exclusiva aos seguintes destinatários públicos**, cada um identificado pelo próprio CNPJ:
 
-## Funcionalidades
+| Destinatário | CNPJ (sem pontuação) |
+| --- | --- |
+| Prefeitura do Município de São Bernardo do Campo | 46523239000147 |
+| Fundo Municipal de Saúde de São Bernardo do Campo | 13961905000170 |
 
-- Filtros por UF e beneficiário/município, ano da emenda, situação, categoria, parlamentar (busca parcial) e número/código.
-- Paginação com 25 linhas, detalhes do plano, métricas agregadas e exportação CSV compatível com Excel.
-- Dados atuais obtidos diretamente da API no navegador, sem banco de dados, token ou proxy.
-- Paginação de até 200 registros por chamada com limite de segurança de 20 mil registros por consulta.
-- Caso a API esteja vazia ou indisponível, a tela exibe um aviso explícito; não utiliza dados falsos.
+O CNPJ do Fundo consta no CNES/DATASUS e no relatório DIGISUS da gestão municipal de saúde.
 
-## Hospedagem
+A busca automática consulta primeiro `beneficiarios-especiais?cnpj_beneficiario=...` para **cada CNPJ** e só consulta planos com os identificadores de beneficiário comprovados pela API. O filtro **Ambos / Prefeitura / Fundo Municipal de Saúde** atua sobre os resultados agregados em memória; a tabela mostra o CNPJ destinatário por registro. Em caso de falha em uma das consultas, a página informa que o conjunto pode ser parcial.
 
-Hospedagem recomendada: GitHub Pages servindo a branch \`main\` a partir da raiz do repositório. O caminho desta aplicação é \`/site-consulta-convenios/emendas-parlamentares/\`.
+Beneficiário privado com sede em São Bernardo do Campo **não** entra no escopo.
 
-No GitHub: **Settings → Pages → Build and deployment → Deploy from a branch → main / (root)**. Se o repositório já estiver publicado dessa forma, esta pasta ficará disponível automaticamente.
+## Fontes e modalidades
 
-## Limitações e diagnóstico
+- **Consulta automática:** API oficial Transferegov de transferências especiais (emendas Pix): https://api-publica.transferegov.gestao.gov.br/especiais/docs
+- **Outras fontes federais:** Portal da Transparência/CGU; Tesouro Nacional; Câmara, Senado e FNS para os repasses na saúde.
+- **Fonte estadual pertinente:** Portal da Transparência do Estado de São Paulo, emendas concedidas e histórico.
+- O catálogo apresenta filtros distintos de **tipo de emenda** (individual, bancada, comissão, relator histórico, estadual) e **forma de repasse** (transferência especial, fundo a fundo, convênio, contrato de repasse e outras).
+- Esses filtros são sobre a *fonte pública a consultar*, **não** equivalem a um banco consolidado de registros provenientes de todas as fontes.
+- O Portal da Transparência/CGU requer credenciais para parte da API; não armazene credenciais em JS público.
 
-O GitHub Pages não executa um servidor de aplicação. O navegador só poderá consumir a API oficial se ela aceitar requisições cross-origin (CORS). Não foi possível fazer teste de ponta a ponta neste ambiente. Se houver bloqueio de CORS ou falha de rede, a mensagem da própria interface informa isso sem alegar ausência de emendas.
+Emendas fundo a fundo para o Fundo Municipal de Saúde devem ser conferidas nas fontes do Fundo Nacional de Saúde e Portal da Transparência, não apenas na API das emendas Pix.
 
-A publicação federal já apresentou relatos de tabelas temporariamente vazias; por isso, resposta vazia não é prova definitiva de inexistência de dados. Verifique sempre a documentação e o portal oficial.
+## Painel automático
+
+- Tabelas: `beneficiarios-especiais`, `planos-acao-especiais` e `data-atualizacao`.
+- Filtros: destinatário, ano, parlamentar, emenda, situação, categoria.
+- Resultados: código da emenda, beneficiário e CNPJ, objeto, situação, custo, investimento, valores previstos.
+- Paginação de 25 linhas, detalhes e exportação CSV compatível com Excel.
+- API paginada com até 200 registros/requisição e limite de segurança de 20 mil registros por consulta.
+- **Valores de plano não equivalem a empenho, pagamento ou execução.** Não some as fases financeiras entre bases.
+- A ausência de registros na resposta não comprova ausência de emendas; bases oficiais podem estar incompletas ou indisponíveis.
+- Não há banco próprio nem credenciais embutidas.
+
+## GitHub Pages
+
+Endereço esperado: https://cicerofabricio.github.io/site-consulta-convenios/emendas-parlamentares/
+
+Publicação: `Settings → Pages → Deploy from a branch → main / (root)`. O repositório tem Pages habilitado, mas a publicação da URL e o consumo da API no navegador devem ser verificados após o deploy.
+
+## Limitação técnica
+
+A API precisa permitir CORS para consulta direta via navegador. Não houve teste completo ponta a ponta deste ambiente. Se a requisição falhar, a interface mostra erro, sem inventar registros ou valores.
