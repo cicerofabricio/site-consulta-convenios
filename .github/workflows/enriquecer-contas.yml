@@ -22,6 +22,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Validar sintaxe do painel e dos coletores
+        run: |
+          node --check emendas-parlamentares/cgu.js
+          python -m py_compile emendas-parlamentares/enriquecer_contas.py emendas-parlamentares/atualizar_cgu.py
       - name: Consultar contas públicas e cruzar com registros da CGU
         run: python emendas-parlamentares/enriquecer_contas.py
       - name: Publicar somente contas validadas
