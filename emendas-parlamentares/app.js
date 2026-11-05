@@ -121,57 +121,49 @@ function populateUF() {
 }
 async function loadBeneficiaries() {
   const token = ++state.beneficiaryToken;
+  state.currentBeneficiaries = [];
+  state.unavailableTargets = [];
+  node("searchBtn").disabled = true;
   const select = node("beneficiary");
   select.disabled = true;
-  select.replaceChildren(new Option("Identificando os dois destinatários...", ""));
-  state.currentBeneficiaries = [];
-  state.missingRecipients = [];
-  status("Consultando os cadastros oficiais da Prefeitura e do Fundo Municipal de Saúde, por CNPJ...", "info");
+  select.replaceChildren(new Option("Validando dois CNPJs...", ""));
+  status("Validando separadamente os CNPJs da Prefeitura e do Fundo Municipal de Saúde...", "info");
   try {
-    const entries = await Promise.all(RECIPIENTS.map(async recipient => {
-      try {
-        const data = await fetchAll("beneficiarios-especiais", { cnpj_beneficiario: recipient.cnpj });
-        if (!data.complete) throw new Error("Cadastro de beneficiário excedeu o limite de segurança.");
-        const matching = data.rows.filter(item =>
-          String(item.cnpj_beneficiario || "").replace(/\D/g, "") === recipient.cnpj &&
-          normalized(item.uf_beneficiario) === "SP"
-        ).map(item => ({ ...item, _recipientKey: recipient.key, _recipientName: recipient.name, _recipientCnpj: recipient.cnpj }));
-        return {recipient,matching,failed:false};
-      } catch(error) {
-        return {recipient,matching:[],failed:true,error};
-      }
+    const results = await Promise.all(TARGETS.map(async target => {
+      const response = await fetchAll("beneficiarios-especiais", {cnpj_beneficiario: target.cnpj});
+      if(!response.complete) throw new Error("O cadastro de "+target.label+" foi obtido parcialmente; nenhum resultado parcial será tratado como completo.");
+      const records = response.rows.filter(record =>
+        String(record.cnpj_beneficiario||"").replace(/\D/g,"") === target.cnpj &&
+        normalized(record.uf_beneficiario) === "SP"
+      );
+      return {target, records};
     }));
-    if (token !== state.beneficiaryToken) return;
-    const unique = new Map();
-    for (const entry of entries) {
-      if (!entry.matching.length) state.missingRecipients.push(entry.recipient.name);
-      for (const item of entry.matching) unique.set(String(item.id_beneficiario),item);
+    if(token !== state.beneficiaryToken) return;
+    const good = [];
+    const missing = [];
+    for(const group of results) {
+      if(!group.records.length) missing.push(group.target);
+      for(const r of group.records) {
+        if(r.id_beneficiario == null) continue;
+        good.push({...r, _recipient_kind:group.target.kind, _recipient_name:group.target.label, _recipient_cnpj:group.target.cnpj});
+      }
     }
-    state.currentBeneficiaries = Array.from(unique.values());
-    if (!state.currentBeneficiaries.length) {
-      select.replaceChildren(new Option("Destinatários não localizados", ""));
-      const issues = entries.filter(e=>e.failed).map(e => friendlyError(e.error));
-      status(issues.length
-        ? "A API não permitiu confirmar os dois CNPJs. " + issues.join(" ")
-        : "Nenhum dos dois CNPJs retornou cadastro de beneficiário na API de transferências especiais. Isso não prova ausência de emendas, especialmente fundo a fundo.", "warning");
+    state.currentBeneficiaries = good;
+    state.unavailableTargets = missing;
+    select.replaceChildren(new Option(good.length ? "CNPJs verificados" : "Cadastros não localizados", good.length ? "validado" : ""));
+    if(!good.length) {
+      status("A API de transferências especiais não retornou cadastros para nenhum dos dois CNPJs. Isso não significa ausência de emendas: para o Fundo de Saúde, consulte também o FNS.", "warning");
       return;
     }
-    select.replaceChildren(new Option("Cadastro(s) oficial(is) confirmado(s)", String(state.currentBeneficiaries[0].id_beneficiario)));
-    select.disabled = true;
-    if (state.missingRecipients.length) {
-      status("Consulta parcial: a base não confirmou " + state.missingRecipients.join(" e ") + ". Carregando somente os destinatários validados.", "warning");
-    } else {
-      status("Os dois destinatários foram identificados por CNPJ. Consultando emendas Pix...", "success");
-    }
+    node("searchBtn").disabled = false;
+    status("CNPJs validados: "+good.length+" cadastro(s)."+(missing.length ? " Sem cadastro nesta modalidade: "+missing.map(x=>x.label).join(", ")+". Isso não implica ausência de emendas fundo a fundo." : ""),missing.length ? "warning" : "success");
     await runSearch();
-  } catch (error) {
-    if (token !== state.beneficiaryToken) return;
-    select.replaceChildren(new Option("Indisponível", ""));
-    status(friendlyError(error), "error");
+  }catch(error) {
+    if(token!==state.beneficiaryToken) return;
+    select.replaceChildren(new Option("Não foi possível validar os cadastros",""));
+    node("searchBtn").disabled = true;
+    status(friendlyError(error)+" Não será exibido consolidado parcial.", "error");
   }
-}
-function beneficiaryRecord(id) {
-  return state.currentBeneficiaries.find(item => String(item.id_beneficiario) === String(id));
 }
 function beneficiaryName(id) {
   const b = beneficiaryRecord(id);
@@ -188,53 +180,56 @@ function clearResultRows() {
   renderResults();
 }
 async function runSearch(event) {
-  if (event) event.preventDefault();
-  const beneficiaries = state.currentBeneficiaries;
-  if (!beneficiaries.length) {
-    status("Os cadastros dos destinatários ainda não foram confirmados. A consulta não será feita sem validar o CNPJ.", "warning");
+  if(event) event.preventDefault();
+  const filterMode = node("recipientFilter").value;
+  const selectedKinds = filterMode === "ambos" ? ["prefeitura","saude"] : [filterMode];
+  const selected = state.currentBeneficiaries.filter(x => selectedKinds.includes(x._recipient_kind));
+  const notFound = state.unavailableTargets.filter(x => selectedKinds.includes(x.kind));
+  if(!selected.length) {
+    clearResultRows();
+    status("Não há cadastro confirmado na API Pix para o(s) CNPJ(s) selecionado(s). Isso NÃO significa ausência de emendas da saúde: consulte o portal FNS para transferências fundo a fundo.", "warning");
     return;
   }
   const token = ++state.searchToken;
-  state.selectedName = "São Bernardo do Campo — Prefeitura e Fundo Municipal de Saúde";
-  const common = {};
-  if (node("year").value) common.ano_emenda_parlamentar_plano_acao = node("year").value;
-  if (node("situation").value) common.situacao_plano_acao = node("situation").value;
-  if (node("category").value) common.categoria_despesa_plano_acao = node("category").value;
+  const baseFilters = {};
+  if(node("year").value) baseFilters.ano_emenda_parlamentar_plano_acao = node("year").value;
+  if(node("situation").value) baseFilters.situacao_plano_acao = node("situation").value;
+  if(node("category").value) baseFilters.categoria_despesa_plano_acao = node("category").value;
   clearResultRows();
   setBusy(true);
   try {
-    // Uma busca por ID de beneficiário confirmado; nunca por nome ou por obras na cidade.
-    const grouped = await Promise.all(beneficiaries.map(async (recipient, index) => {
-      status("Consultando destinatário " + (index + 1) + " de " + beneficiaries.length + ": " + recipient._recipientName + "...", "info");
-      const response = await fetchAll("planos-acao-especiais", {
-        ...common, id_beneficiario: recipient.id_beneficiario
+    status("Consultando "+selected.length+" cadastro(s) por CNPJ no Transferegov...", "info");
+    const responses = await Promise.all(selected.map(async benef => {
+      const filters = {...baseFilters,id_beneficiario: benef.id_beneficiario};
+      const response = await fetchAll("planos-acao-especiais",filters,n=>{
+        if(token===state.searchToken) status("Consultando "+benef._recipient_name+": "+numberFmt.format(n)+" planos recebidos...", "info");
       });
-      if (!response.complete) throw new Error("Resultados excederam o limite seguro. Refine pelo ano.");
-      return response.rows.filter(row => String(row.id_beneficiario) === String(recipient.id_beneficiario));
+      if(!response.complete) throw new Error("A API retornou registros incompletos para "+benef._recipient_name+". Os valores consolidados não serão exibidos.");
+      return {benef,rows:response.rows};
     }));
-    if (token !== state.searchToken) return;
+    if(token!==state.searchToken) return;
     const unique = new Map();
-    for (const row of grouped.flat()) {
-      const key = String(row.id_beneficiario) + ":" + String(row.id_plano_acao ?? row.codigo_plano_acao ?? "");
-      unique.set(key,row);
+    for(const result of responses) {
+      for(const r of result.rows) {
+        if(String(r.id_beneficiario)!==String(result.benef.id_beneficiario)) continue;
+        const row={...r,_recipient_kind:result.benef._recipient_kind,_recipient_name:result.benef._recipient_name,_recipient_cnpj:result.benef._recipient_cnpj};
+        const key=String(r.id_plano_acao || r.codigo_plano_acao || JSON.stringify(r))+"|"+row._recipient_cnpj;
+        unique.set(key,row);
+      }
     }
-    state.rows = [...unique.values()];
+    state.rows=[...unique.values()];
+    state.selectedName=filterMode==="ambos"?"Prefeitura e Fundo Municipal de Saúde":selected[0]._recipient_name;
     applyLocalFilters();
-    if (!state.rows.length) {
-      status("Nenhum plano Pix retornado para os CNPJs confirmados. Para emendas fundo a fundo destinadas à Saúde, consulte também a fonte federal específica. Resposta vazia não prova inexistência de emendas.", "warning");
-    } else if (state.missingRecipients.length) {
-      status(numberFmt.format(state.filtered.length) + " plano(s) encontrado(s), mas a consulta está PARCIAL: a API não confirmou " + state.missingRecipients.join(" e ") + ".", "warning");
+    if(notFound.length){
+      status(numberFmt.format(state.filtered.length)+" plano(s) Pix encontrado(s) nos cadastros disponíveis. O CNPJ "+notFound.map(x=>x.cnpj).join(", ")+" não consta no cadastro da API Pix; os indicadores NÃO incluem possíveis emendas fundo a fundo. Consulte também o FNS.","warning");
+    }else if(!state.rows.length){
+      status("A API Pix não retornou planos para os filtros selecionados. Isso não comprova a inexistência de emendas federais: confira CGU, TCU e FNS.","warning");
     } else {
-      status(numberFmt.format(state.filtered.length) + " plano(s) encontrado(s) para Prefeitura e Fundo Municipal de Saúde, por CNPJ oficial.", "success");
+      status(numberFmt.format(state.filtered.length)+" plano(s) Pix identificado(s). Valores separados por destinatário e sem duplicar IDs de planos.", "success");
     }
-  } catch(error) {
-    if (token === state.searchToken) {
-      clearResultRows();
-      status("Consulta interrompida sem apresentar totais incompletos. " + friendlyError(error), "error");
-    }
-  } finally {
-    if (token === state.searchToken) setBusy(false);
-  }
+  }catch(error){
+    if(token===state.searchToken){clearResultRows();status(friendlyError(error), "error");}
+  }finally{if(token===state.searchToken)setBusy(false);}
 }
 function applyLocalFilters() {
   const parlamentar = normalized(node("parliamentarian").value);
@@ -287,7 +282,7 @@ function renderResults() {
     tr.append(td(row.ano_emenda_parlamentar_plano_acao || row.ano_plano_acao || "—"));
     tr.append(td(emendaLabel(row)));
     tr.append(td(row.nome_parlamentar_emenda_plano_acao, "parlamentar"));
-    tr.append(td(beneficiaryName(row.id_beneficiario)));
+    tr.append(td(row._recipient_name || beneficiaryName(row.id_beneficiario)));
     tr.append(td(beneficiaryCnpj(row.id_beneficiario)));
     tr.append(td(row.nome_objeto || row.detalhamento_objeto, "objeto"));
     const situation = td("");
@@ -317,6 +312,10 @@ function renderResults() {
   node("totalMetric").textContent = state.rows.length ? money.format(total) : "—";
   node("costMetric").textContent = state.rows.length ? money.format(cost) : "—";
   node("investMetric").textContent = state.rows.length ? money.format(invest) : "—";
+  const pTotal=rows.filter(r=>r._recipient_kind==="prefeitura").reduce((s,r)=>s+amount(r),0);
+  const sTotal=rows.filter(r=>r._recipient_kind==="saude").reduce((s,r)=>s+amount(r),0);
+  node("prefeituraMetric").textContent = state.rows.length ? money.format(pTotal) : "—";
+  node("saudeMetric").textContent = state.rows.length ? money.format(sTotal) : "—";
   node("exportBtn").disabled = rows.length === 0;
   node("resultInfo").textContent = rows.length
     ? numberFmt.format(rows.length) + " plano(s) · " + (node("recipientFilter").selectedOptions[0]?.textContent || "") + " · página " + state.page + " de " + totalPages
@@ -327,6 +326,8 @@ function renderResults() {
 }
 function showDetail(row) {
   const fields = [
+    ["Destinatário", row._recipient_name],
+    ["CNPJ do destinatário", row._recipient_cnpj],
     ["Código do plano de ação", row.codigo_plano_acao],
     ["ID do plano de ação", row.id_plano_acao],
     ["Ano da emenda", row.ano_emenda_parlamentar_plano_acao],
@@ -399,6 +400,7 @@ async function updateDate() {
 function resetFilters() {
   node("recipientFilter").value = "ambos";
   node("uf").value = "SP";
+  node("recipientFilter").value = "ambos";
   node("year").value = "";
   node("parliamentarian").value = "";
   node("amendment").value = "";
@@ -407,18 +409,20 @@ function resetFilters() {
   ++state.searchToken;
   setBusy(false);
   clearResultRows();
-  loadBeneficiaries("SP");
+  if(state.currentBeneficiaries.length) runSearch();
+  else loadBeneficiaries();
 }
 function setup() {
   populateUF();
   node("recipientFilter").addEventListener("change", () => { if (state.rows.length) applyLocalFilters(); });
   node("filterForm").addEventListener("submit", runSearch);
+  node("recipientFilter").addEventListener("change", runSearch);
   node("clearBtn").addEventListener("click", resetFilters);
   node("exportBtn").addEventListener("click", exportCSV);
   node("prevBtn").addEventListener("click", () => {state.page--;renderResults();});
   node("nextBtn").addEventListener("click", () => {state.page++;renderResults();});
   node("closeDialog").addEventListener("click", () => node("detailDialog").close());
-  loadBeneficiaries("SP");
+  loadBeneficiaries();
   updateDate();
 }
 document.addEventListener("DOMContentLoaded", setup);
