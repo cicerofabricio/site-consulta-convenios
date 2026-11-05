@@ -193,6 +193,24 @@
       detail:"A navegação também está no menu Emendas Parlamentares do portal."
     }
   ];
+  // O filtro classifica fontes de consulta, não presume o tipo de cada registro.
+  const FORMS={
+    "fns-pagamentos":["fundoafundo"],"fns-paineis":["fundoafundo"],
+    "tcu-controle":["especial","fundoafundo","convenio","contratorepasse","outra"],
+    "trf-especiais":["especial"],
+    "cgu-geral":["especial","fundoafundo","convenio","contratorepasse","outra"],
+    "cgu-detalhes":["especial","fundoafundo","convenio","contratorepasse","outra"],
+    "cgu-favorecido":["especial","fundoafundo","convenio","contratorepasse","outra"],
+    "cgu-documento":["especial","fundoafundo","convenio","contratorepasse","outra"],
+    "cgu-dados":["especial","fundoafundo","convenio","contratorepasse","outra"],
+    "cgu-api":["especial","fundoafundo","convenio","contratorepasse","outra"],
+    "tesouro":["especial","fundoafundo","convenio","contratorepasse","outra"],
+    "camara":["especial","fundoafundo","convenio","contratorepasse","outra"],
+    "senado":["especial","fundoafundo","convenio","contratorepasse","outra"],
+    "sp-concedidas":["fundoafundo","convenio","contratorepasse","outra"],
+    "sp-historico":["fundoafundo","convenio","contratorepasse","outra"]
+  };
+  const FORM_LABELS={especial:"Transferência especial",fundoafundo:"Fundo a fundo",convenio:"Convênio",contratorepasse:"Contrato de repasse",outra:"Outras formas"};
   const byId = id => document.getElementById(id);
   const norm = value => String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
   const titles = {federal:"União",estadual:"Estado de SP"};
@@ -211,7 +229,8 @@
     const prov = document.createElement("p");prov.className="source-provider";prov.textContent=source.provider;
     const desc = document.createElement("p");desc.className="source-description";desc.textContent=source.description;
     const tags = document.createElement("div");tags.className="source-tags";
-    source.types.filter(x=>x!=="estadual").slice(0,4).forEach(key=>{const el=document.createElement("span");el.textContent=typeTitles[key];tags.append(el);});
+    source.types.filter(x=>x!=="estadual" && x!=="especial" && x!=="fundoafundo").slice(0,3).forEach(key=>{const el=document.createElement("span");el.textContent=typeTitles[key];tags.append(el);});
+    (FORMS[source.id]||[]).slice(0,2).forEach(key=>{const el=document.createElement("span");el.textContent=FORM_LABELS[key];tags.append(el);});
     const footer = document.createElement("div");footer.className="source-item-footer";
     const link = document.createElement("a");
     link.href=source.url;
@@ -233,12 +252,14 @@
     const scope=byId("sourceScope").value;
     const uf="SP"; // O destinatário é permanentemente São Bernardo do Campo/SP.
     const type=byId("sourceType").value;
+    const form=byId("sourceForm").value;
     const search=norm(byId("sourceSearch").value);
     const matches=FONTES.filter(src=>{
       if(src.sphere==="estadual" && src.uf!=="SP") return false;
       if(scope && src.sphere!==scope) return false;
       if(uf && src.sphere==="estadual" && src.uf!==uf) return false;
       if(type && !src.types.includes(type)) return false;
+      if(form && !(FORMS[src.id] || []).includes(form)) return false;
       if(search && !norm([src.title,src.provider,src.description,src.detail,src.uf,src.sphere,src.types.map(key=>typeTitles[key]).join(" ")].join(" ")).includes(search)) return false;
       return true;
     });
@@ -258,7 +279,7 @@
     byId("sourceExplanation").textContent="Dois destinatários: Prefeitura de São Bernardo do Campo (46.523.239/0001-47) e Fundo Municipal de Saúde (13.961.905/0001-70). Os links externos exigem filtrar os respectivos CNPJs, quando disponíveis.";
   }
   function setup(){
-    ["sourceScope","sourceType","sourceSearch"].forEach(id=>{
+    ["sourceScope","sourceType","sourceForm","sourceSearch"].forEach(id=>{
       byId(id).addEventListener(id==="sourceSearch"?"input":"change",refresh);
     });
     refresh();
