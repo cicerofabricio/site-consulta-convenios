@@ -7,6 +7,7 @@
  */
 const API_BASE = "https://api-publica.transferegov.gestao.gov.br/especiais";
 const API_PAGE_SIZE = 200;
+const TARGET_CNPJ = "46523239000147"; // Município de São Bernardo do Campo/SP
 const MAX_ROWS = 20000;
 const TABLE_PAGE_SIZE = 25;
 const UF_LIST = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
@@ -115,48 +116,39 @@ function populateUF() {
   }
   yearDropdown.value = "";
 }
-async function loadBeneficiaries(uf) {
+async function loadBeneficiaries() {
   const token = ++state.beneficiaryToken;
   const select = node("beneficiary");
   select.disabled = true;
-  select.replaceChildren(new Option("Carregando beneficiários...", ""));
+  select.replaceChildren(new Option("Identificando o cadastro municipal...", ""));
   state.currentBeneficiaries = [];
-  if (!uf) {
-    select.replaceChildren(new Option("Selecione a UF primeiro", ""));
-    status("Selecione uma unidade federativa.", "info");
-    return;
-  }
-  status("Consultando a lista de beneficiários de " + uf + "...", "info");
+  status("Validando o CNPJ 46.523.239/0001-47 na base oficial do Transferegov...", "info");
   try {
-    let items;
-    if (state.beneficiaries.has(uf)) {
-      items = state.beneficiaries.get(uf);
-    } else {
-      const data = await fetchAll("beneficiarios-especiais", { uf_beneficiario: uf }, n => {
-        if (token === state.beneficiaryToken) status("Carregando beneficiários de " + uf + ": " + numberFmt.format(n) + " registros...", "info");
-      });
-      if (!data.complete) throw new Error("Lista de beneficiários maior que o limite seguro da consulta.");
-      items = data.rows.filter(row => normalized(row.uf_beneficiario) === uf);
-      items.sort((a,b) => String(a.nome_beneficiario || "").localeCompare(String(b.nome_beneficiario || ""), "pt-BR"));
-      state.beneficiaries.set(uf, items);
-    }
+    // Consulta pelo CNPJ EXATO; não basta estar situado em São Bernardo.
+    const data = await fetchAll("beneficiarios-especiais", { cnpj_beneficiario: TARGET_CNPJ });
     if (token !== state.beneficiaryToken) return;
-    state.currentBeneficiaries = items;
-    select.replaceChildren(new Option("Selecione um beneficiário / município", ""));
-    for (const item of items) {
-      const option = new Option(String(item.nome_beneficiario || "Beneficiário sem nome"), String(item.id_beneficiario));
-      option.dataset.name = String(item.nome_beneficiario || "");
-      select.append(option);
+    if (!data.complete) throw new Error("Cadastro de beneficiários incompleto; a consulta foi interrompida.");
+    const items = data.rows.filter(item =>
+      String(item.cnpj_beneficiario || "").replace(/\D/g, "") === TARGET_CNPJ &&
+      String(item.uf_beneficiario || "").toUpperCase() === "SP"
+    );
+    if (items.length !== 1) {
+      select.replaceChildren(new Option("Cadastro municipal não confirmado", ""));
+      status(items.length === 0
+        ? "O Transferegov não retornou o CNPJ oficial de São Bernardo do Campo. Não exibiremos dados de outros destinatários. Confira a disponibilidade da API."
+        : "A API retornou mais de um cadastro para o mesmo CNPJ. Não é seguro escolher o beneficiário automaticamente.", "warning");
+      return;
     }
-    const sbc = items.find(item => normalized(item.nome_beneficiario).includes("SAO BERNARDO DO CAMPO"));
-    if (uf === "SP" && sbc) select.value = String(sbc.id_beneficiario);
-    select.disabled = items.length === 0;
-    status(items.length
-      ? numberFmt.format(items.length) + " beneficiários disponíveis em " + uf + ". Escolha um e clique em “Consultar emendas”."
-      : "A API retornou a lista vazia para esta UF. Isso pode ser falha temporária na publicação dos dados.", items.length ? "success" : "warning");
+    state.currentBeneficiaries = items;
+    const item = items[0];
+    select.replaceChildren(new Option(item.nome_beneficiario || "Município de São Bernardo do Campo", String(item.id_beneficiario)));
+    select.value = String(item.id_beneficiario);
+    select.disabled = true; // destino fixo mesmo quando a seleção já foi feita
+    status("Cadastro municipal confirmado pelo CNPJ. Carregando emendas Pix destinadas a São Bernardo do Campo...", "success");
+    await runSearch();
   } catch (error) {
     if (token !== state.beneficiaryToken) return;
-    select.replaceChildren(new Option("Não foi possível carregar a lista", ""));
+    select.replaceChildren(new Option("Indisponível", ""));
     status(friendlyError(error), "error");
   }
 }
@@ -174,8 +166,7 @@ async function runSearch(event) {
   if (event) event.preventDefault();
   const id = node("beneficiary").value;
   if (!id) {
-    status("Escolha um beneficiário ou município antes de pesquisar.", "warning");
-    node("beneficiary").focus();
+    status("Cadastro do Município ainda não foi confirmado na API oficial. Não é possível consultar registros sem identificar o destinatário.", "warning");
     return;
   }
   const token = ++state.searchToken;
@@ -187,7 +178,7 @@ async function runSearch(event) {
   clearResultRows();
   setBusy(true);
   try {
-    status("Consultando planos de ação no Transferegov...", "info");
+    status("Consultando emendas Pix do CNPJ 46.523.239/0001-47 no Transferegov...", "info");
     const result = await fetchAll("planos-acao-especiais", filters, (n,total) => {
       if (token !== state.searchToken) return;
       const suffix = Number.isFinite(Number(total)) && total != null ? " de " + numberFmt.format(Number(total)) : "";
@@ -352,7 +343,7 @@ function exportCSV() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "emendas-especiais-" + node("uf").value.toLowerCase() + "-" + new Date().toISOString().slice(0,10) + ".csv";
+  a.download = "emendas-especiais-" + "sao-bernardo-do-campo-" + new Date().toISOString().slice(0,10) + ".csv";
   document.body.append(a);
   a.click();
   a.remove();
@@ -382,13 +373,6 @@ function resetFilters() {
 }
 function setup() {
   populateUF();
-  node("uf").addEventListener("change", () => {
-    ++state.searchToken;
-    setBusy(false);
-    clearResultRows();
-    loadBeneficiaries(node("uf").value);
-  });
-  node("beneficiary").addEventListener("change", () => { ++state.searchToken; setBusy(false); clearResultRows(); status("Beneficiário selecionado. Clique em “Consultar emendas”."); });
   node("filterForm").addEventListener("submit", runSearch);
   node("clearBtn").addEventListener("click", resetFilters);
   node("exportBtn").addEventListener("click", exportCSV);
