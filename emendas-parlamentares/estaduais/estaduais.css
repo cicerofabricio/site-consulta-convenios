@@ -1,0 +1,11 @@
+#consultaSP .scope-switch{margin-top:20px}
+#consultaSP .cgu-grid label{min-width:0}
+#consultaSP .cgu-search-label{grid-column:span 2}
+#consultaSP .cgu-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+#consultaSP .cgu-table{margin-top:8px}
+#consultaSP .cgu-table td{max-width:310px;min-width:74px}
+#consultaSP .cgu-table td:nth-child(5){min-width:210px;line-height:1.4}
+#consultaSP .cgu-table td:nth-child(8),#consultaSP .cgu-table td:nth-child(9),#consultaSP .cgu-table td:nth-child(10){white-space:nowrap;font-variant-numeric:tabular-nums}
+#consultaSP .cgu-table td:nth-child(11){white-space:nowrap;font-variant-numeric:normal}
+@media(max-width:1100px){#consultaSP .cgu-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){#consultaSP .cgu-kpis{grid-template-columns:1fr}#consultaSP .cgu-search-label{grid-column:auto}}

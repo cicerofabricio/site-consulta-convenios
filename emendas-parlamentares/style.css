@@ -26,3 +26,8 @@
 .cgu-table td:nth-child(13){white-space:nowrap}
 @media(max-width:1100px){.cgu-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.cgu-search-label{grid-column:auto}.cgu-kpis{grid-template-columns:1fr}}
+
+.scope-switch{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:20px 0 0}
+.scope-switch a{display:inline-flex;align-items:center;text-decoration:none;padding:10px 16px;border:1px solid #cedae5;border-radius:10px;background:#fff;font-weight:750;font-size:13px;color:#345a74;min-height:42px}
+.scope-switch a[aria-current="page"]{background:#174a69;border-color:#174a69;color:#fff}
+.scope-switch a:hover{filter:brightness(.97)}

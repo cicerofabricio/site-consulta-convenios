@@ -1,0 +1,41 @@
+name: Atualizar emendas estaduais SP
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'emendas-parlamentares/atualizar_sp.py'
+      - '.github/workflows/atualizar-emendas-sp.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '10 11 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: atualizar-emendas-sp
+  cancel-in-progress: false
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validar scripts e conversao de centavos
+        run: |
+          python -m py_compile emendas-parlamentares/atualizar_sp.py
+          python emendas-parlamentares/atualizar_sp.py --self-test
+          node --check emendas-parlamentares/estaduais/app.js
+      - name: Baixar arquivo oficial e consolidar emendas destinadas a SBC
+        run: python -u emendas-parlamentares/atualizar_sp.py
+      - name: Publicar apenas base estadual validada
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add emendas-parlamentares/dados-sp.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Atualiza dados de emendas estaduais de Sao Bernardo do Campo"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

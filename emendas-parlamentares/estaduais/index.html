@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#142b45">
+  <meta name="description" content="Emendas parlamentares estaduais com aplicação em São Bernardo do Campo: valores empenhados, liquidados e pagos pelo Estado de São Paulo.">
+  <title>Emendas Estaduais — São Bernardo do Campo</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./estaduais.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="container masthead-inner">
+      <div class="brand-mark" aria-hidden="true">EP</div>
+      <div class="brand-text">
+        <p class="eyebrow light">TRANSPARÊNCIA · GOVERNO DO ESTADO</p>
+        <h1>Emendas para São Bernardo do Campo</h1>
+        <p class="subtitle">Emendas estaduais · Portal da Transparência de São Paulo</p>
+      </div>
+      <a class="source" href="https://www.transparencia.sp.gov.br/EmendasParlamentares/Concedidas" target="_blank" rel="noopener noreferrer">Fonte estadual ↗</a>
+    </div>
+  </header>
+  <main class="container" id="consultaSP">
+    <nav class="scope-switch" aria-label="Escolha a esfera das emendas">
+      <a href="../">Federais · CGU</a>
+      <a href="./" aria-current="page">Estaduais · São Paulo</a>
+    </nav>
+    <section class="intro">
+      <div>
+        <p class="eyebrow">CONSULTA ESTADUAL</p>
+        <h2>Emendas concedidas e execução financeira</h2>
+        <p>Dados do Executivo paulista com <strong>São Bernardo do Campo como localidade de aplicação</strong>. Os valores são de <strong>empenho, liquidação e pagamento pelo Estado</strong> — não comprovam o crédito em uma conta municipal. A base informa o nome do beneficiário, mas não o CNPJ nem o banco, agência ou conta.</p>
+      </div>
+      <div class="sync">
+        <span class="sync-dot" aria-hidden="true"></span>
+        <div><strong>Fonte: Governo de São Paulo</strong><small id="spUpdated">Verificando atualização...</small></div>
+      </div>
+    </section>
+    <section class="panel" aria-labelledby="spFilterTitle">
+      <div class="panel-title">
+        <div>
+          <p class="eyebrow">PESQUISA · EMENDAS ESTADUAIS</p>
+          <h2 id="spFilterTitle">Filtros e totais</h2>
+        </div>
+        <button id="spClear" type="button" class="btn-ghost">Limpar filtros</button>
+      </div>
+      <div id="spStatus" class="cgu-notice" role="status" aria-live="polite">Carregando dados estaduais...</div>
+      <div class="cgu-grid">
+        <label>Beneficiário informado pelo Estado
+          <select id="spRecipient">
+            <option value="municipio">Prefeitura + Fundo Municipal de Saúde</option>
+            <option value="prefeitura">Somente Prefeitura</option>
+            <option value="saude">Somente Fundo Municipal de Saúde</option>
+            <option value="outro">Outros beneficiários na cidade</option>
+            <option value="">Todos os beneficiários</option>
+          </select>
+        </label>
+        <label>Origem do recurso
+          <select id="spOrigin">
+            <option value="Emenda LOA">Emendas LOA (padrão)</option>
+            <option value="Transferência Voluntária">Transferências voluntárias</option>
+            <option value="">Todas as origens do catálogo</option>
+          </select>
+        </label>
+        <label>Ano de referência
+          <select id="spYear"><option value="">Todos os anos</option></select>
+        </label>
+        <label>Área de execução
+          <select id="spArea"><option value="">Todas as áreas</option><option value="saude">Saúde (órgão executor)</option><option value="outras">Outras áreas</option></select>
+        </label>
+        <label class="cgu-search-label">Pesquisar parlamentar, emenda, objeto, instrumento ou beneficiário
+          <input id="spSearch" type="search" placeholder="Ex.: Carla Morando, 2024.018.58123, custeio..." autocomplete="off">
+        </label>
+      </div>
+      <div class="cgu-kpis">
+        <div><span>Registros agrupados</span><strong id="spCount">—</strong></div>
+        <div><span>Valor empenhado</span><strong id="spCommitted">—</strong></div>
+        <div><span>Valor liquidado</span><strong id="spLiquidated">—</strong></div>
+        <div><span>Valor pago pelo Estado</span><strong id="spPaid">—</strong></div>
+      </div>
+      <p class="cgu-info"><strong>Identificação dos destinatários:</strong> a classificação Prefeitura ou Fundo é realizada apenas quando o nome do favorecido é explícito no arquivo estadual. A fonte não informa CNPJ; despesa da Secretaria Estadual da Saúde <strong>não é, por si só, pagamento ao Fundo Municipal de Saúde</strong>. Transferências voluntárias são mostradas em filtro próprio, sem serem contabilizadas automaticamente como emenda LOA.</p>
+    </section>
+    <section class="panel" aria-labelledby="spResultsTitle">
+      <div class="results-head">
+        <div><p class="eyebrow">RESULTADOS</p><h2 id="spResultsTitle">Execução das emendas estaduais</h2><p class="muted">Lançamentos consolidados por emenda, instrumento, beneficiário e objeto.</p></div>
+        <button id="spExport" type="button" class="btn-outline" disabled>Exportar CSV (Excel)</button>
+      </div>
+      <div class="cgu-table"><table>
+        <thead><tr>
+          <th>Ano</th><th>Código</th><th>Parlamentar</th><th>Beneficiário</th><th>Objeto</th><th>Instrumento</th><th>Origem</th>
+          <th>Empenhado</th><th>Liquidado</th><th>Pago</th><th>Banco</th><th>Agência</th><th>Conta</th><th>Fonte</th>
+        </tr></thead>
+        <tbody id="spRows"><tr><td colspan="14" class="empty">Aguardando base estadual...</td></tr></tbody>
+      </table></div>
+      <nav class="cgu-pager" aria-label="Paginação estadual">
+        <button id="spPrev" class="btn-outline" type="button" disabled>Anterior</button>
+        <span id="spPages">Página —</span>
+        <button id="spNext" class="btn-outline" type="button" disabled>Próxima</button>
+      </nav>
+    </section>
+    <aside class="footnote">
+      <strong>Metodologia:</strong> arquivo público <a href="https://www.transparencia.sp.gov.br/Dados%20Abertos/Emendas/emendas.zip" target="_blank" rel="noopener noreferrer">emendas.zip</a> do <a href="https://www.transparencia.sp.gov.br/EmendasParlamentares/Concedidas" target="_blank" rel="noopener noreferrer">Governo de São Paulo</a>. Os movimentos financeiros incluem ajustes positivos e negativos; a página soma os lançamentos com seus sinais. A base original expressa os valores em centavos. Identificação bancária indisponível nesse conjunto de dados; não presumimos conta corrente pelo nome do município ou pela área de saúde. Esta é uma consulta independente, sem vínculo institucional com o Estado ou o Município.
+    </aside>
+  </main>
+</body>
+</html>

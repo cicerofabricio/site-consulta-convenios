@@ -41,3 +41,8 @@ A execução conserva o arquivo bancário anterior em caso de falha de API e nã
 - Prefeitura: CNPJ 46.523.239/0001-47.
 - Fundo Municipal de Saúde: CNPJ 13.961.905/0001-70.
 - Outros favorecidos locais aparecem separadamente, mas não são tratados como Prefeitura/Fundo.
+
+
+## Emendas estaduais — São Paulo
+
+A aba [Estaduais](https://cicerofabricio.github.io/site-consulta-convenios/emendas-parlamentares/estaduais/) utiliza arquivos públicos do Governo de SP e tem coletor independente. Consulte o README estadual em `estaduais/README.md`. Os totais estaduais (empenhado, liquidado, pago) são etapas da execução do Estado e NÃO devem ser somados aos recebimentos federais da CGU, que possuem metodologia e escopo distintos.
