@@ -27,7 +27,7 @@
       <div>
         <p class="eyebrow">CONSULTA PÚBLICA</p>
         <h2>Emendas destinadas ao Município de São Bernardo do Campo</h2>
-        <p>Acompanhe as modalidades federais e as emendas do Estado de São Paulo que tenham o Município como destinatário. A consulta direta de emendas Pix usa o CNPJ oficial da Prefeitura.</p>
+        <p>Acompanhe as modalidades federais e as emendas do Estado de São Paulo que tenham o Município como destinatário. A consulta direta de emendas Pix considera separadamente os CNPJs da Prefeitura e do Fundo Municipal de Saúde.</p>
       </div>
       <div class="sync">
         <span class="sync-dot" aria-hidden="true"></span>
@@ -57,15 +57,18 @@
           <input id="sourceSearch" type="search" placeholder="Portal, dados abertos, execução..." autocomplete="off">
         </label>
       </div>
-      <p id="sourceExplanation" class="source-explanation">Para todas as fontes, considere apenas repasses cujo destinatário é o Município de São Bernardo do Campo (CNPJ 46.523.239/0001-47).</p>
+      <p id="sourceExplanation" class="source-explanation">Para todas as fontes, considere o Município de São Bernardo do Campo (CNPJ 46.523.239/0001-47) e seu Fundo Municipal de Saúde (CNPJ 13.961.905/0001-70), identificados separadamente.</p>
       <div id="sourceCards" class="source-cards" aria-live="polite"></div>
-      <p class="source-limit"><strong>Critério de inclusão:</strong> beneficiário Município de São Bernardo do Campo, CNPJ <strong>46.523.239/0001-47</strong>. O endereço de uma obra na cidade não comprova que o Município recebeu recursos. Nos portais externos, filtre por beneficiário e confira CNPJ; não use somente a localidade. Fundos públicos municipais com CNPJ próprios exigem identificação separada. A tabela de emendas Pix consulta somente o CNPJ municipal. Valores de planos, empenhos e pagamentos não são somáveis entre fontes.</p>
+      <p class="source-limit"><strong>Critério de inclusão:</strong> destinatário Prefeitura de São Bernardo do Campo, CNPJ <strong>46.523.239/0001-47</strong>, ou Fundo Municipal de Saúde, CNPJ <strong>13.961.905/0001-70</strong>. O endereço de uma obra na cidade não comprova que o Município recebeu recursos. Nos portais externos, filtre por beneficiário e confira CNPJ; não use somente a localidade. Os dois destinatários serão identificados por CNPJ e exibidos separadamente. Outros CNPJs não são incluídos automaticamente. Valores de planos, empenhos e pagamentos não são somáveis entre fontes.</p>
     </section>
     <section class="panel" id="consultaPix" aria-labelledby="filtersTitle">
       <div class="panel-title"><div><p class="eyebrow">PESQUISA</p><h2 id="filtersTitle">Consulta direta — transferências especiais federais (Pix)</h2></div><button type="button" class="btn-ghost" id="clearBtn">Limpar filtros</button></div>
       <form id="filterForm">
         <div class="filters">
-          <div class="fixed-recipient"><span class="fixed-recipient-title">Destinatário único da consulta</span><strong>Município de São Bernardo do Campo · SP</strong><small>CNPJ 46.523.239/0001-47 · Beneficiários privados da cidade não estão incluídos</small></div>
+          <div class="fixed-recipient"><span class="fixed-recipient-title">Destinatários oficiais da consulta</span><strong>São Bernardo do Campo · SP</strong><small>Prefeitura: 46.523.239/0001-47 · Fundo Municipal de Saúde: 13.961.905/0001-70. Beneficiários privados não estão incluídos.</small></div>
+          <label>Destinatário
+            <select id="recipientFilter"><option value="ambos">Ambos — Prefeitura e Fundo de Saúde</option><option value="prefeitura">Somente Prefeitura</option><option value="saude">Somente Fundo Municipal de Saúde</option></select>
+          </label>
           <div class="fixed-hidden" aria-hidden="true"><select id="uf"><option value="SP">SP</option></select><select id="beneficiary" disabled><option value="">Identificando município...</option></select></div>
           <label>Ano da emenda
             <select id="year"><option value="">Todos os anos</option></select>
@@ -85,20 +88,20 @@
         </div>
         <div class="filter-actions">
           <button id="searchBtn" class="btn-primary" type="submit">Consultar emendas</button>
-          <span class="hint">O destinatário é fixo para garantir que a consulta não inclua outros municípios.</span>
+          <span class="hint">Somente os dois CNPJs oficiais são elegíveis; filtre individualmente ou visualize o consolidado.</span>
         </div>
       </form>
     </section>
-    <div id="status" class="status info" role="status" aria-live="polite">Identificando o cadastro oficial de São Bernardo do Campo...</div>
+    <div id="status" class="status info" role="status" aria-live="polite">Identificando os cadastros da Prefeitura e do Fundo Municipal de Saúde...</div>
     <section aria-label="Resumo da consulta" class="kpis">
-      <article class="kpi"><span>Emendas / planos localizados</span><strong id="countMetric">—</strong><small>Registros da consulta</small></article>
+      <article class="kpi"><span>Planos de ação localizados</span><strong id="countMetric">—</strong><small>Registros da consulta</small></article>
       <article class="kpi"><span>Valor total dos planos</span><strong id="totalMetric">—</strong><small>Custeio + investimento</small></article>
       <article class="kpi"><span>Valores de custeio</span><strong id="costMetric">—</strong><small>Previstos nos planos</small></article>
       <article class="kpi"><span>Valores de investimento</span><strong id="investMetric">—</strong><small>Previstos nos planos</small></article>
     </section>
     <section class="panel results" aria-labelledby="resultsTitle">
       <div class="results-head">
-        <div><p class="eyebrow">RESULTADOS</p><h2 id="resultsTitle">Emendas Pix federais encontradas</h2><p id="resultInfo" class="muted">Consulta exclusiva ao CNPJ 46.523.239/0001-47.</p></div>
+        <div><p class="eyebrow">RESULTADOS</p><h2 id="resultsTitle">Emendas Pix federais encontradas</h2><p id="resultInfo" class="muted">Consulta aos CNPJs 46.523.239/0001-47 e 13.961.905/0001-70.</p></div>
         <button id="exportBtn" class="btn-outline" type="button" disabled>Exportar CSV (Excel)</button>
       </div>
       <div class="table-scroll">
@@ -110,7 +113,7 @@
       <nav class="pagination" aria-label="Paginação"><button id="prevBtn" type="button" class="btn-outline" disabled>Anterior</button><span id="paginationLabel">Página —</span><button id="nextBtn" type="button" class="btn-outline" disabled>Próxima</button></nav>
     </section>
     <aside class="footnote">
-      <strong>Sobre os valores e a abrangência:</strong> os valores de custeio e investimento representam os montantes informados nos planos de ação, não o pagamento efetivamente realizado. A tabela acima abrange somente <strong>transferências especiais federais (emendas Pix)</strong>. As demais modalidades estão relacionadas no catálogo de fontes oficiais no início desta página.
+      <strong>Sobre os valores e a abrangência:</strong> os valores de custeio e investimento representam os montantes informados nos planos de ação, não o pagamento efetivamente realizado. A tabela acima abrange somente <strong>transferências especiais federais (emendas Pix) de ambos os CNPJs públicos selecionados</strong>. As demais modalidades estão relacionadas no catálogo de fontes oficiais no início desta página.
       <p>Consulta independente, sem vínculo institucional com o Governo Federal. Os registros e a disponibilidade dependem da API pública do <a href="https://api-publica.transferegov.gestao.gov.br/especiais/docs" target="_blank" rel="noopener noreferrer">Transferegov.br</a>.</p>
     </aside>
   </main>
