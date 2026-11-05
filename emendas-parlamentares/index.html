@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#142b45">
-  <meta name="description" content="Consulta de emendas parlamentares federais relacionadas a São Bernardo do Campo, com dados abertos da CGU.">
+  <meta name="description" content="Emendas parlamentares federais recebidas em São Bernardo do Campo e informações bancárias verificáveis.">
   <title>Emendas Federais — São Bernardo do Campo</title>
   <link rel="stylesheet" href="./style.css">
   <script src="./cgu.js" defer></script>
@@ -25,12 +25,12 @@
     <section class="intro">
       <div>
         <p class="eyebrow">PAINEL DE CONSULTA</p>
-        <h2>Quem recebeu os recursos das emendas?</h2>
-        <p>Consulte os valores recebidos pela Prefeitura, pelo Fundo Municipal de Saúde e por outras pessoas jurídicas de São Bernardo do Campo. Emendas associadas apenas à localidade são identificadas separadamente: <strong>não representam necessariamente recursos recebidos pela Prefeitura.</strong></p>
+        <h2>Emendas recebidas e contas bancárias vinculadas</h2>
+        <p>A CGU informa os valores recebidos pela Prefeitura e pelo Fundo Municipal de Saúde. Quando disponível, exibimos a <strong>conta bancária vinculada ao plano de ação da emenda</strong>, obtida de fonte pública complementar. O cadastro de uma conta <strong>não comprova, por si só, que o pagamento ocorreu nela</strong>.</p>
       </div>
       <div class="sync" aria-label="Situação da atualização">
         <span class="sync-dot" aria-hidden="true"></span>
-        <div><strong>Base: Portal da Transparência — CGU</strong><small id="cguUpdated">Verificando atualização...</small></div>
+        <div><strong>Base de pagamentos: CGU</strong><small id="cguUpdated">Verificando atualização...</small><small id="bankUpdated">Contas: verificando...</small></div>
       </div>
     </section>
     <section class="panel" aria-labelledby="filterTitle">
@@ -65,8 +65,15 @@
             <option value="relator">Relator</option>
           </select>
         </label>
-        <label>Busca livre
-          <input id="cguSearch" type="search" placeholder="Autor, número, favorecido ou CNPJ" autocomplete="off">
+        <label>Conta bancária
+          <select id="cguBankFilter">
+            <option value="">Todas</option>
+            <option value="identificada">Conta vinculada identificada</option>
+            <option value="pendente">Conta não identificada</option>
+          </select>
+        </label>
+        <label class="cgu-search-label">Busca livre
+          <input id="cguSearch" type="search" placeholder="Autor, código, favorecido, CNPJ, banco ou conta" autocomplete="off">
         </label>
       </div>
       <div class="cgu-kpis" aria-label="Resumo dos resultados filtrados">
@@ -74,22 +81,23 @@
         <div><span>Total recebido na seleção</span><strong id="cguPublic">—</strong></div>
         <div><span>Recebido pela Prefeitura</span><strong id="cguPrefeitura">—</strong></div>
         <div><span>Recebido pelo Fundo de Saúde</span><strong id="cguSaude">—</strong></div>
+        <div><span>Registros com conta vinculada</span><strong id="cguAccounts">—</strong></div>
       </div>
-      <p class="cgu-info"><strong>Consolidado Prefeitura + Fundo:</strong> reúne os registros dos CNPJs <strong>46.523.239/0001-47</strong> e <strong>13.961.905/0001-70</strong>. A tabela preserva o destinatário individual e o resumo soma os recebimentos dos dois. Os valores acima acompanham todos os filtros ativos.</p>
+      <p class="cgu-info"><strong>Consolidado Prefeitura + Fundo:</strong> reúne os registros dos CNPJs <strong>46.523.239/0001-47</strong> e <strong>13.961.905/0001-70</strong>. As contas foram cruzadas por <strong>código da emenda + CNPJ do beneficiário</strong>. Sem vínculo verificável, a coluna indica “Não identificada”.</p>
     </section>
     <section class="panel" aria-labelledby="resultsTitle">
       <div class="results-head">
         <div>
           <p class="eyebrow">RESULTADOS</p>
           <h2 id="resultsTitle">Emendas parlamentares federais</h2>
-          <p class="muted">Registros de emenda por favorecido, conforme a base histórica disponível da CGU.</p>
+          <p class="muted">CGU: valores recebidos. Banco, agência e conta: fonte complementar com vínculo verificável.</p>
         </div>
         <button id="cguExport" type="button" class="btn-outline" disabled>Exportar CSV (Excel)</button>
       </div>
       <div class="cgu-table">
         <table>
-          <thead><tr><th>Ano</th><th>Código da emenda</th><th>Autor</th><th>Tipo</th><th>Destinatário</th><th>Favorecido</th><th>CNPJ</th><th>Valor recebido</th><th>Consulta oficial</th></tr></thead>
-          <tbody id="cguRows"><tr><td colspan="9" class="empty">Carregando informações...</td></tr></tbody>
+          <thead><tr><th>Ano</th><th>Código da emenda</th><th>Autor</th><th>Tipo</th><th>Destinatário</th><th>Favorecido</th><th>CNPJ</th><th>Valor recebido</th><th>Banco</th><th>Agência</th><th>Conta corrente</th><th>Situação bancária</th><th>Fontes</th></tr></thead>
+          <tbody id="cguRows"><tr><td colspan="13" class="empty">Carregando informações...</td></tr></tbody>
         </table>
       </div>
       <nav class="cgu-pager" aria-label="Paginação de resultados">
@@ -99,7 +107,7 @@
       </nav>
     </section>
     <aside class="footnote">
-      <strong>Origem e limites:</strong> exclusivamente arquivos públicos de emendas parlamentares federais da <a href="https://portaldatransparencia.gov.br/download-de-dados/emendas-parlamentares" target="_blank" rel="noopener noreferrer">Controladoria-Geral da União (CGU)</a>, processados automaticamente. Valores recebidos por favorecido não devem ser confundidos com valores previstos, empenhados ou com a totalidade de transferências ordinárias. Uma emenda pode ter vários favorecidos. As emendas apenas vinculadas à localidade não entram na soma de recursos recebidos. Emendas estaduais não estão incluídas nesta consulta.
+      <strong>Sobre a informação bancária:</strong> as contas exibidas são as <em>cadastradas/vinculadas aos planos de ação</em> na API oficial do Transferegov. Essa informação não equivale a extrato bancário ou comprovante de crédito e pode não representar uma conta de depósito já confirmado. A consulta ao Transferegov ocorre exclusivamente no processamento automático do GitHub, não no navegador. O FNS também mantém uma <a href="https://portalfns.saude.gov.br/consultas/" target="_blank" rel="noopener noreferrer">consulta pública de contas do fundo de saúde</a>, mas uma conta só será atribuída a determinada emenda quando houver vínculo documental inequívoco. Valores de execução e localidade provenientes da CGU não devem ser confundidos com valores previstos. Emendas estaduais não estão incluídas.
     </aside>
   </main>
 </body>

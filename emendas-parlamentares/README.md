@@ -1,34 +1,43 @@
-# Emendas Federais — São Bernardo do Campo (CGU)
+# Emendas Federais — São Bernardo do Campo
 
-Painel de consulta independente em \`emendas-parlamentares/\`, integrado ao GitHub Pages de \`cicerofabricio/site-consulta-convenios\`.
+Painel independente: https://cicerofabricio.github.io/site-consulta-convenios/emendas-parlamentares/
 
-## Fonte única
+## Fonte de valores recebidos: CGU
 
-Os registros são provenientes **exclusivamente dos arquivos oficiais de dados abertos da Controladoria-Geral da União (CGU)**:
+O script \`atualizar_cgu.py\` baixa os arquivos oficiais públicos
 https://portaldatransparencia.gov.br/download-de-dados/emendas-parlamentares
+e cruza EmendasParlamentares.csv, PorFavorecido.csv e Convênios.csv.
 
-O script \`atualizar_cgu.py\` obtém o ZIP público e processa:
-- \`EmendasParlamentares.csv\`
-- \`EmendasParlamentares_PorFavorecido.csv\`
-- \`EmendasParlamentares_Convenios.csv\`
+O resultado \`dados-cgu.json\` é atualizado diariamente às 10h40 UTC (7h40 de Brasília), por \`.github/workflows/atualizar-emendas-cgu.yml\`. Valores são recebimentos, não planos ou empenhos.
 
-A execução no GitHub Actions (\`.github/workflows/atualizar-emendas-cgu.yml\`) é diária, às 10h40 UTC (7h40 de Brasília), com acionamento manual opcional. Publica \`dados-cgu.json\` **somente quando a coleta é validada**. O frontend \`cgu.js\` lê apenas esse JSON estático, sem token no navegador e sem chamadas diretas à API.
+## Dados bancários (enriquecimento)
 
-## Filtros
+O script \`enriquecer_contas.py\` usa a API aberta:
+https://api-publica.transferegov.gestao.gov.br/especiais/docs
 
-- **Prefeitura + Fundo Municipal de Saúde (padrão)** — união dos registros de ambos os CNPJs com soma dos valores recebidos na seleção. Cada registro continua identificando o destinatário original.
-- Somente Prefeitura: CNPJ 46.523.239/0001-47.
-- Somente Fundo Municipal de Saúde: CNPJ 13.961.905/0001-70.
-- Todos os registros, outros CNPJs da cidade, ou somente localidade do gasto.
-- Ano, tipo de emenda, busca textual e exportação CSV para Excel.
-- Resumos financeiros calculados sobre os filtros ativos; não somar valores de localidade como transferência ao Município.
+Obtém os beneficiários cadastrados consultando o CNPJ oficial e depois os planos por \`id_beneficiario\`. O vínculo bancário só é permitido quando:
+1. O beneficiário da API tem exatamente o CNPJ público escolhido;
+2. O plano pertence ao identificador de beneficiário confirmado;
+3. O número de 12 dígitos da emenda é idêntico ao código no registro CGU com o MESMO CNPJ;
+4. Banco, agência e conta constam no plano; e
+5. A URL da fonte refere-se ao plano de ação encontrado.
 
-O campo \`valorRecebidoCentavos\` é derivado do valor recebido no CSV Por Favorecido, somado por código da emenda e CNPJ. Uma mesma emenda pode constar para vários favorecidos; o total da Prefeitura + Fundo refere-se exclusivamente aos dois CNPJs municipais.
+O resultado separado \`dados-contas.json\` é atualizado às 10h55 UTC (7h55 de Brasília) pelo workflow \`.github/workflows/enriquecer-contas.yml\`. A CGU continua funcionando mesmo que o enriquecimento falhe.
 
-## Escopo e cautelas
+**Limite fundamental:** a conta indicada é a conta cadastrada/vinculada ao plano de ação. Não é prova do crédito efetivo daquele pagamento. A coluna informa expressamente essa limitação. Não vincular contas por valores semelhantes, nome do parlamentar, ano ou município isoladamente.
 
-O projeto **não consulta o Transferegov** e não publica as telas antigas de emendas Pix. Isso não exclui emendas Pix que constem nos arquivos de favorecidos da CGU. A solução **não contém emendas estaduais**.
+Na primeira verificação, a API retornou 9 planos associados a CNPJ 46.523.239/0001-47 e nenhum plano para CNPJ 13.961.905/0001-70. A ausência de planos não implica ausência de contas do Fundo Municipal de Saúde. Consultas públicas do FNS: https://portalfns.saude.gov.br/consultas/. Nenhuma conta é atribuída a emenda do FNS sem documento que identifique também a emenda correspondente.
 
-Pagamentos recebidos por terceiros situados na cidade são separados dos recursos municipais; emendas associadas somente à localidade não são comprovantes de receita. A ausência de registro não prova inexistência de emendas. O portal é uma consulta independente, sem vínculo institucional com a CGU ou a Prefeitura.
+A interface **não chama Transferegov diretamente**. A fonte complementar é consumida pelo GitHub Actions; a tela lê arquivos locais estáticos.
 
-URL: https://cicerofabricio.github.io/site-consulta-convenios/emendas-parlamentares/
+## Filtros e visualização
+
+Destinatário (Prefeitura + Fundo por padrão), ano, tipo, situação bancária, busca textual, paginação e CSV. São exibidos banco, agência, conta, tipo de comprovação e URL oficial por emenda quando verificados. Quando não houver associação documental precisa, exibe “Não identificada”.
+
+A execução conserva o arquivo bancário anterior em caso de falha de API e não substitui a lista da CGU. Emendas estaduais não estão incluídas.
+
+## Escopo dos beneficiários
+
+- Prefeitura: CNPJ 46.523.239/0001-47.
+- Fundo Municipal de Saúde: CNPJ 13.961.905/0001-70.
+- Outros favorecidos locais aparecem separadamente, mas não são tratados como Prefeitura/Fundo.

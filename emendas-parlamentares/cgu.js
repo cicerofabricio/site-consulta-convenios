@@ -1,126 +1,162 @@
 "use strict";
-/* Fonte única CGU: dados-cgu.json atualizado em GitHub Actions. */
+/* Principal: CGU por favorecido. Complemento: banco/agência/conta de planos oficiais. */
 (() => {
   const $ = id => document.getElementById(id);
-  const brl = new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"});
+  const brl = new Intl.NumberFormat("pt-BR", {style:"currency",currency:"BRL"});
   const int = new Intl.NumberFormat("pt-BR");
-  const state = {rows:[],filtered:[],page:1,loaded:false};
-  const PAGE_SIZE=25;
+  const s = {rows:[],list:[],page:1,loaded:false,banks:new Map(),bankLoaded:false};
+  const LIMIT=25;
   const normalize = value => String(value||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase();
   const money = cents => cents===null||cents===undefined ? "—" : brl.format(cents/100);
-  const categories = {prefeitura:"Prefeitura",saude:"Fundo Municipal de Saúde",terceiro:"Outro CNPJ na cidade",localidade:"Somente localidade"};
-  function say(text,level="") {
-    $("cguStatus").textContent=text;
-    $("cguStatus").className="cgu-notice "+level;
+  const names={prefeitura:"Prefeitura",saude:"Fundo Municipal de Saúde",terceiro:"Outro CNPJ na cidade",localidade:"Somente localidade"};
+  const key=r=>String(r.codigo||"")+"|"+String(r.cnpj||"");
+  const accounts=r=>s.banks.get(key(r))||[];
+  const withAccount=r=>accounts(r).length>0;
+  const formatted=(base,digit)=>base?(base+(digit?"-"+digit:"")):"—";
+  const accountList=(r,prop,composite)=>accounts(r).map(x=>composite?formatted(x[prop],x[composite]):x[prop]).filter(Boolean).join("; ");
+  const isOfficialLink=url=>/^https:\/\/api-publica\.transferegov\.gestao\.gov\.br\/especiais\/planos-acao-especiais\?id_plano_acao=\d+$/.test(url);
+  function notice(text,type=""){$("cguStatus").textContent=text;$("cguStatus").className="cgu-notice "+type;}
+  function selected(row,mode){return mode==="municipio"?["prefeitura","saude"].includes(row.categoria):!mode||row.categoria===mode;}
+  function td(tr,text){
+    const el=document.createElement("td");el.textContent=text;tr.append(el);return el;
   }
-  function chosen(record,filter) {
-    if(filter==="municipio") return record.categoria==="prefeitura"||record.categoria==="saude";
-    return !filter || record.categoria===filter;
+  function link(container,href,label){
+    const a=document.createElement("a");a.href=href;a.target="_blank";a.rel="noopener noreferrer";a.textContent=label;
+    container.append(a);return a;
   }
-  function render() {
-    const body=$("cguRows");
-    body.replaceChildren();
-    const pages=Math.max(1,Math.ceil(state.filtered.length/PAGE_SIZE));
-    state.page=Math.max(1,Math.min(pages,state.page));
-    const displayed=state.filtered.slice((state.page-1)*PAGE_SIZE,state.page*PAGE_SIZE);
-    for(const row of displayed) {
+  function render(){
+    const body=$("cguRows");body.replaceChildren();
+    const pages=Math.max(1,Math.ceil(s.list.length/LIMIT));
+    s.page=Math.max(1,Math.min(pages,s.page));
+    for(const r of s.list.slice((s.page-1)*LIMIT,s.page*LIMIT)){
       const tr=document.createElement("tr");
-      for(const text of [row.ano,row.codigo,row.autor||"—",row.tipo||"—",categories[row.categoria]||row.categoria,
-                         row.favorecido||"Não identificado",row.cnpj||"—",money(row.valorRecebidoCentavos)]) {
-        const td=document.createElement("td");
-        td.textContent=text;
-        tr.append(td);
+      for(const val of [r.ano,r.codigo,r.autor||"—",r.tipo||"—",names[r.categoria]||r.categoria,
+                         r.favorecido||"Não identificado",r.cnpj||"—",money(r.valorRecebidoCentavos)])td(tr,val);
+      const found=accounts(r);
+      if(found.length){
+        td(tr,accountList(r,"bancoNome")||found.map(x=>x.bancoCodigo).join("; "));
+        td(tr,accountList(r,"agencia","agenciaDigito"));
+        td(tr,accountList(r,"conta","contaDigito"));
+        td(tr,found.length>1?"Mais de uma conta vinculada":"Vinculada ao plano de ação");
+      }else{
+        for(const value of ["—","—","—","Não identificada"])td(tr,value);
       }
-      const td=document.createElement("td"),link=document.createElement("a");
-      link.href="https://portaldatransparencia.gov.br/emendas/consulta";
-      link.target="_blank";
-      link.rel="noopener noreferrer";
-      link.textContent="CGU";
-      link.title="Pesquise a emenda "+row.codigo+" no portal oficial";
-      td.append(link);tr.append(td);body.append(tr);
+      const sources=document.createElement("td");
+      link(sources,"https://portaldatransparencia.gov.br/emendas/consulta","CGU");
+      const urls=[...new Set(found.map(x=>x.fonteURL).filter(isOfficialLink))];
+      if(urls.length){
+        sources.append(document.createTextNode(" · "));
+        urls.forEach((url,i)=>{if(i)sources.append(document.createTextNode(", "));link(sources,url,"Conta "+(i+1));});
+      }
+      tr.append(sources);body.append(tr);
     }
-    if(!displayed.length){
-      const tr=document.createElement("tr"),td=document.createElement("td");
-      td.colSpan=9;td.className="empty";
-      td.textContent=state.loaded?"Nenhum registro corresponde aos filtros.":"Aguardando dados da CGU.";
-      tr.append(td);body.append(tr);
+    if(!body.children.length){
+      const tr=document.createElement("tr"),empty=document.createElement("td");
+      empty.colSpan=13;empty.className="empty";
+      empty.textContent=s.loaded?"Nenhum registro corresponde aos filtros.":"Aguardando dados oficiais.";
+      tr.append(empty);body.append(tr);
     }
-    const total=category=>state.filtered.reduce((sum,row)=>sum+((!category||row.categoria===category)?(row.valorRecebidoCentavos||0):0),0);
-    const received=state.filtered.some(r=>r.valorRecebidoCentavos!==null&&r.valorRecebidoCentavos!==undefined);
-    $("cguCount").textContent=int.format(state.filtered.length);
-    $("cguPublic").textContent=received?money(total(null)):"—";
-    $("cguPrefeitura").textContent=money(total("prefeitura"));
-    $("cguSaude").textContent=money(total("saude"));
-    $("cguPages").textContent="Página "+state.page+" de "+pages;
-    $("cguPrev").disabled=state.page<=1;
-    $("cguNext").disabled=state.page>=pages;
-    $("cguExport").disabled=!state.filtered.length;
+    const sum=cat=>s.list.reduce((v,r)=>v+((!cat||r.categoria===cat)?(r.valorRecebidoCentavos||0):0),0);
+    $("cguCount").textContent=int.format(s.list.length);
+    $("cguPublic").textContent=s.list.some(x=>x.valorRecebidoCentavos!=null)?money(sum(null)):"—";
+    $("cguPrefeitura").textContent=money(sum("prefeitura"));
+    $("cguSaude").textContent=money(sum("saude"));
+    $("cguAccounts").textContent=int.format(s.list.filter(withAccount).length);
+    $("cguPages").textContent="Página "+s.page+" de "+pages;
+    $("cguPrev").disabled=s.page===1;$("cguNext").disabled=s.page>=pages;
+    $("cguExport").disabled=!s.list.length;
   }
   function apply(){
-    const kind=$("cguCategory").value,year=$("cguYear").value,type=normalize($("cguType").value),q=normalize($("cguSearch").value);
-    state.filtered=state.rows.filter(row=>chosen(row,kind)
-      &&(!year||String(row.ano)===year)
-      &&(!type||normalize(row.tipo).includes(type))
-      &&(!q||normalize([row.ano,row.codigo,row.autor,row.tipo,row.favorecido,row.cnpj,row.municipio,(row.convenios||[]).join(" ")].join(" ")).includes(q)));
-    state.page=1;render();
+    const cat=$("cguCategory").value, year=$("cguYear").value,
+      type=normalize($("cguType").value), bank=$("cguBankFilter").value, q=normalize($("cguSearch").value);
+    s.list=s.rows.filter(r=>selected(r,cat)
+      &&(!year||String(r.ano)===year)
+      &&(!type||normalize(r.tipo).includes(type))
+      &&(!bank||(bank==="identificada"?withAccount(r):!withAccount(r)))
+      &&(!q||normalize([r.ano,r.codigo,r.autor,r.tipo,r.favorecido,r.cnpj,r.municipio,
+                       ...accounts(r).flatMap(x=>[x.bancoNome,x.bancoCodigo,x.agencia,x.conta])].join(" ")).includes(q)));
+    s.page=1;render();
   }
-  function csvCell(input){
-    let text=String(input==null?"":input);
-    if(/^[=+\-@\t\r]/.test(text))text="'"+text;
-    return '"'+text.replace(/"/g,'""')+'"';
+  function csv(v){
+    let value=String(v==null?"":v);
+    if(/^[=+\-@\t\r]/.test(value))value="'"+value;
+    return '"'+value.replace(/"/g,'""')+'"';
   }
-  function exportCSV(){
-    if(!state.filtered.length)return;
-    const columns=["Ano","Código da Emenda","Autor","Tipo","Categoria","Favorecido","CNPJ","Município","Valor recebido (R$)","Competências","Convênios","Fonte"];
-    const rows=state.filtered.map(r=>[r.ano,r.codigo,r.autor,r.tipo,r.categoria,r.favorecido,r.cnpj,r.municipio,
-      r.valorRecebidoCentavos==null?"":(r.valorRecebidoCentavos/100).toFixed(2).replace(".",","),
-      (r.competencias||[]).join(" | "),(r.convenios||[]).join(" | "),r.origem]);
-    const csv="\ufeff"+[columns,...rows].map(r=>r.map(csvCell).join(";")).join("\r\n");
-    const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
-    const a=document.createElement("a");
-    a.href=url;a.download="emendas-federais-sbc-cgu.csv";
-    document.body.append(a);a.click();a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url),500);
+  function exportRows(){
+    if(!s.list.length)return;
+    const h=["Ano","Emenda","Autor","Tipo","Destinatário","Favorecido","CNPJ","Município",
+             "Valor recebido (R$)","Código banco","Banco","Agência","Conta corrente",
+             "Status","Fonte bancária","Comprovação de depósito"];
+    const data=s.list.map(r=>{
+      const found=accounts(r);
+      const item=found[0];
+      return [r.ano,r.codigo,r.autor,r.tipo,r.categoria,r.favorecido,r.cnpj,r.municipio,
+        r.valorRecebidoCentavos==null?"":(r.valorRecebidoCentavos/100).toFixed(2).replace(".",","),
+        found.map(x=>x.bancoCodigo).join(" | "),found.map(x=>x.bancoNome).join(" | "),
+        found.map(x=>formatted(x.agencia,x.agenciaDigito)).join(" | "),
+        found.map(x=>formatted(x.conta,x.contaDigito)).join(" | "),
+        found.length?"Vinculada ao plano (crédito não comprovado)":"Não identificada",
+        found.map(x=>x.fonteURL).join(" | "),"Não verificada"];
+    });
+    const text="\ufeff"+[h,...data].map(x=>x.map(csv).join(";")).join("\r\n");
+    const url=URL.createObjectURL(new Blob([text],{type:"text/csv;charset=utf-8"}));
+    const a=document.createElement("a");a.href=url;a.download="emendas-contas-cgu-sbc.csv";
+    document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),500);
+  }
+  async function loadBanks(){
+    try{
+      const response=await fetch("./dados-contas.json?ts="+Date.now(),{cache:"no-store"});
+      if(!response.ok)throw new Error("HTTP "+response.status);
+      const data=await response.json();
+      if(data.status!=="ok"||!Array.isArray(data.registros))throw new Error("Arquivo de contas ainda não validado");
+      const bankMap=new Map();
+      for(const item of data.registros){
+        if(!/^\d{12}$/.test(String(item.codigo||""))||!/^\d{14}$/.test(String(item.cnpj||"")))continue;
+        if(!item.conta||!item.agencia||!item.bancoCodigo||!isOfficialLink(item.fonteURL))continue;
+        const k=key(item),array=bankMap.get(k)||[];
+        if(!array.some(x=>x.idPlanoAcao===item.idPlanoAcao))array.push(item);
+        bankMap.set(k,array);
+      }
+      s.banks=bankMap;s.bankLoaded=true;
+      const dt=new Date(data.atualizadoEmUTC);
+      $("bankUpdated").textContent="Contas vinculadas: "+int.format(data.registros.length)+" · "+(Number.isNaN(dt.getTime())?"atualização não informada":dt.toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo"}));
+    }catch(e){
+      $("bankUpdated").textContent="Contas bancárias ainda não disponíveis";
+    }finally{
+      if(s.loaded)apply();
+    }
   }
   async function load(){
     try{
       const response=await fetch("./dados-cgu.json?ts="+Date.now(),{cache:"no-store"});
       if(!response.ok)throw new Error("HTTP "+response.status);
-      const payload=await response.json();
-      if(payload.status!=="ok"||!Array.isArray(payload.registros)||!payload.registros.length){
-        say("Aguardando dados oficiais válidos da CGU. Nenhum valor será estimado.","warn");
-        $("cguUpdated").textContent="Sem base validada";
-        render();return;
+      const data=await response.json();
+      if(data.status!=="ok"||!Array.isArray(data.registros)||!data.registros.length){
+        notice("Aguardando base válida da CGU.","warn");return;
       }
-      state.rows=payload.registros;
-      state.loaded=true;
-      const years=[...new Set(state.rows.map(r=>r.ano))].sort((a,b)=>b-a);
+      s.rows=data.registros;s.loaded=true;
+      const years=[...new Set(s.rows.map(r=>r.ano))].sort((a,b)=>b-a);
       for(const year of years){
-        const option=document.createElement("option");
-        option.value=year;option.textContent=year;
-        $("cguYear").append(option);
+        const opt=document.createElement("option");opt.value=year;opt.textContent=year;$("cguYear").append(opt);
       }
-      const date=new Date(payload.capturadoEmUTC);
-      const updated=Number.isNaN(date.getTime())?"Data não disponível":date.toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo"});
-      $("cguUpdated").textContent="Atualizada em "+updated;
-      say("Dados oficiais da CGU carregados: "+int.format(state.rows.length)+" registros. Atualização automática diária.","ok");
+      const date=new Date(data.capturadoEmUTC);
+      $("cguUpdated").textContent="CGU: "+(Number.isNaN(date.getTime())?"data não informada":date.toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo"}));
+      notice("Base CGU carregada: "+int.format(s.rows.length)+" registros. Contas bancárias têm comprovação cadastral separada.","ok");
       apply();
-    }catch(error){
-      say("Falha ao carregar o arquivo da CGU ("+error.message+"). Tente atualizar esta página.","error");
-      $("cguUpdated").textContent="Falha no carregamento";
+      await loadBanks();
+    }catch(e){
+      notice("Falha ao carregar a base CGU ("+e.message+"). Tente atualizar a página.","error");
+      $("cguUpdated").textContent="Falha ao carregar";
       render();
     }
   }
-  for(const id of ["cguCategory","cguYear","cguType","cguSearch"])$(id).addEventListener("input",apply);
-  $("cguPrev").addEventListener("click",()=>{state.page--;render();});
-  $("cguNext").addEventListener("click",()=>{state.page++;render();});
-  $("cguExport").addEventListener("click",exportCSV);
+  for(const id of ["cguCategory","cguYear","cguType","cguBankFilter","cguSearch"])$(id).addEventListener("input",apply);
+  $("cguPrev").addEventListener("click",()=>{s.page--;render();});
+  $("cguNext").addEventListener("click",()=>{s.page++;render();});
+  $("cguExport").addEventListener("click",exportRows);
   $("cguClear").addEventListener("click",()=>{
-    $("cguCategory").value="municipio";
-    $("cguYear").value="";
-    $("cguType").value="";
-    $("cguSearch").value="";
-    apply();
+    $("cguCategory").value="municipio";$("cguYear").value="";$("cguType").value="";
+    $("cguBankFilter").value="";$("cguSearch").value="";apply();
   });
   load();
 })();
