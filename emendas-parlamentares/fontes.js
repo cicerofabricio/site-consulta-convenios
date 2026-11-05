@@ -5,6 +5,32 @@
 (() => {
   "use strict";
   const FONTES = [
+
+    {
+      id:"fns-pagamentos",title:"FNS — transferências à saúde (pagamentos detalhados)",
+      provider:"Ministério da Saúde · Fundo Nacional de Saúde",sphere:"federal",uf:"",
+      types:["individual","bancada","comissao","fundoafundo"],kind:"consulta",
+      url:"https://portalfns.saude.gov.br/consultas/",
+      description:"Consulte propostas, pagamentos, repasses fundo a fundo e execução de emendas destinadas ao Fundo Municipal de Saúde de São Bernardo do Campo.",
+      detail:"Destinatário: Fundo Municipal de Saúde, CNPJ 13.961.905/0001-70. Consulte por UF SP e município São Bernardo do Campo."
+    },
+    {
+      id:"fns-paineis",title:"FNS — painéis de informações e repasses fundo a fundo",
+      provider:"Ministério da Saúde · Painéis InvestSUS",sphere:"federal",uf:"",
+      types:["individual","bancada","comissao","fundoafundo"],kind:"painel",
+      url:"https://investsuspaineis.saude.gov.br/",
+      description:"Visualize séries e detalhamento de transferências SUS, aplicando os filtros de município e fundo de saúde.",
+      detail:"Não confundir repasses ordinários SUS com recursos originados de emendas parlamentares."
+    },
+    {
+      id:"tcu-controle",title:"TCU — acompanhamento de todas as formas de execução",
+      provider:"Tribunal de Contas da União · Painel de Emendas",sphere:"federal",uf:"",
+      types:["individual","especial","bancada","comissao","relator","fundoafundo"],kind:"painel",
+      url:"https://sites.tcu.gov.br/painel-de-acompanhamento-da-execucao-de-emendas/",
+      description:"Painel oficial que reúne emendas Pix, convênios, transferências fundo a fundo, bancada e comissão; permite filtrar São Bernardo do Campo.",
+      detail:"O painel abrange emendas que resultaram em transferência; não inclui toda emenda apenas indicada."
+    },
+
     {
       id:"trf-especiais", title:"Transferegov — transferência especial federal",
       provider:"Ministério da Gestão · API de dados abertos",sphere:"federal",uf:"",
@@ -170,7 +196,7 @@
   const byId = id => document.getElementById(id);
   const norm = value => String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
   const titles = {federal:"União",estadual:"Estado de SP"};
-  const typeTitles = {individual:"Individual",especial:"Transferência especial",bancada:"Bancada",comissao:"Comissão",relator:"Relator",estadual:"Emenda estadual"};
+  const typeTitles = {individual:"Individual",especial:"Transferência especial",bancada:"Bancada",comissao:"Comissão",relator:"Relator",estadual:"Emenda estadual",fundoafundo:"Fundo a fundo (saúde)"};
   const kindTitles = {api:"API oficial",consulta:"Consulta interativa",painel:"Painel oficial",csv:"Dados abertos / CSV"};
   function buildCard(source) {
     const card = document.createElement("article");
@@ -196,7 +222,7 @@
     card.append(row,h,prov,desc);
     if (source.mode !== "local") {
       const rule=document.createElement("p");rule.className="recipient-instruction";
-      rule.textContent="Neste portal, filtre pelo destinatário Município de São Bernardo do Campo (CNPJ 46.523.239/0001-47), quando o filtro estiver disponível. Não selecione apenas a localização da despesa.";
+      rule.textContent="Filtre o destinatário Prefeitura (46.523.239/0001-47) ou Fundo Municipal de Saúde (13.961.905/0001-70), conforme o caso. A localização de uma despesa não prova quem recebeu o recurso.";
       card.append(rule);
     }
     if(source.detail){const detail=document.createElement("p");detail.className="source-detail";detail.textContent=source.detail;card.append(detail);}
@@ -229,7 +255,7 @@
     }
     const qty=matches.length;
     byId("sourceCount").textContent=qty+" "+(qty===1?"fonte localizada":"fontes localizadas");
-    byId("sourceExplanation").textContent="Destinatário único: Município de São Bernardo do Campo/SP, CNPJ 46.523.239/0001-47. Os links externos exigem selecionar o Município no portal de origem; dados de outros beneficiários na cidade ficam fora do escopo.";
+    byId("sourceExplanation").textContent="Dois destinatários: Prefeitura de São Bernardo do Campo (46.523.239/0001-47) e Fundo Municipal de Saúde (13.961.905/0001-70). Os links externos exigem filtrar os respectivos CNPJs, quando disponíveis.";
   }
   function setup(){
     ["sourceScope","sourceType","sourceSearch"].forEach(id=>{
