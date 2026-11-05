@@ -48,3 +48,8 @@ Publicação: `Settings → Pages → Deploy from a branch → main / (root)`. O
 ## Limitação técnica
 
 A API precisa permitir CORS para consulta direta via navegador. Não houve teste completo ponta a ponta deste ambiente. Se a requisição falhar, a interface mostra erro, sem inventar registros ou valores.
+
+
+## Consulta consolidada da CGU - 05/11/2026
+
+O processamento em atualizar_cgu.py baixa o ZIP oficial da CGU (Emendas, Por Favorecido e Convênios), sem token de API. A cada atualização válida do GitHub Actions, publica dados-cgu.json. O sistema identifica separadamente Prefeitura 46.523.239/0001-47, Fundo de Saúde 13.961.905/0001-70, outras pessoas jurídicas localizadas no município e emendas com apenas localidade do gasto em São Bernardo do Campo. O quarto grupo não é contabilizado como recursos recebidos. A interface não soma valores de planos de ação (Pix) aos valores pagos da CGU. Não inclui pessoas físicas por privacidade. A importação estadual permanece manual pelo portal https://www.transparencia.sp.gov.br/EmendasParlamentares/Concedidas porque a URL pública da exportação não foi tecnicamente validada.

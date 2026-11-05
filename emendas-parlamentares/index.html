@@ -7,8 +7,10 @@
   <meta name="description" content="Consulta de emendas parlamentares federais e estaduais destinadas ao Município de São Bernardo do Campo/SP.">
   <title>Emendas Parlamentares destinadas a São Bernardo do Campo — SP</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./cgu.css">
   <script src="./app.js" defer></script>
   <script src="./fontes.js" defer></script>
+  <script src="./cgu.js" defer></script>
 </head>
 <body>
   <header class="masthead">
@@ -27,7 +29,7 @@
       <div>
         <p class="eyebrow">CONSULTA PÚBLICA</p>
         <h2>Emendas destinadas ao Município de São Bernardo do Campo</h2>
-        <p>Acompanhe emendas federais e estaduais de São Paulo destinadas à Prefeitura ou ao Fundo Municipal de Saúde. A consulta direta de emendas Pix diferencia os CNPJs, enquanto repasses fundo a fundo da saúde devem ser consultados nas fontes do FNS.</p>
+        <p>Acompanhe emendas federais e estaduais de São Paulo destinadas à Prefeitura ou ao Fundo Municipal de Saúde. O painel consolidado da CGU traz emendas federais por favorecido; abaixo permanece a consulta específica de transferências especiais (Pix). Emendas estaduais são acompanhadas no portal paulista.</p>
       </div>
       <div class="sync">
         <span class="sync-dot" aria-hidden="true"></span>
@@ -70,6 +72,38 @@
       <div id="sourceCards" class="source-cards" aria-live="polite"></div>
       <p class="source-limit"><strong>Critério de inclusão:</strong> destinatário Prefeitura de São Bernardo do Campo, CNPJ <strong>46.523.239/0001-47</strong>, ou Fundo Municipal de Saúde, CNPJ <strong>13.961.905/0001-70</strong>. O endereço de uma obra na cidade não comprova que o Município recebeu recursos. Nos portais externos, filtre por beneficiário e confira CNPJ; não use somente a localidade. Os dois destinatários serão identificados por CNPJ e exibidos separadamente. Outros CNPJs não são incluídos automaticamente. Valores de planos, empenhos e pagamentos não são somáveis entre fontes.</p>
     </section>
+    
+    <section class="panel" id="consultaCGU" aria-labelledby="cguTitle">
+      <div class="panel-title">
+        <div>
+          <p class="eyebrow">CONSULTA AUTOMÁTICA · CGU</p>
+          <h2 id="cguTitle">Emendas federais de todos os tipos</h2>
+          <p class="cgu-info">Pagamentos à Prefeitura, ao Fundo Municipal de Saúde e a outros CNPJs situados em São Bernardo do Campo. Emendas identificadas apenas pela localidade de aplicação são apresentadas separadamente, sem atribuir recebimentos ao Município.</p>
+        </div>
+        <button id="cguClear" type="button" class="btn-ghost">Limpar filtros</button>
+      </div>
+      <p id="cguStatus" class="cgu-notice" role="status">Carregando base da CGU...</p>
+      <div class="cgu-grid">
+        <label>Destinatário<select id="cguCategory"><option value="">Todos</option><option value="prefeitura">Prefeitura</option><option value="saude">Fundo Municipal de Saúde</option><option value="terceiro">Outros CNPJs na cidade</option><option value="localidade">Somente localidade de aplicação</option></select></label>
+        <label>Ano da emenda<select id="cguYear"><option value="">Todos</option></select></label>
+        <label>Tipo de emenda<select id="cguType"><option value="">Todos</option><option value="individual">Individual</option><option value="bancada">Bancada</option><option value="comissão">Comissão</option><option value="relator">Relator</option></select></label>
+        <label>Pesquisar<input id="cguSearch" type="search" placeholder="Autor, emenda, CNPJ, favorecido..." autocomplete="off"></label>
+      </div>
+      <div class="cgu-kpis">
+        <div><span>Registros filtrados</span><strong id="cguCount">—</strong></div>
+        <div><span>Recebido Prefeitura + Fundo</span><strong id="cguPublic">—</strong></div>
+        <div><span>Recebido por outros CNPJs locais</span><strong id="cguThird">—</strong></div>
+        <div><span>Somente localidade de aplicação</span><strong id="cguLocality">—</strong></div>
+      </div>
+      <div class="cgu-actions"><button id="cguExport" type="button" disabled>Exportar CSV para Excel</button><a href="https://portaldatransparencia.gov.br/download-de-dados/emendas-parlamentares" target="_blank" rel="noopener noreferrer">Fonte dos dados: CGU</a></div>
+      <div class="cgu-table"><table>
+        <thead><tr><th>Ano</th><th>Código</th><th>Autor</th><th>Tipo</th><th>Vínculo</th><th>Favorecido</th><th>Valor recebido</th><th>Origem</th></tr></thead>
+        <tbody id="cguRows"><tr><td colspan="8">Aguardando dados...</td></tr></tbody>
+      </table></div>
+      <div class="cgu-pager"><button id="cguPrev" class="btn-outline" type="button" disabled>Anterior</button><span id="cguPages">Página —</span><button id="cguNext" class="btn-outline" type="button" disabled>Próxima</button></div>
+      <p class="cgu-info"><strong>Critério:</strong> valores recebidos provêm da CGU por emenda e favorecido. A mesma emenda pode beneficiar vários destinatários. Registros apenas de localidade não são comprovantes de transferência ao Município. Os valores previstos de planos de ação Pix, abaixo, não devem ser somados aos pagamentos da CGU. <strong>Emendas estaduais:</strong> <a href="https://www.transparencia.sp.gov.br/EmendasParlamentares/Concedidas" target="_blank" rel="noopener noreferrer">consulte o portal paulista</a>; a integração automática do CSV estadual ainda depende de validação do endereço de download.</p>
+    </section>
+
     <section class="panel" id="consultaPix" aria-labelledby="filtersTitle">
       <div class="panel-title"><div><p class="eyebrow">PESQUISA</p><h2 id="filtersTitle">Consulta direta — transferências especiais federais (Pix)</h2></div><button type="button" class="btn-ghost" id="clearBtn">Limpar filtros</button></div>
       <form id="filterForm">
