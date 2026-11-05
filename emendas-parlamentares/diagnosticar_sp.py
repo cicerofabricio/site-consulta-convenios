@@ -1,59 +1,55 @@
 #!/usr/bin/env python3
-"""Inspecionar estrutura do ZIP oficial estadual, sem imprimir dados bancários."""
-import csv, io, json, os, re, tempfile, unicodedata, urllib.request, zipfile
-URL="https://www.transparencia.sp.gov.br/Dados%20Abertos/Emendas/emendas.zip"
+"""Validar dados e valores do ZIP estadual, investigar CNPJ em convênios."""
+import csv,io,collections,os,re,tempfile,urllib.request,urllib.parse,zipfile,unicodedata
+from decimal import Decimal
+ROOT="https://www.transparencia.sp.gov.br"
+def get(url):
+ req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) Gecko/20100101 Firefox/128.0","Accept":"*/*"})
+ with urllib.request.urlopen(req,timeout=90) as r:
+  data=r.read(120*1024*1024)
+  print("HTTP",r.status,"URL",r.geturl(),"BYTES",len(data))
+  return data
 def norm(s):
  s=unicodedata.normalize("NFKD",str(s or ""))
- return re.sub("[^A-Z0-9]+","_", "".join(x for x in s if not unicodedata.combining(x)).upper()).strip("_")
-def read():
- req=urllib.request.Request(URL,headers={"User-Agent":"Mozilla/5.0 (compatible; transparenciasbc/1.0)","Accept":"application/zip,*/*"})
- with urllib.request.urlopen(req,timeout=120) as r:
-  print("URL",r.geturl(),"HTTP",r.status,"CONTENT_TYPE",r.headers.get("Content-Type"),"CONTENT_LENGTH",r.headers.get("Content-Length"),flush=True)
-  fd,name=tempfile.mkstemp(suffix=".zip")
-  try:
-   with os.fdopen(fd,"wb") as f:
-    size=0
-    while True:
-     block=r.read(2*1024*1024)
-     if not block:break
-     size+=len(block)
-     if size>160*1024*1024:raise ValueError("Tamanho > 160 MiB")
-     f.write(block)
-   print("BYTES",size,flush=True)
-   return name
-  except BaseException:
-   os.unlink(name);raise
-p=read()
-try:
- with zipfile.ZipFile(p) as z:
-  print("ZIP_CONTENT",[(x.filename,x.file_size,x.compress_size) for x in z.infolist()][:30],flush=True)
-  for name in z.namelist():
-   if not name.lower().endswith(".csv"):continue
-   with z.open(name) as f:
-    raw=f.read()
-   enc="utf-8-sig"
-   try:txt=raw.decode(enc)
-   except UnicodeDecodeError:enc="latin-1";txt=raw.decode(enc)
-   lines=txt.splitlines()
-   print("CSV",name,"ENCODING",enc,"ROWS",len(lines),"FIRST_BYTES",repr(txt[:210]),flush=True)
-   delimiter=max([";",",","\t","|"],key=lambda d:txt.splitlines()[0].count(d))
-   reader=csv.DictReader(io.StringIO(txt),delimiter=delimiter)
-   headers=reader.fieldnames or []
-   print("HEADERS",[(h,norm(h)) for h in headers],flush=True)
-   matched={"cnpj_prefeitura":0,"cnpj_fundo":0,"municipio":0}
-   samples=[]
-   cnpj_keys=[h for h in headers if ("CNPJ" in norm(h) or "DOCUMENTO" in norm(h))]
-   city_keys=[h for h in headers if any(k in norm(h) for k in ["MUNICIPIO","LOCALIZACAO","BENEFICIARIO"])]
-   for row in reader:
-    values=[str(row.get(k) or "") for k in cnpj_keys]
-    csv_cnpjs=["".join(re.findall(r"\d",v)) for v in values]
-    kind="prefeitura" if "46523239000147" in csv_cnpjs else ("saude" if "13961905000170" in csv_cnpjs else "")
-    city=any("SAO_BERNARDO_DO_CAMPO" in norm(row.get(k)) for k in city_keys)
-    if kind:matched["cnpj_"+("prefeitura" if kind=="prefeitura" else "fundo")]+=1
-    if city:matched["municipio"]+=1
-    if (kind or city) and len(samples)<4:
-     # Show names and code but do NOT log account/agencia/CPF
-     samples.append({k:str(v)[:110] for k,v in row.items() if k and not any(sub in norm(k) for sub in ["BANCO","AGENCIA","CONTA","CPF"])})
-   print("COUNTS",matched,"SAMPLES",json.dumps(samples,ensure_ascii=False),flush=True)
-finally:
- os.unlink(p)
+ return re.sub(r"\s+"," ","".join(ch for ch in s if not unicodedata.combining(ch)).upper()).strip()
+def decode(data):
+ for en in ["utf-8-sig","latin-1"]:
+  try:return data.decode(en)
+  except UnicodeDecodeError:pass
+ return data.decode("utf-8","replace")
+data=get(ROOT+"/Dados%20Abertos/Emendas/emendas.zip")
+with zipfile.ZipFile(io.BytesIO(data)) as z:
+ name=next(x for x in z.namelist() if x.endswith(".csv"))
+ reader=csv.DictReader(io.StringIO(decode(z.read(name))),delimiter=";")
+ categories=collections.Counter();types=collections.Counter(); years=collections.Counter()
+ beneficiaries=collections.Counter(); beneficiary_outside=collections.Counter()
+ city_rows=[]; pref_rows=[]; health_rows=[]
+ for r in reader:
+  city="SAO BERNARDO DO CAMPO" in norm(r.get("municipio_gasto"))
+  ben=norm(r.get("nome_beneficiario"))
+  if "SAO BERNARDO" in ben:beneficiary_outside[(ben,r.get("municipio_gasto"))]+=1
+  if not city:continue
+  city_rows.append(r)
+  years[r.get("cod_emenda","")[:4]]+=1
+  categories[r.get("origem_recurso")]+=1;types[r.get("tipo_emenda")]+=1
+  beneficiaries[ben]+=1
+  if "PREFEITURA" in ben or "MUNICIPIO DE SAO BERNARDO" in ben or "MUNICIPIO DA ESTANCIA" in ben:
+   pref_rows.append(r)
+  if "FUNDO" in ben or ("SECRETARIA" in ben and "SAUDE" in ben):health_rows.append(r)
+ print("CITY_RECORDS",len(city_rows))
+ print("YEARS",years.most_common(25))
+ print("ORIGEM",categories.most_common(30))
+ print("TIPOS",types.most_common(20))
+ print("BENEFICIARIOS",beneficiaries.most_common(90))
+ print("BENEFICIARY_SBC_WITH_LOCATION",beneficiary_outside.most_common(30))
+ print("PREF_EXAMPLES",pref_rows[:8])
+ print("HEALTH_EXAMPLES",health_rows[:8])
+ for metric in ["vl_empenhado","vl_liquidado","vl_pago"]:
+  vals=[Decimal(r.get(metric) or "0") for r in city_rows]
+  print("MONEY",metric,"NET_RAW",sum(vals),"GROSS_POS_RAW",sum((x for x in vals if x>0),Decimal(0)),"NEG_N",sum(1 for x in vals if x<0),"MAX",max(vals))
+for path in ["/EmendasParlamentares/Concedidas","/Convenios/Index"]:
+ page=decode(get(ROOT+path))
+ print("PAGE_PATH",path)
+ for m in list(re.finditer(r"(format|Moeda|valorPago|vlPago|vl_pago|EmendasParlamentares/Buscar|Convenios/|Dados Abertos|href=\"[^\"]+\.zip)",page,re.I))[-35:]:
+  print("HTML",re.sub(r"\s+"," ",page[max(0,m.start()-150):m.end()+220])[:350])
+ print("ZIP_URLS",re.findall(r'href="([^"]+\.zip)"',page,re.I))
