@@ -84,3 +84,39 @@ dialog::backdrop{background:#0c1f36a6}
 @media(max-width:1150px){.filters{grid-template-columns:repeat(3,minmax(0,1fr))}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.container{padding-left:15px;padding-right:15px}.masthead{padding:21px 0}.masthead-inner{gap:12px;flex-wrap:wrap}.brand-mark{font-size:17px;padding:11px}.source{margin:8px 0 0;width:100%;text-align:center}.subtitle{font-size:12px}.intro{align-items:stretch;flex-direction:column;padding:23px 0 18px;gap:14px}.sync{align-self:stretch}.panel{padding:18px;border-radius:12px}.filters{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.panel-title{gap:8px}.kpis{gap:10px}.kpi{padding:14px}.kpi strong{font-size:19px}.results{padding:17px 0 0}.results-head{padding:0 15px;align-items:stretch;flex-direction:column}.detail-list{grid-template-columns:1fr}.detail-list dt{padding-bottom:3px;border-bottom:0}.detail-list dd{padding-top:3px}}
 @media(max-width:460px){.filters{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.kpi strong{font-size:16px}.filter-actions{align-items:stretch;flex-direction:column;gap:10px}.filter-actions button{width:100%}}
+
+/* Módulo de fontes federais e do Estado de São Paulo */
+.source-hub{border-top:4px solid #1e748a}
+.source-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}
+.source-title h2{font-size:22px;line-height:1.25;margin:0 0 8px;letter-spacing:-.5px;color:#142e4c}
+.source-title .muted{max-width:740px;font-size:12px;margin:0}
+.source-total{font-size:12px;font-weight:800;color:#0a685e;background:#edf9f6;border:1px solid #b7dfd7;border-radius:24px;padding:9px 12px;white-space:nowrap}
+.source-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin-bottom:13px}
+.source-explanation{margin:2px 0 17px;font-size:12px;color:#496880;line-height:1.5}
+.source-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.source-item{border:1px solid #d8e2ee;border-radius:13px;background:white;box-shadow:0 5px 17px #15294309;padding:17px;display:flex;flex-direction:column;min-width:0}
+.source-item-meta{display:flex;gap:7px;margin-bottom:11px;flex-wrap:wrap;align-items:center}
+.source-badge{font-weight:800;font-size:10px;color:#1b6b4e;background:#e8f7ed;padding:5px 8px;border-radius:6px}
+.source-badge.estadual{color:#775413;background:#fff3d7}
+.source-badge.kind{background:#eff3f8;color:#50647c}
+.source-item h3{font-size:14px;color:#133c60;line-height:1.33;margin:0 0 6px;letter-spacing:-.15px}
+.source-provider{font-size:11px;font-weight:700;color:#678095;margin:0 0 10px}
+.source-description{font-size:12px;color:#4a6076;line-height:1.55;margin:0 0 10px}
+.source-detail{font-size:11px;font-weight:650;color:#806433;line-height:1.45;background:#fff9e9;border-radius:7px;padding:8px;margin:0 0 10px}
+.recipient-instruction{font-size:11px;line-height:1.45;color:#1e5976;background:#edf7fb;padding:8px;border-radius:7px;margin:0 0 10px}
+.source-tags{display:flex;gap:5px;flex-wrap:wrap;margin:2px 0 14px}
+.source-tags span{font-size:10px;color:#5a7288;border-radius:5px;background:#f1f4f8;padding:4px 6px}
+.source-item-footer{margin-top:auto;border-top:1px solid #ebf0f5;padding-top:13px}
+.source-action{color:#12698a;font-size:12px;text-decoration:none;font-weight:800}
+.source-action:hover{text-decoration:underline}
+.source-action.local{color:#087968}
+.source-limit{font-size:11px;color:#64798d;line-height:1.62;margin:18px 0 0;background:#f0f5f8;border-radius:9px;padding:14px}
+.source-empty{grid-column:1/-1;padding:23px;border-radius:10px;background:#edf3f8;color:#6a7e90;font-size:12px;text-align:center}
+.fixed-recipient{border:1px solid #bcdacf;background:#ecfaf4;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:85px;grid-column:span 2}
+.fixed-recipient-title{font-size:10px;font-weight:850;letter-spacing:.7px;color:#39765c;text-transform:uppercase}
+.fixed-recipient strong{font-size:14px;color:#184e3d}
+.fixed-recipient small{font-size:11px;color:#668379}
+.fixed-hidden{display:none!important}
+@media(max-width:1120px){.source-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.source-title{flex-direction:column}.source-title h2{font-size:19px}.source-filters{grid-template-columns:1fr 1fr;gap:12px}.source-cards{grid-template-columns:1fr}.fixed-recipient{grid-column:1/-1}}
+@media(max-width:450px){.source-filters{grid-template-columns:1fr}.fixed-recipient strong{font-size:12px}}
