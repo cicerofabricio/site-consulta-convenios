@@ -45,12 +45,21 @@
         <label>Esfera
           <select id="sourceScope"><option value="">Federal e estadual</option><option value="federal">Federal</option><option value="estadual">Estadual</option></select>
         </label>
-        <label>Modalidade da emenda
+        <label>Tipo de emenda
           <select id="sourceType">
-            <option value="">Todas as modalidades</option><option value="individual">Individual / finalidade definida</option>
-            <option value="especial">Transferência especial (Pix)</option><option value="bancada">Bancada</option>
+            <option value="">Todos os tipos</option><option value="individual">Individual</option><option value="bancada">Bancada</option>
             <option value="comissao">Comissão</option><option value="relator">Relator</option>
             <option value="estadual">Emenda estadual</option>
+          </select>
+        </label>
+        <label>Forma de repasse
+          <select id="sourceForm">
+            <option value="">Todas as formas</option>
+            <option value="especial">Transferência especial (Pix)</option>
+            <option value="fundoafundo">Fundo a fundo</option>
+            <option value="convenio">Convênio</option>
+            <option value="contratorepasse">Contrato de repasse</option>
+            <option value="outra">Outras / não identificadas</option>
           </select>
         </label>
         <label>Buscar fonte
