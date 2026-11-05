@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Consulta pública de transferências fundo a fundo na API de dados abertos do Transferegov.">
+<title>Transferências Fundo a Fundo • Consulta</title>
+<style>
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#172338;background:#f4f6fa;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}a{color:#145da5}button,input,select{font:inherit}
+header{background:#143c62;color:#fff;padding:28px 20px}header .wrap{max-width:1150px;margin:auto}h1{font-size:clamp(1.5rem,3vw,2rem);margin:6px 0 8px;letter-spacing:-.025em}h2{font-size:1.14rem;margin:0 0 16px}
+header p{color:#e1ebf8;max-width:800px;margin:0;line-height:1.5}.tag{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a8d1ff}
+main{max-width:1150px;margin:24px auto;padding:0 16px 35px}
+.panel{background:#fff;border:1px solid #dce4ef;border-radius:14px;padding:22px;margin-bottom:18px;box-shadow:0 3px 12px #16253e09}
+.grid{display:grid;grid-template-columns:1fr 1.6fr 1.1fr;gap:15px;margin-bottom:16px}
+label{display:block;font-size:.86rem;font-weight:700;margin-bottom:6px;color:#32455d}
+input,select{display:block;width:100%;min-height:42px;border:1px solid #c5d0df;border-radius:8px;padding:9px 11px;background:#fff;color:#172338}
+input:focus,select:focus{outline:2px solid #84b9f4;outline-offset:1px}
+.hint{font-size:.78rem;color:#627185;margin-top:5px;line-height:1.35}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+button{border:1px solid #aebed0;border-radius:8px;padding:10px 16px;cursor:pointer;background:#fff;color:#143c62;font-weight:700}
+button.primary{color:#fff;background:#1763a5;border-color:#1763a5}button:hover:not(:disabled){filter:brightness(.96)}button:disabled{opacity:.5;cursor:not-allowed}
+#status{font-size:.92rem;color:#34516c;min-height:24px;line-height:1.5}
+#status.error{color:#a22432}
+.heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.table-wrap{overflow:auto;border:1px solid #dce4ef;border-radius:9px}table{border-collapse:collapse;width:100%;min-width:820px;font-size:.89rem}
+th{text-align:left;color:#44556b;background:#f0f3f8;font-size:.78rem;text-transform:uppercase;letter-spacing:.03em;padding:12px 10px;border-bottom:1px solid #dce4ef}
+td{padding:13px 10px;border-bottom:1px solid #e8edf3;vertical-align:top}tr:last-child td{border-bottom:0}
+td small{display:block;color:#66758a;font-size:.78rem;margin-top:4px}td.money,th.money{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pager{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:17px}
+.pager span{font-size:.86rem;color:#45546b}.muted{color:#69778a;font-size:.88rem}.empty{text-align:center;color:#66758a;padding:28px!important}
+footer{max-width:1150px;margin:0 auto 26px;padding:0 18px;color:#5a6980;font-size:.82rem;line-height:1.55}
+footer a{white-space:nowrap}
+@media(max-width:730px){.grid{grid-template-columns:1fr}.panel{padding:16px}.heading{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="tag">Transferegov • dados abertos</div>
+  <h1>Transferências Fundo a Fundo</h1>
+  <p>Consulte planos de ação de transferências federais para fundos estaduais e municipais. Dados públicos obtidos diretamente da API oficial, sem cadastro.</p>
+</div></header>
+<main>
+<section class="panel" aria-labelledby="titulo-filtros">
+  <h2 id="titulo-filtros">Filtros de consulta</h2>
+  <form id="form" autocomplete="off">
+    <div class="grid">
+      <div><label for="uf">UF do recebedor</label>
+        <select id="uf">
+          <option value="">Todas as UFs</option>
+          <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option>
+        </select></div>
+      <div><label for="municipio">Município do recebedor</label><input id="municipio" placeholder="Nome conforme cadastro oficial"><div class="hint">O nome é pesquisado por correspondência exata.</div></div>
+      <div><label for="ibge">Código IBGE do município</label><input id="ibge" inputmode="numeric" maxlength="7" placeholder="Opcional — 7 dígitos"></div>
+      <div><label for="plano">Código do plano de ação</label><input id="plano" placeholder="Opcional"></div>
+      <div><label for="situacao">Situação do plano</label><input id="situacao" placeholder="Opcional — texto exato"></div>
+      <div><label for="cnpj">CNPJ do fundo vinculado</label><input id="cnpj" inputmode="numeric" maxlength="18" placeholder="Opcional — apenas números"></div>
+    </div>
+    <div class="actions">
+      <button class="primary" id="buscar" type="submit">Consultar</button>
+      <button type="button" id="limpar">Limpar</button>
+      <span class="muted">50 registros por página</span>
+    </div>
+  </form>
+</section>
+<section class="panel" aria-labelledby="titulo-resultados">
+  <div class="heading"><h2 id="titulo-resultados">Resultados</h2><button type="button" id="csv" disabled>Exportar esta página (CSV)</button></div>
+  <p id="status" role="status" aria-live="polite">Selecione os filtros e clique em Consultar.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th>Plano de ação</th><th>Município / UF</th><th>Fundo vinculado</th><th>Órgão repassador</th><th>Situação</th><th class="money">Repasse previsto</th><th class="money">Parcela de emendas</th>
+      </tr></thead>
+      <tbody id="rows"><tr><td class="empty" colspan="7">Nenhuma consulta realizada.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="pager"><button type="button" id="anterior" disabled>Anterior</button><span id="pagina">Página —</span><button type="button" id="proxima" disabled>Próxima</button></div>
+</section>
+</main>
+<footer>
+  <strong>Importante:</strong> os valores exibidos são os registrados no <strong>plano de ação</strong> como repasses previstos; não representam necessariamente valores pagos ou transferidos. A soma de valores não é apresentada como execução financeira. Os resultados abrangem somente o módulo Fundo a Fundo do Transferegov e dependem da atualização e disponibilidade da API pública.
+  <p>Fonte: <a href="https://api-publica.transferegov.gestao.gov.br/fundoafundo/docs" target="_blank" rel="noopener noreferrer">Documentação oficial — Fundo a Fundo</a>.</p>
+</footer>
+<script>
+"use strict";
+(function(){
+  const API="https://api-publica.transferegov.gestao.gov.br/fundoafundo/planos-acao";
+  const SIZE=50;
+  const $=id=>document.getElementById(id);
+  const controls=["uf","municipio","ibge","plano","situacao","cnpj"];
+  const money=new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"});
+  let page=1,totalPages=0,totalItems=0,records=[],controller=null,loading=false;
+  function val(id){return $(id).value.trim();}
+  function safe(value){return String(value==null?"—":value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+  function brl(value){if(value===null||value===undefined||value==="")return "—";const n=Number(value);return Number.isFinite(n)?money.format(n):"—";}
+  function status(message,error){$("status").textContent=message;$("status").className=error?"error":"";}
+  function setLoading(yes){loading=yes;$("buscar").disabled=yes;$("anterior").disabled=yes||page<=1;$("proxima").disabled=yes||page>=totalPages;$("csv").disabled=yes||!records.length;}
+  function render(){
+    if(!records.length){$("rows").innerHTML='<tr><td class="empty" colspan="7">Nenhum registro encontrado para esta página e estes filtros.</td></tr>';}
+    else $("rows").innerHTML=records.map(r=>{
+      const code=safe(r.codigo_plano_acao||r.id_plano_acao);
+      const municipio=safe(r.nome_municipio_ente_recebedor_plano_acao);
+      const uf=safe(r.uf_ente_recebedor_plano_acao);
+      const recebedor=safe(r.nome_ente_recebedor_plano_acao);
+      const fundo=safe(r.nome_fundo_vinculado_plano_acao);
+      const orgao=safe(r.nome_orgao_repassador_plano_acao);
+      const situacao=safe(r.situacao_plano_acao);
+      return "<tr><td><strong>"+code+"</strong><small>ID: "+safe(r.id_plano_acao)+"</small></td><td>"+municipio+" / "+uf+"<small>"+recebedor+"</small></td><td>"+fundo+"</td><td>"+orgao+"</td><td>"+situacao+"</td><td class='money'>"+brl(r.valor_total_repasse_plano_acao)+"</td><td class='money'>"+brl(r.valor_repasse_emenda_plano_acao)+"</td></tr>";
+    }).join("");
+    $("pagina").textContent="Página "+page+" de "+(totalPages||1);
+    $("anterior").disabled=loading||page<=1;
+    $("proxima").disabled=loading||page>=totalPages;
+    $("csv").disabled=loading||!records.length;
+  }
+  function query(){
+    const q=new URLSearchParams({pagina:String(page),tamanho_da_pagina:String(SIZE)});
+    const map=[
+      ["uf","uf_ente_recebedor_plano_acao"],
+      ["municipio","nome_municipio_ente_recebedor_plano_acao"],
+      ["ibge","codigo_ibge_municipio_ente_recebedor_plano_acao"],
+      ["plano","codigo_plano_acao"],
+      ["situacao","situacao_plano_acao"],
+      ["cnpj","cnpj_fundo_vinculado_plano_acao"]
+    ];
+    map.forEach(([id,param])=>{if(val(id))q.set(param,id==="cnpj"?val(id).replace(/\D/g,""):val(id));});
+    return API+"?"+q.toString();
+  }
+  async function fetchData(){
+    if(controller)controller.abort();
+    controller=new AbortController();
+    const current=controller;
+    const timeout=setTimeout(()=>current.abort(),20000);
+    records=[];totalPages=0;totalItems=0;
+    setLoading(true);status("Consultando a API oficial…",false);
+    try{
+      const response=await fetch(query(),{signal:current.signal,headers:{"Accept":"application/json"},cache:"no-store"});
+      if(!response.ok)throw new Error("A API respondeu com HTTP "+response.status+".");
+      const body=await response.json();
+      if(!body||!Array.isArray(body.data)||!Number.isFinite(Number(body.total_items)))throw new Error("Resposta inesperada da API oficial.");
+      records=body.data;
+      totalItems=Number(body.total_items);
+      totalPages=Math.max(0,Number(body.total_pages)||Math.ceil(totalItems/SIZE));
+      status(totalItems.toLocaleString("pt-BR")+" registro(s) correspondem aos filtros. Exibindo "+records.length+" nesta página.",false);
+    }catch(err){
+      if(current.signal.aborted&&controller!==current)return;
+      const detail=err.name==="AbortError"?"A requisição expirou ou foi interrompida.":err.message;
+      status("Não foi possível consultar os dados: "+detail+" A conexão com a API oficial também pode ser bloqueada pelo navegador (CORS).",true);
+    }finally{
+      clearTimeout(timeout);
+      if(controller===current){setLoading(false);render();}
+    }
+  }
+  $("form").addEventListener("submit",e=>{
+    e.preventDefault();
+    if(val("ibge")&&!/^\d{7}$/.test(val("ibge"))){status("Informe um código IBGE de 7 dígitos ou deixe o campo vazio.",true);return;}
+    if(val("cnpj")&&val("cnpj").replace(/\D/g,"").length!==14){status("Informe um CNPJ de 14 dígitos ou deixe o campo vazio.",true);return;}
+    page=1;fetchData();
+  });
+  $("limpar").addEventListener("click",()=>{$("form").reset();controls.forEach(id=>{if(id==="uf")$(id).value="SP";});page=1;records=[];totalPages=0;totalItems=0;status("Filtros limpos. Clique em Consultar.",false);render();});
+  $("anterior").addEventListener("click",()=>{if(!loading&&page>1){page--;fetchData();}});
+  $("proxima").addEventListener("click",()=>{if(!loading&&page<totalPages){page++;fetchData();}});
+  $("csv").addEventListener("click",()=>{
+    if(!records.length)return;
+    const headings=["Código do plano","ID do plano","Município","UF","Ente recebedor","CNPJ fundo vinculado","Fundo vinculado","Órgão repassador","Situação","Repasse previsto (R$)","Parcela emendas (R$)"];
+    const lines=records.map(r=>[
+      r.codigo_plano_acao,r.id_plano_acao,r.nome_municipio_ente_recebedor_plano_acao,r.uf_ente_recebedor_plano_acao,r.nome_ente_recebedor_plano_acao,r.cnpj_fundo_vinculado_plano_acao,r.nome_fundo_vinculado_plano_acao,r.nome_orgao_repassador_plano_acao,r.situacao_plano_acao,r.valor_total_repasse_plano_acao,r.valor_repasse_emenda_plano_acao
+    ]);
+    const csv=String.fromCharCode(65279)+[headings,...lines].map(row=>row.map(v=>'"'+String(v==null?"":v).replace(/"/g,'""')+'"').join(";")).join("\r\n");
+    const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));
+    const a=document.createElement("a");a.href=url;a.download="fundo-a-fundo-pagina-"+page+".csv";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+  $("uf").value="SP";
+  fetchData();
+})();
+</script>
+</body>
+</html>
