@@ -7,9 +7,9 @@
  */
 const API_BASE = "https://api-publica.transferegov.gestao.gov.br/especiais";
 const API_PAGE_SIZE = 200;
-const RECIPIENTS = Object.freeze([
-  {key:"prefeitura", cnpj:"46523239000147", name:"Prefeitura do Município de São Bernardo do Campo"},
-  {key:"saude", cnpj:"13961905000170", name:"Fundo Municipal de Saúde de São Bernardo do Campo"}
+const TARGETS = Object.freeze([
+  {kind:"prefeitura", cnpj:"46523239000147", label:"Prefeitura do Município de São Bernardo do Campo"},
+  {kind:"saude", cnpj:"13961905000170", label:"Fundo Municipal de Saúde de São Bernardo do Campo"}
 ]);
 const MAX_ROWS = 20000;
 const TABLE_PAGE_SIZE = 25;
@@ -165,13 +165,16 @@ async function loadBeneficiaries() {
     status(friendlyError(error)+" Não será exibido consolidado parcial.", "error");
   }
 }
+function beneficiaryRecord(id) {
+  return state.currentBeneficiaries.find(b=>String(b.id_beneficiario)===String(id)) || null;
+}
 function beneficiaryName(id) {
   const b = beneficiaryRecord(id);
-  return b ? b._recipientName : "Destinatário não identificado";
+  return b ? b._recipient_name : "Destinatário não identificado";
 }
 function beneficiaryCnpj(id) {
   const b = beneficiaryRecord(id);
-  return b ? b._recipientCnpj : "";
+  return b ? b._recipient_cnpj : "";
 }
 function clearResultRows() {
   state.rows = [];
@@ -237,7 +240,7 @@ function applyLocalFilters() {
   const recipientFilter = node("recipientFilter").value;
   state.filtered = state.rows.filter(row => {
     const recipient = beneficiaryRecord(row.id_beneficiario);
-    if (!recipient || (recipientFilter !== "ambos" && recipient._recipientKey !== recipientFilter)) return false;
+    if (!recipient || (recipientFilter !== "ambos" && recipient._recipient_kind !== recipientFilter)) return false;
     if (parlamentar && !normalized(row.nome_parlamentar_emenda_plano_acao).includes(parlamentar)) return false;
     if (emenda) {
       const identifiers = [row.codigo_emenda_parlamentar_formatado_plano_acao, row.numero_emenda_parlamentar_plano_acao, row.codigo_plano_acao].map(normalized).join(" ");
@@ -400,7 +403,6 @@ async function updateDate() {
 function resetFilters() {
   node("recipientFilter").value = "ambos";
   node("uf").value = "SP";
-  node("recipientFilter").value = "ambos";
   node("year").value = "";
   node("parliamentarian").value = "";
   node("amendment").value = "";
@@ -414,7 +416,6 @@ function resetFilters() {
 }
 function setup() {
   populateUF();
-  node("recipientFilter").addEventListener("change", () => { if (state.rows.length) applyLocalFilters(); });
   node("filterForm").addEventListener("submit", runSearch);
   node("recipientFilter").addEventListener("change", runSearch);
   node("clearBtn").addEventListener("click", resetFilters);
