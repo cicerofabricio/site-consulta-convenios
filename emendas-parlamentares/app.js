@@ -278,7 +278,7 @@ function renderResults() {
   if (!subset.length) {
     const line = document.createElement("tr");
     const cell = td(state.rows.length ? "Nenhum registro corresponde aos filtros." : "Nenhum registro carregado nesta consulta.", "empty");
-    cell.colSpan = 10;
+    cell.colSpan = 11;
     line.append(cell);
     body.append(line);
   }
@@ -288,6 +288,7 @@ function renderResults() {
     tr.append(td(emendaLabel(row)));
     tr.append(td(row.nome_parlamentar_emenda_plano_acao, "parlamentar"));
     tr.append(td(beneficiaryName(row.id_beneficiario)));
+    tr.append(td(beneficiaryCnpj(row.id_beneficiario)));
     tr.append(td(row.nome_objeto || row.detalhamento_objeto, "objeto"));
     const situation = td("");
     const pill = document.createElement("span");
