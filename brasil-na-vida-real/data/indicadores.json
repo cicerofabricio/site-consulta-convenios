@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-07T05:59:25+00:00",
+  "updated_at": "2026-11-07T13:02:39+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -293,6 +293,38 @@
   },
   "news": [
     {
+      "title": "VR e VA podem ser aceitos em mais maquininhas a partir deste sábado",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/vr-e-va-podem-ser-aceitos-em-mais-maquininhas-partir-deste-sabado",
+      "published": "Sat, 07 Nov 2026 09:03:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "alimentação",
+      "topic_label": "Alimentação",
+      "summary": "Os cartões de vale-refeição (VR) e vale-alimentação (VA) terão mudanças a partir deste sábado (7). A principal delas é a implementação da interoperabilidade, que prevê a aceitação de cartões de diferentes operadoras em qualquer maquininha habilitada para processar esse tipo de pagamento, desde que o estabelecimento também aceite o cartão utilizado .",
+      "description": "Os cartões de vale-refeição (VR) e vale-alimentação (VA) terão mudanças a partir deste sábado (7). A principal delas é a implementação da interoperabilidade, que prevê a aceitação de cartões de diferentes operadoras em qualquer maquininha habilitada para processar esse tipo de pagamento, desde que o estabelecimento também aceite o cartão utilizado .",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Bombeiros iniciam retirada de escombros com maquinário após desabamento no Brás",
+      "url": "https://www.agenciasp.sp.gov.br/seguranca-publica/bombeiros-iniciam-retirada-de-escombros-com-maquinario-apos-desabamento-no-bras/",
+      "published": "Sat, 07 Nov 2026 12:02:23 +0000",
+      "source": "Agência SP",
+      "topic": "renda e benefícios",
+      "topic_label": "Renda E Benefícios",
+      "summary": "Ao todo, 35 pessoas deixaram o imóvel, sendo 27 com auxílio dos bombeiros",
+      "description": "Ao todo, 35 pessoas deixaram o imóvel, sendo 27 com auxílio dos bombeiros",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
       "title": "Dólar sobe para R$ 5,51, com dados de emprego nos EUA",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-sobe-para-r-551-com-dados-de-emprego-nos-eua",
       "published": "Fri, 06 Nov 2026 19:10:00 -0300",
@@ -341,22 +373,6 @@
       "classification": "rule-based"
     },
     {
-      "title": "Pórticos Siga Fácil chegam à Castello Branco para modernizar o sistema, melhorar fluidez do trânsito e permitir tarifas mais justas",
-      "url": "https://www.agenciasp.sp.gov.br/transporte-e-transito/porticos-siga-facil-chegam-a-castello-branco-para-modernizar-o-sistema/",
-      "published": "Fri, 06 Nov 2026 18:50:08 +0000",
-      "source": "Agência SP",
-      "topic": "tributos e preços",
-      "topic_label": "Tributos E Preços",
-      "summary": "Instalação vai permitir viagens sem paradas para pagamento, tarifas menores em 67% das combinações analisadas e manutenção da isenção para motos; cobrança pelo novo sistema está prevista para março de 2027",
-      "description": "Instalação vai permitir viagens sem paradas para pagamento, tarifas menores em 67% das combinações analisadas e manutenção da isenção para motos; cobrança pelo novo sistema está prevista para março de 2027",
-      "stage_label": "Triagem temática",
-      "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
       "title": "Dólar volta a aproximar-se de R$ 5,49 em dia de instabilidade global",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-volta-aproximar-se-de-r-549-em-dia-de-instabilidade-global",
       "published": "Thu, 05 Nov 2026 19:11:00 -0300",
@@ -367,38 +383,6 @@
       "description": "O dólar fechou em alta e a bolsa encerrou em queda nesta quinta-feira (5), em um pregão marcado pelo aumento da aversão ao risco nos mercados internacionais. A pressão veio principalmente de Wall Street, com fortes perdas de ações ligadas à inteligência artificial. No cenário doméstico, investidores acompanharam a manutenção da Selic em 13,75% ao ano e as discussões sobre a política econômica do governo Lula. A moeda estadunidense terminou próxima de R$ 5,49, e o principal índice da bolsa brasil",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Imposto do pecado: entenda cobrança sobre cigarros, bebidas e veículos",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/imposto-do-pecado-entenda-cobranca-sobre-cigarros-bebidas-e-veiculos",
-      "published": "Thu, 05 Nov 2026 17:10:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "tributos e preços",
-      "topic_label": "Tributos E Preços",
-      "summary": "Após meses de negociação com os setores atingidos, o governo federal publicou, na quarta-feira (4), a Medida Provisória (MP) 1.399/2026 , que estabelece as alíquotas do Imposto Seletivo (IS), conhecido como “Imposto do Pecado”. Criado pela reforma tributária, o tributo incidirá sobre produtos e serviços considerados prejudiciais à saúde ou ao meio ambiente, como cigarros, bebidas alcoólicas, refrigerantes, veículos e determinadas atividades de apostas .",
-      "description": "Após meses de negociação com os setores atingidos, o governo federal publicou, na quarta-feira (4), a Medida Provisória (MP) 1.399/2026 , que estabelece as alíquotas do Imposto Seletivo (IS), conhecido como “Imposto do Pecado”. Criado pela reforma tributária, o tributo incidirá sobre produtos e serviços considerados prejudiciais à saúde ou ao meio ambiente, como cigarros, bebidas alcoólicas, refrigerantes, veículos e determinadas atividades de apostas .",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Mais de 2,4 milhões de casas precisam renovar desconto na conta de luz",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/mais-de-24-milhoes-de-casas-precisam-renovar-desconto-na-conta-de-luz",
-      "published": "Thu, 05 Nov 2026 16:58:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "moradia e contas",
-      "topic_label": "Moradia E Contas",
-      "summary": "Mais de 2,4 milhões de famílias de baixa renda precisam atualizar o cadastro junto a distribuidoras de energia elétrica para manter os benefícios do Programa Tarifa Social , que concede descontos e até isenção do pagamento da conta de luz. O número faz parte de um levantamento da Associação Brasileira de Distribuidores de Energia Elétrica (Abradee) com os quatro maiores grupos de distribuidoras do país.",
-      "description": "Mais de 2,4 milhões de famílias de baixa renda precisam atualizar o cadastro junto a distribuidoras de energia elétrica para manter os benefícios do Programa Tarifa Social , que concede descontos e até isenção do pagamento da conta de luz. O número faz parte de um levantamento da Associação Brasileira de Distribuidores de Energia Elétrica (Abradee) com os quatro maiores grupos de distribuidoras do país.",
-      "stage_label": "Triagem temática",
-      "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
       "impact_direction": "unknown",
       "causal_status": "evidência necessária",
       "confidence": "baixa",
@@ -645,7 +629,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-07T05:59:25+00:00",
+  "news_checked_at": "2026-11-07T13:02:39+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
