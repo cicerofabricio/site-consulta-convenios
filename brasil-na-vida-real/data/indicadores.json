@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-06T19:25:42+00:00",
+  "updated_at": "2026-11-07T05:59:25+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "06/11/2026",
+    "date": "07/11/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=22%2F09%2F2026&dataFinal=06%2F11%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=23%2F09%2F2026&dataFinal=07%2F11%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -292,6 +292,54 @@
     "price_gasoline_unit": "R$/litro"
   },
   "news": [
+    {
+      "title": "Dólar sobe para R$ 5,51, com dados de emprego nos EUA",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-sobe-para-r-551-com-dados-de-emprego-nos-eua",
+      "published": "Fri, 06 Nov 2026 19:10:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "mercados e câmbio",
+      "topic_label": "Mercados E Câmbio",
+      "summary": "O dólar fechou em alta e o Ibovespa avançou nesta sexta-feira (6), em um dia marcado pela divulgação de dados do mercado de trabalho dos Estados Unidos e pela expectativa em torno da política econômica do quarto mandato do presidente Luiz Inácio Lula da Silva. A moeda estadunidense subiu cerca de 0,4%, para R$ 5,51, enquanto a bolsa brasileira teve valorização de aproximadamente 1,4%, aos 168,5 mil pontos . Na semana, o dólar acumulou alta de 1,20%, e o Ibovespa avançou 0,29%. Números do dia Dólar à vista: R$ 5,511 (+0,44%); Dólar na semana: alta de 1,20%; Ibovespa: 168.498,45 pontos (+1,39%); Ibovespa na semana: alta de 0,29%; Índice DXY (dólar em relação a moedas fortes): 102,320 (+0,76%).",
+      "description": "O dólar fechou em alta e o Ibovespa avançou nesta sexta-feira (6), em um dia marcado pela divulgação de dados do mercado de trabalho dos Estados Unidos e pela expectativa em torno da política econômica do quarto mandato do presidente Luiz Inácio Lula da Silva. A moeda estadunidense subiu cerca de 0,4%, para R$ 5,51, enquanto a bolsa brasileira teve valorização de aproximadamente 1,4%, aos 168,5 mil pontos . Na semana, o dólar acumulou alta de 1,20%, e o Ibovespa avançou 0,29%. Números do dia Dól",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Brasil tem maior juro real do mundo, seguido por Turquia e Argentina",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/brasil-tem-maior-juro-real-do-mundo-seguido-por-turquia-e-argentina",
+      "published": "Fri, 06 Nov 2026 16:51:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "juros e crédito",
+      "topic_label": "Juros E Crédito",
+      "summary": "O Brasil segue como o país com os maiores juros reais do mundo, calculados em 9,05%, mais de sete vezes a média de 1,27% do ranking da consultoria de mercado Moneyou publicado nesta semana. O juro real desconta a inflação em cada país. O Brasil lidera o ranking de 40 países analisados, acima de Turquia, Argentina, Rússia e Colômbia.",
+      "description": "O Brasil segue como o país com os maiores juros reais do mundo, calculados em 9,05%, mais de sete vezes a média de 1,27% do ranking da consultoria de mercado Moneyou publicado nesta semana. O juro real desconta a inflação em cada país. O Brasil lidera o ranking de 40 países analisados, acima de Turquia, Argentina, Rússia e Colômbia.",
+      "stage_label": "Triagem temática",
+      "impact_label": "possível pressão; verificar efeitos; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Balança comercial tem maior superávit para outubro desde 1989",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/balanca-comercial-tem-maior-superavit-para-outubro-desde-1989",
+      "published": "Fri, 06 Nov 2026 16:43:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "combustíveis e transporte",
+      "topic_label": "Combustíveis E Transporte",
+      "summary": "A balança comercial brasileira teve o maior superávit para o mês de outubro em 37 anos, segundo dados divulgados nesta sexta-feira (6) pelo Ministério do Desenvolvimento, Indústria, Comércio e Serviços (Mdic). Impulsionadas pelo petróleo, combustíveis, cereais e soja, as exportações superaram as importações em US$ 9,32 bilhões, diferença 39,4% maior que a registrada em outubro de 2025, quando foi de US$ 6,69 bilhões.",
+      "description": "A balança comercial brasileira teve o maior superávit para o mês de outubro em 37 anos, segundo dados divulgados nesta sexta-feira (6) pelo Ministério do Desenvolvimento, Indústria, Comércio e Serviços (Mdic). Impulsionadas pelo petróleo, combustíveis, cereais e soja, as exportações superaram as importações em US$ 9,32 bilhões, diferença 39,4% maior que a registrada em outubro de 2025, quando foi de US$ 6,69 bilhões.",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
     {
       "title": "Pórticos Siga Fácil chegam à Castello Branco para modernizar o sistema, melhorar fluidez do trânsito e permitir tarifas mais justas",
       "url": "https://www.agenciasp.sp.gov.br/transporte-e-transito/porticos-siga-facil-chegam-a-castello-branco-para-modernizar-o-sistema/",
@@ -349,38 +397,6 @@
       "topic_label": "Moradia E Contas",
       "summary": "Mais de 2,4 milhões de famílias de baixa renda precisam atualizar o cadastro junto a distribuidoras de energia elétrica para manter os benefícios do Programa Tarifa Social , que concede descontos e até isenção do pagamento da conta de luz. O número faz parte de um levantamento da Associação Brasileira de Distribuidores de Energia Elétrica (Abradee) com os quatro maiores grupos de distribuidoras do país.",
       "description": "Mais de 2,4 milhões de famílias de baixa renda precisam atualizar o cadastro junto a distribuidoras de energia elétrica para manter os benefícios do Programa Tarifa Social , que concede descontos e até isenção do pagamento da conta de luz. O número faz parte de um levantamento da Associação Brasileira de Distribuidores de Energia Elétrica (Abradee) com os quatro maiores grupos de distribuidoras do país.",
-      "stage_label": "Triagem temática",
-      "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "FGC alerta para vazamento de dados de investidores e risco de golpes",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/fgc-alerta-para-vazamento-de-dados-de-investidores-e-risco-de-golpes",
-      "published": "Thu, 05 Nov 2026 16:40:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "tributos e preços",
-      "topic_label": "Tributos E Preços",
-      "summary": "O Fundo Garantidor de Créditos (FGC) informou nesta quinta-feira (5) que identificou acesso não autorizado a dados pessoais de investidores. O incidente, detectado em 26 de outubro, envolveu informações como nome, CPF, e-mail e data de nascimento. A entidade comunicou o caso à Agência Nacional de Proteção de Dados (ANPD) e alertou para o risco de golpes. Até o momento, não há evidências de uso indevido dos dados ou de prejuízos financeiros. Além dos dados pessoais, foram acessadas informações relacionadas ao pagamento da garantia, como tributos retidos e canais de distribuição do investimento na instituição liquidada. O FGC não divulgou o número de pessoas afetadas , nem identificou as insti",
-      "description": "O Fundo Garantidor de Créditos (FGC) informou nesta quinta-feira (5) que identificou acesso não autorizado a dados pessoais de investidores. O incidente, detectado em 26 de outubro, envolveu informações como nome, CPF, e-mail e data de nascimento. A entidade comunicou o caso à Agência Nacional de Proteção de Dados (ANPD) e alertou para o risco de golpes. Até o momento, não há evidências de uso indevido dos dados ou de prejuízos financeiros. Além dos dados pessoais, foram acessadas informações re",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Durigan diz que é preciso dar condições para a queda dos juros",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/durigan-diz-que-e-preciso-dar-condicoes-para-queda-dos-juros",
-      "published": "Thu, 05 Nov 2026 12:30:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "juros e crédito",
-      "topic_label": "Juros E Crédito",
-      "summary": "Um dia depois de o Comitê de Política Monetária (Copom) anunciar a manutenção da taxa básica de juros Selic em 13,75% ao ano, o ministro da Fazenda, Dario Durigan, considera que o valor ainda é muito alto . Segundo ele, é preciso que haja condições para uma queda sustentável dessa taxa no país.",
-      "description": "Um dia depois de o Comitê de Política Monetária (Copom) anunciar a manutenção da taxa básica de juros Selic em 13,75% ao ano, o ministro da Fazenda, Dario Durigan, considera que o valor ainda é muito alto . Segundo ele, é preciso que haja condições para uma queda sustentável dessa taxa no país.",
       "stage_label": "Triagem temática",
       "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
       "impact_direction": "unknown",
@@ -629,7 +645,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-06T19:25:42+00:00",
+  "news_checked_at": "2026-11-07T05:59:25+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
