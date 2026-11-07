@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-07T13:02:39+00:00",
+  "updated_at": "2026-11-07T21:51:53+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -301,22 +301,6 @@
       "topic_label": "Alimentação",
       "summary": "Os cartões de vale-refeição (VR) e vale-alimentação (VA) terão mudanças a partir deste sábado (7). A principal delas é a implementação da interoperabilidade, que prevê a aceitação de cartões de diferentes operadoras em qualquer maquininha habilitada para processar esse tipo de pagamento, desde que o estabelecimento também aceite o cartão utilizado .",
       "description": "Os cartões de vale-refeição (VR) e vale-alimentação (VA) terão mudanças a partir deste sábado (7). A principal delas é a implementação da interoperabilidade, que prevê a aceitação de cartões de diferentes operadoras em qualquer maquininha habilitada para processar esse tipo de pagamento, desde que o estabelecimento também aceite o cartão utilizado .",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Bombeiros iniciam retirada de escombros com maquinário após desabamento no Brás",
-      "url": "https://www.agenciasp.sp.gov.br/seguranca-publica/bombeiros-iniciam-retirada-de-escombros-com-maquinario-apos-desabamento-no-bras/",
-      "published": "Sat, 07 Nov 2026 12:02:23 +0000",
-      "source": "Agência SP",
-      "topic": "renda e benefícios",
-      "topic_label": "Renda E Benefícios",
-      "summary": "Ao todo, 35 pessoas deixaram o imóvel, sendo 27 com auxílio dos bombeiros",
-      "description": "Ao todo, 35 pessoas deixaram o imóvel, sendo 27 com auxílio dos bombeiros",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
@@ -629,7 +613,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-07T13:02:39+00:00",
+  "news_checked_at": "2026-11-07T21:51:53+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
