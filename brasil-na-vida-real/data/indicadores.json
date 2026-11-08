@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-08T06:02:38+00:00",
+  "updated_at": "2026-11-08T13:26:08+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -293,7 +293,7 @@
   },
   "news": [
     {
-      "title": "VR e VA podem ser aceitos em mais maquininhas a partir deste sábado",
+      "title": "Vales refeição e alimentação podem ser aceitos em mais maquininhas",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/vr-e-va-podem-ser-aceitos-em-mais-maquininhas-partir-deste-sabado",
       "published": "Sat, 07 Nov 2026 09:03:00 -0300",
       "source": "Agência Brasil — Economia",
@@ -613,7 +613,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-08T06:02:38+00:00",
+  "news_checked_at": "2026-11-08T13:26:08+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
