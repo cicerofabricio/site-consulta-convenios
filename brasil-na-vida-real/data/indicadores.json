@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-08T13:26:08+00:00",
+  "updated_at": "2026-11-08T22:07:00+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -293,6 +293,22 @@
   },
   "news": [
     {
+      "title": "Com apoio da Fapesp, instituições paulistas modernizam acervos",
+      "url": "https://www.agenciasp.sp.gov.br/cultura/fapesp-moderniza-acervos/",
+      "published": "Sun, 08 Nov 2026 17:03:00 +0000",
+      "source": "Agência SP",
+      "topic": "renda e benefícios",
+      "topic_label": "Renda E Benefícios",
+      "summary": "Arquivos da Fundação Bienal, MAM. Escola Célia Helena e IEB-USP estão entre os selecionados em chamada de infraestrutura que visa higienizar, digitalizar e presevar a memória das artes no Brasil com auxílio da Fapesp",
+      "description": "Arquivos da Fundação Bienal, MAM. Escola Célia Helena e IEB-USP estão entre os selecionados em chamada de infraestrutura que visa higienizar, digitalizar e presevar a memória das artes no Brasil com auxílio da Fapesp",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
       "title": "Vales refeição e alimentação podem ser aceitos em mais maquininhas",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/vr-e-va-podem-ser-aceitos-em-mais-maquininhas-partir-deste-sabado",
       "published": "Sat, 07 Nov 2026 09:03:00 -0300",
@@ -515,105 +531,9 @@
       "causal_status": "evidência necessária",
       "confidence": "baixa",
       "classification": "rule-based"
-    },
-    {
-      "title": "Investimentos no Tesouro Direto somam R$ 8,77 bilhões em setembro de 2026",
-      "url": "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/outubro/investimentos-no-tesouro-direto-somam-r-8-77-bilhoes-em-setembro-de-2026",
-      "published": "",
-      "source": "Ministério da Fazenda",
-      "topic": "mercados e câmbio",
-      "topic_label": "Mercados E Câmbio",
-      "summary": "Investimentos no Tesouro Direto somam R$ 8,77 bilhões em setembro de 2026",
-      "description": "Investimentos no Tesouro Direto somam R$ 8,77 bilhões em setembro de 2026",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Governo Federal prorroga por mais 30 dias subvenção de R$ 2,12 por litro de óleo diesel",
-      "url": "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/outubro/governo-federal-prorroga-por-mais-30-dias-subvencao-de-r-2-12-por-litro-de-oleo-diesel",
-      "published": "",
-      "source": "Ministério da Fazenda",
-      "topic": "combustíveis e transporte",
-      "topic_label": "Combustíveis E Transporte",
-      "summary": "Governo Federal prorroga por mais 30 dias subvenção de R$ 2,12 por litro de óleo diesel",
-      "description": "Governo Federal prorroga por mais 30 dias subvenção de R$ 2,12 por litro de óleo diesel",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "MME e MMA retomam avaliação ambiental de bacias de petróleo e iniciam estudo da Bacia de Pelotas",
-      "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/novembro-26/mme-e-mma-retomam-avaliacao-ambiental-de-bacias-de-petroleo-e-iniciam-estudo-da-bacia-de-pelotas",
-      "published": "",
-      "source": "Ministério de Minas e Energia",
-      "topic": "combustíveis e transporte",
-      "topic_label": "Combustíveis E Transporte",
-      "summary": "MME e MMA retomam avaliação ambiental de bacias de petróleo e iniciam estudo da Bacia de Pelotas",
-      "description": "MME e MMA retomam avaliação ambiental de bacias de petróleo e iniciam estudo da Bacia de Pelotas",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "CNPE aprova medidas para reforçar a segurança, a rastreabilidade e a fiscalização do mercado de gás de cozinha",
-      "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/novembro-26/cnpe-aprova-medidas-para-reforcar-a-seguranca-a-rastreabilidade-e-a-fiscalizacao-do-mercado-de-gas-de-cozinha",
-      "published": "",
-      "source": "Ministério de Minas e Energia",
-      "topic": "moradia e contas",
-      "topic_label": "Moradia E Contas",
-      "summary": "CNPE aprova medidas para reforçar a segurança, a rastreabilidade e a fiscalização do mercado de gás de cozinha",
-      "description": "CNPE aprova medidas para reforçar a segurança, a rastreabilidade e a fiscalização do mercado de gás de cozinha",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "PDE projeta produção de 4,9 milhões de barris de petróleo por dia em 2036 e destaca importância de novas fronteiras exploratórias",
-      "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/novembro-26/pde-projeta-producao-de-4-9-milhoes-de-barris-de-petroleo-por-dia-em-2036-e-destaca-importancia-de-novas-fronteiras-exploratorias",
-      "published": "",
-      "source": "Ministério de Minas e Energia",
-      "topic": "combustíveis e transporte",
-      "topic_label": "Combustíveis E Transporte",
-      "summary": "PDE projeta produção de 4,9 milhões de barris de petróleo por dia em 2036 e destaca importância de novas fronteiras exploratórias",
-      "description": "PDE projeta produção de 4,9 milhões de barris de petróleo por dia em 2036 e destaca importância de novas fronteiras exploratórias",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "MME abre consulta pública para modernizar diretrizes do Plano de Outorgas de Transmissão de Energia Elétrica",
-      "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/outubro-26/mme-abre-consulta-publica-para-modernizar-diretrizes-do-plano-de-outorgas-de-transmissao-de-energia-eletrica",
-      "published": "",
-      "source": "Ministério de Minas e Energia",
-      "topic": "moradia e contas",
-      "topic_label": "Moradia E Contas",
-      "summary": "MME abre consulta pública para modernizar diretrizes do Plano de Outorgas de Transmissão de Energia Elétrica",
-      "description": "MME abre consulta pública para modernizar diretrizes do Plano de Outorgas de Transmissão de Energia Elétrica",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-08T13:26:08+00:00",
+  "news_checked_at": "2026-11-08T22:07:00+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
@@ -651,5 +571,7 @@
       "type": "news-feed"
     }
   ],
-  "warnings": []
+  "warnings": [
+    "Página oficial Ministério de Minas e Energia sem resposta: HTTP Error 503: Service Unavailable"
+  ]
 }
