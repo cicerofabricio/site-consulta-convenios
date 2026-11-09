@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-08T22:07:00+00:00",
+  "updated_at": "2026-11-09T06:32:13+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "08/11/2026",
+    "date": "09/11/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=24%2F09%2F2026&dataFinal=08%2F11%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=25%2F09%2F2026&dataFinal=09%2F11%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -531,9 +531,73 @@
       "causal_status": "evidência necessária",
       "confidence": "baixa",
       "classification": "rule-based"
+    },
+    {
+      "title": "MME e MMA retomam avaliação ambiental de bacias de petróleo e iniciam estudo da Bacia de Pelotas",
+      "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/novembro-26/mme-e-mma-retomam-avaliacao-ambiental-de-bacias-de-petroleo-e-iniciam-estudo-da-bacia-de-pelotas",
+      "published": "",
+      "source": "Ministério de Minas e Energia",
+      "topic": "combustíveis e transporte",
+      "topic_label": "Combustíveis E Transporte",
+      "summary": "MME e MMA retomam avaliação ambiental de bacias de petróleo e iniciam estudo da Bacia de Pelotas",
+      "description": "MME e MMA retomam avaliação ambiental de bacias de petróleo e iniciam estudo da Bacia de Pelotas",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "CNPE aprova medidas para reforçar a segurança, a rastreabilidade e a fiscalização do mercado de gás de cozinha",
+      "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/novembro-26/cnpe-aprova-medidas-para-reforcar-a-seguranca-a-rastreabilidade-e-a-fiscalizacao-do-mercado-de-gas-de-cozinha",
+      "published": "",
+      "source": "Ministério de Minas e Energia",
+      "topic": "moradia e contas",
+      "topic_label": "Moradia E Contas",
+      "summary": "CNPE aprova medidas para reforçar a segurança, a rastreabilidade e a fiscalização do mercado de gás de cozinha",
+      "description": "CNPE aprova medidas para reforçar a segurança, a rastreabilidade e a fiscalização do mercado de gás de cozinha",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "PDE projeta produção de 4,9 milhões de barris de petróleo por dia em 2036 e destaca importância de novas fronteiras exploratórias",
+      "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/novembro-26/pde-projeta-producao-de-4-9-milhoes-de-barris-de-petroleo-por-dia-em-2036-e-destaca-importancia-de-novas-fronteiras-exploratorias",
+      "published": "",
+      "source": "Ministério de Minas e Energia",
+      "topic": "combustíveis e transporte",
+      "topic_label": "Combustíveis E Transporte",
+      "summary": "PDE projeta produção de 4,9 milhões de barris de petróleo por dia em 2036 e destaca importância de novas fronteiras exploratórias",
+      "description": "PDE projeta produção de 4,9 milhões de barris de petróleo por dia em 2036 e destaca importância de novas fronteiras exploratórias",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "MME abre consulta pública para modernizar diretrizes do Plano de Outorgas de Transmissão de Energia Elétrica",
+      "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/outubro-26/mme-abre-consulta-publica-para-modernizar-diretrizes-do-plano-de-outorgas-de-transmissao-de-energia-eletrica",
+      "published": "",
+      "source": "Ministério de Minas e Energia",
+      "topic": "moradia e contas",
+      "topic_label": "Moradia E Contas",
+      "summary": "MME abre consulta pública para modernizar diretrizes do Plano de Outorgas de Transmissão de Energia Elétrica",
+      "description": "MME abre consulta pública para modernizar diretrizes do Plano de Outorgas de Transmissão de Energia Elétrica",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-08T22:07:00+00:00",
+  "news_checked_at": "2026-11-09T06:32:13+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
@@ -571,7 +635,5 @@
       "type": "news-feed"
     }
   ],
-  "warnings": [
-    "Página oficial Ministério de Minas e Energia sem resposta: HTTP Error 503: Service Unavailable"
-  ]
+  "warnings": []
 }
