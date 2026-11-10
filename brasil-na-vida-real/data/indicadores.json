@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-09T22:23:21+00:00",
+  "updated_at": "2026-11-10T07:19:45+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202609",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "09/11/2026",
+    "date": "10/11/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=25%2F09%2F2026&dataFinal=09%2F11%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=26%2F09%2F2026&dataFinal=10%2F11%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -292,6 +292,38 @@
     "price_gasoline_unit": "R$/litro"
   },
   "news": [
+    {
+      "title": "Bolsa sobe 2,22% e registra maior alta diária desde outubro",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/bolsa-sobe-222-e-registra-maior-alta-diaria-desde-outubro",
+      "published": "Mon, 09 Nov 2026 19:38:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "mercados e câmbio",
+      "topic_label": "Mercados E Câmbio",
+      "summary": "O mercado financeiro teve uma sessão de forte recuperação nesta segunda-feira (9), com a bolsa brasileira avançando mais de 2% e retomando os 172 mil pontos. Em Nova York, os principais índices também fecharam em alta, impulsionados pela recuperação das ações de tecnologia e pelo recuo dos preços do petróleo. No mercado de câmbio, o dólar encerrou próximo da estabilidade, com leve queda, cotado a R$ 5,506. O petróleo registrou forte desvalorização, após declarações do presidente dos Estados Unidos, Donald Trump, reduzirem as expectativas de novos ataques americanos contra o Irã. Números do dia Ibovespa: 172.236,05 pontos (+2,22%); Dólar comercial: R$ 5,506 (-0,06%); Dow Jones: 52.389,75 pont",
+      "description": "O mercado financeiro teve uma sessão de forte recuperação nesta segunda-feira (9), com a bolsa brasileira avançando mais de 2% e retomando os 172 mil pontos. Em Nova York, os principais índices também fecharam em alta, impulsionados pela recuperação das ações de tecnologia e pelo recuo dos preços do petróleo. No mercado de câmbio, o dólar encerrou próximo da estabilidade, com leve queda, cotado a R$ 5,506. O petróleo registrou forte desvalorização, após declarações do presidente dos Estados Unid",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Aneel propõe Tarifa Hora Certa para reduzir valor em função do horário",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/aneel-propoe-tarifa-hora-certa-para-reduzir-valor-em-funcao-do-horario",
+      "published": "Mon, 09 Nov 2026 19:23:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "moradia e contas",
+      "topic_label": "Moradia E Contas",
+      "summary": "Em breve, uma parcela dos consumidores de energia elétrica na baixa tensão será enquadrada em uma nova modalidade tarifária: a Tarifa Hora Certa, em que o valor da energia é calculado em razão do horário. O objetivo é incentivar os consumidores a fazer o uso da energia em horários de menor pico. A proposta, apresentada nesta segunda-feira (9) pela Agência Nacional da Energia Elétrica (Aneel) ainda precisa obter o aval da diretoria da agência reguladora para ser implementada. A previsão é de que o tema seja analisado ainda neste ano, para iniciar os preparativos em 2027 e implantar a modalidade a partir de 2028. A Tarifa Hora Certa é destinada aos consumidores na baixa tensão dos subgrupos re",
+      "description": "Em breve, uma parcela dos consumidores de energia elétrica na baixa tensão será enquadrada em uma nova modalidade tarifária: a Tarifa Hora Certa, em que o valor da energia é calculado em razão do horário. O objetivo é incentivar os consumidores a fazer o uso da energia em horários de menor pico. A proposta, apresentada nesta segunda-feira (9) pela Agência Nacional da Energia Elétrica (Aneel) ainda precisa obter o aval da diretoria da agência reguladora para ser implementada. A previsão é de que ",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
     {
       "title": "Filipinas suspendem importação de carne suína brasileira por 60 dias",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/filipinas-suspendem-importacao-de-carne-suina-brasileira-por-60-dias",
@@ -389,22 +421,6 @@
       "classification": "rule-based"
     },
     {
-      "title": "Dólar sobe para R$ 5,51, com dados de emprego nos EUA",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-sobe-para-r-551-com-dados-de-emprego-nos-eua",
-      "published": "Fri, 06 Nov 2026 19:10:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "mercados e câmbio",
-      "topic_label": "Mercados E Câmbio",
-      "summary": "O dólar fechou em alta e o Ibovespa avançou nesta sexta-feira (6), em um dia marcado pela divulgação de dados do mercado de trabalho dos Estados Unidos e pela expectativa em torno da política econômica do quarto mandato do presidente Luiz Inácio Lula da Silva. A moeda estadunidense subiu cerca de 0,4%, para R$ 5,51, enquanto a bolsa brasileira teve valorização de aproximadamente 1,4%, aos 168,5 mil pontos . Na semana, o dólar acumulou alta de 1,20%, e o Ibovespa avançou 0,29%. Números do dia Dólar à vista: R$ 5,511 (+0,44%); Dólar na semana: alta de 1,20%; Ibovespa: 168.498,45 pontos (+1,39%); Ibovespa na semana: alta de 0,29%; Índice DXY (dólar em relação a moedas fortes): 102,320 (+0,76%).",
-      "description": "O dólar fechou em alta e o Ibovespa avançou nesta sexta-feira (6), em um dia marcado pela divulgação de dados do mercado de trabalho dos Estados Unidos e pela expectativa em torno da política econômica do quarto mandato do presidente Luiz Inácio Lula da Silva. A moeda estadunidense subiu cerca de 0,4%, para R$ 5,51, enquanto a bolsa brasileira teve valorização de aproximadamente 1,4%, aos 168,5 mil pontos . Na semana, o dólar acumulou alta de 1,20%, e o Ibovespa avançou 0,29%. Números do dia Dól",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
       "title": "Cidadania e Assistência Social",
       "url": "https://www.gov.br/pt-br/noticias/assistencia-social",
       "published": "",
@@ -413,6 +429,22 @@
       "topic_label": "Renda E Benefícios",
       "summary": "Cidadania e Assistência Social",
       "description": "Cidadania e Assistência Social",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Governo Federal prorroga até 9 de dezembro desoneração da gasolina e do etanol",
+      "url": "https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/noticias/2026/11/governo-federal-prorroga-ate-9-de-dezembro-desoneracao-da-gasolina-e-do-etanol",
+      "published": "",
+      "source": "Planalto",
+      "topic": "combustíveis e transporte",
+      "topic_label": "Combustíveis E Transporte",
+      "summary": "Governo Federal prorroga até 9 de dezembro desoneração da gasolina e do etanol",
+      "description": "Governo Federal prorroga até 9 de dezembro desoneração da gasolina e do etanol",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
@@ -645,7 +677,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-09T22:23:21+00:00",
+  "news_checked_at": "2026-11-10T07:19:45+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
