@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-12T19:55:14+00:00",
+  "updated_at": "2026-11-13T06:46:44+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202610",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "12/11/2026",
+    "date": "13/11/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=28%2F09%2F2026&dataFinal=12%2F11%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=29%2F09%2F2026&dataFinal=13%2F11%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -292,6 +292,22 @@
     "price_gasoline_unit": "R$/litro"
   },
   "news": [
+    {
+      "title": "Dólar dispara 1,58% e fecha a R$ 5,65, maior nível em 17 meses",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-dispara-158-e-fecha-r-565-maior-nivel-em-17-meses",
+      "published": "Thu, 12 Nov 2026 19:35:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "mercados e câmbio",
+      "topic_label": "Mercados E Câmbio",
+      "summary": "Em meio a turbulências nos cenários doméstico e internacional, o dólar disparou frente ao real e fechou acima de R$ 5,65 nesta quinta-feira (12), no maior patamar desde junho de 2025. A moeda foi impulsionada pela insatisfação dos investidores com o pacote fiscal anunciado pelo governo e pelo fortalecimento da divisa estadunidense no exterior. Na bolsa, o Ibovespa recuou, pressionado principalmente pela queda das ações do Banco do Brasil (BB), em meio à queda do lucro no terceiro trimestre . No mercado internacional, o petróleo também encerrou em alta, diante das tensões entre Estados Unidos e Irã. Números do dia • Dólar comercial: R$ 5,6507 (+1,58%); • Ibovespa: 171.324,31 pontos (-0,47%); ",
+      "description": "Em meio a turbulências nos cenários doméstico e internacional, o dólar disparou frente ao real e fechou acima de R$ 5,65 nesta quinta-feira (12), no maior patamar desde junho de 2025. A moeda foi impulsionada pela insatisfação dos investidores com o pacote fiscal anunciado pelo governo e pelo fortalecimento da divisa estadunidense no exterior. Na bolsa, o Ibovespa recuou, pressionado principalmente pela queda das ações do Banco do Brasil (BB), em meio à queda do lucro no terceiro trimestre . No ",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
     {
       "title": "São Paulo gera mais de 320 mil empregos com carteira assinada no ano, quase 30% do total do país",
       "url": "https://www.agenciasp.sp.gov.br/desenvolvimento/sao-paulo-gera-mais-de-320-mil-empregos-com-carteira-assinada-no-ano-quase-30-do-total-do-pais/",
@@ -351,22 +367,6 @@
       "description": "Pressionado pelo aumento da inadimplência, principalmente do agronegócio, o Banco do Brasil (BB) registrou lucro líquido ajustado de R$ 1,27 bilhão no terceiro trimestre de 2026, queda de 66,5% em relação ao mesmo período do ano passado. Com esse cenário, a instituição reduziu pela metade a projeção de lucro para o ano e elevou a estimativa de despesas com perdas em operações de crédito.",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Dólar cai 0,42% e fecha a R$ 5,56 com foco em pacote fiscal",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-cai-042-e-fecha-r-556-com-foco-em-pacote-fiscal",
-      "published": "Wed, 11 Nov 2026 19:51:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "mercados e câmbio",
-      "topic_label": "Mercados E Câmbio",
-      "summary": "O dólar fechou em queda nesta quarta-feira (11), e a bolsa brasileira avançou, em uma sessão marcada pela repercussão do pacote de ajuste fiscal do governo e pelo desempenho positivo dos mercados internacionais. A moeda estadunidense recuou cerca de 0,4%, para R$ 5,56, enquanto o Ibovespa subiu na mesma proporção, aos 172 mil pontos. No exterior, o petróleo também avançou, com as tensões entre Estados Unidos e Irã no radar dos investidores. Números do dia Dólar comercial: R$ 5,5628 (-0,42%); Ibovespa: 172.060,44 pontos (+0,42%) Volume negociado na Bolsa: R$ 28,5 bilhões Dólar global (DXY): 102,890 pontos (+0,67%) Petróleo tipo Brent: US$ 92,76 (+1,39%) Petróleo tipo WTI: US$ 86,53 (+0,57%). ",
-      "description": "O dólar fechou em queda nesta quarta-feira (11), e a bolsa brasileira avançou, em uma sessão marcada pela repercussão do pacote de ajuste fiscal do governo e pelo desempenho positivo dos mercados internacionais. A moeda estadunidense recuou cerca de 0,4%, para R$ 5,56, enquanto o Ibovespa subiu na mesma proporção, aos 172 mil pontos. No exterior, o petróleo também avançou, com as tensões entre Estados Unidos e Irã no radar dos investidores. Números do dia Dólar comercial: R$ 5,5628 (-0,42%); Ibo",
-      "stage_label": "Triagem temática",
-      "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
       "impact_direction": "unknown",
       "causal_status": "evidência necessária",
       "confidence": "baixa",
@@ -581,6 +581,22 @@
       "classification": "rule-based"
     },
     {
+      "title": "Brasil leva Lei do Combustível do Futuro à COP31 e apresenta avanços na descarbonização dos transportes",
+      "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/novembro-26/brasil-leva-lei-do-combustivel-do-futuro-a-cop31-e-apresenta-avancos-na-descarbonizacao-dos-transportes",
+      "published": "",
+      "source": "Ministério de Minas e Energia",
+      "topic": "combustíveis e transporte",
+      "topic_label": "Combustíveis E Transporte",
+      "summary": "Brasil leva Lei do Combustível do Futuro à COP31 e apresenta avanços na descarbonização dos transportes",
+      "description": "Brasil leva Lei do Combustível do Futuro à COP31 e apresenta avanços na descarbonização dos transportes",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
       "title": "MME e MMA retomam avaliação ambiental de bacias de petróleo e iniciam estudo da Bacia de Pelotas",
       "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/novembro-26/mme-e-mma-retomam-avaliacao-ambiental-de-bacias-de-petroleo-e-iniciam-estudo-da-bacia-de-pelotas",
       "published": "",
@@ -629,7 +645,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-12T19:55:14+00:00",
+  "news_checked_at": "2026-11-13T06:46:44+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
