@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-14T06:24:51+00:00",
+  "updated_at": "2026-11-14T18:03:45+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202610",
@@ -293,6 +293,22 @@
   },
   "news": [
     {
+      "title": "Bombeiros de SP trabalham em rescaldo de incêndio em fábrica de produtos químicos em Salto",
+      "url": "https://www.agenciasp.sp.gov.br/seguranca-publica/bombeiros-de-sp-trabalham-em-rescaldo-de-incendio-em-fabrica-de-produtos-quimicos-em-salto/",
+      "published": "Sat, 14 Nov 2026 12:27:55 +0000",
+      "source": "Agência SP",
+      "topic": "tributos e preços",
+      "topic_label": "Tributos E Preços",
+      "summary": "Acidente deixou dez feridos, entre eles quatro bombeiros e dois agentes da Defesa Civil municipal; um já recebeu alta",
+      "description": "Acidente deixou dez feridos, entre eles quatro bombeiros e dois agentes da Defesa Civil municipal; um já recebeu alta",
+      "stage_label": "Triagem temática",
+      "impact_label": "possível pressão; verificar efeitos; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
       "title": "Anac orienta passageiros a consultar aéreas sobre voos para os EUA",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/anac-orienta-passageiros-consultar-aereas-sobre-voos-para-os-eua",
       "published": "Fri, 13 Nov 2026 21:00:00 -0300",
@@ -373,22 +389,6 @@
       "classification": "rule-based"
     },
     {
-      "title": "Casa em Dia: CDHU realiza plantões de atendimento na capital paulista durante o fim de semana",
-      "url": "https://www.agenciasp.sp.gov.br/social/cdhu-capital-paulista-fim-de-semana/",
-      "published": "Fri, 13 Nov 2026 22:01:43 +0000",
-      "source": "Agência SP",
-      "topic": "juros e crédito",
-      "topic_label": "Juros E Crédito",
-      "summary": "Ação da CDHU oferece orientações sobre contratos habitacionais e alternativas para renegociação de financiamentos",
-      "description": "Ação da CDHU oferece orientações sobre contratos habitacionais e alternativas para renegociação de financiamentos",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
       "title": "Dólar fecha estável a R$ 5,65, mas sobe 2,63% na semana",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-fecha-estavel-r-565-mas-sobe-263-na-semana",
       "published": "Fri, 13 Nov 2026 18:53:00 -0300",
@@ -399,22 +399,6 @@
       "description": "O dólar fechou praticamente estável nesta sexta-feira (13), cotado a R$ 5,65, mas acumulou alta de 2,63% na semana. Além das incertezas sobre o pacote fiscal do governo, pesou a continuidade das turbulências no mercado internacional. Na bolsa, o Ibovespa subiu 0,66%, aos 172,5 mil pontos, impulsionado por ações de varejistas e petroleiras. No exterior, os mercados tiveram desempenho misto, enquanto o petróleo encerrou o dia perto da estabilidade. Números do dia Dólar à vista: R$ 5,657 (+0,11%); ",
       "stage_label": "Triagem temática",
       "impact_label": "possível pressão; verificar efeitos; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Casa em Dia: CDHU inicia plantões de atendimento na Região de Sorocaba",
-      "url": "https://www.agenciasp.sp.gov.br/social/casa-em-dia-cdhu-sorocaba/",
-      "published": "Fri, 13 Nov 2026 21:52:30 +0000",
-      "source": "Agência SP",
-      "topic": "juros e crédito",
-      "topic_label": "Juros E Crédito",
-      "summary": "Ação da CDHU oferece orientações sobre contratos habitacionais e alternativas para renegociação de financiamentos",
-      "description": "Ação da CDHU oferece orientações sobre contratos habitacionais e alternativas para renegociação de financiamentos",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
       "causal_status": "evidência necessária",
       "confidence": "baixa",
@@ -437,22 +421,6 @@
       "classification": "rule-based"
     },
     {
-      "title": "Qualifica SP oferece mais de 2,5 mil vagas em cursos gratuitos com inscrições até terça (17)",
-      "url": "https://www.agenciasp.sp.gov.br/desenvolvimento/qualifica-sp-vaga-terca-17/",
-      "published": "Fri, 13 Nov 2026 18:11:19 +0000",
-      "source": "Agência SP",
-      "topic": "emprego e renda",
-      "topic_label": "Emprego E Renda",
-      "summary": "O Qualifica SP oferece oportunidades presenciais e online que abrangem diferentes áreas profissionais e são destinadas a quem deseja ingressar no mercado de trabalho ou ampliar suas qualificações",
-      "description": "O Qualifica SP oferece oportunidades presenciais e online que abrangem diferentes áreas profissionais e são destinadas a quem deseja ingressar no mercado de trabalho ou ampliar suas qualificações",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
       "title": "Cidadania e Assistência Social",
       "url": "https://www.gov.br/pt-br/noticias/assistencia-social",
       "published": "",
@@ -461,6 +429,22 @@
       "topic_label": "Renda E Benefícios",
       "summary": "Cidadania e Assistência Social",
       "description": "Cidadania e Assistência Social",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Lula nas Filipinas: visita consolida aproximação com a Ásia e inaugura novo capítulo do relacionamento bilateral",
+      "url": "https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/noticias/2026/11/lula-nas-filipinas-visita-consolida-aproximacao-com-a-asia-e-inaugura-novo-capitulo-do-relacionamento-bilateral",
+      "published": "",
+      "source": "Planalto",
+      "topic": "tributos e preços",
+      "topic_label": "Tributos E Preços",
+      "summary": "Lula nas Filipinas: visita consolida aproximação com a Ásia e inaugura novo capítulo do relacionamento bilateral",
+      "description": "Lula nas Filipinas: visita consolida aproximação com a Ásia e inaugura novo capítulo do relacionamento bilateral",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
@@ -757,7 +741,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-14T06:24:51+00:00",
+  "news_checked_at": "2026-11-14T18:03:45+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
