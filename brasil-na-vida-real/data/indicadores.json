@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-14T18:03:45+00:00",
+  "updated_at": "2026-11-14T22:25:16+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202610",
@@ -292,6 +292,22 @@
     "price_gasoline_unit": "R$/litro"
   },
   "news": [
+    {
+      "title": "Lula cita herói anticolonial das Filipinas ao comentar sua reeleição",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/lula-cita-heroi-anticolonial-das-filipinas-ao-comentar-sua-reeleicao",
+      "published": "Sat, 14 Nov 2026 16:48:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "tributos e preços",
+      "topic_label": "Tributos E Preços",
+      "summary": "Em visita oficial às Filipinas, o presidente Luiz Inácio Lula da Silva citou o herói da independência do país, José Rizal, um símbolo da luta contra o colonialismo, ao se referir a sua reeleição, em outubro. “No último dia 25, diante do extremismo e de tentativas de ingerência externa, o povo brasileiro escolheu a soberania, a democracia e a justiça social. Escolheu não abaixar a cabeça quando pôde levantá-la, como escreveu o herói filipino José Rizal.”",
+      "description": "Em visita oficial às Filipinas, o presidente Luiz Inácio Lula da Silva citou o herói da independência do país, José Rizal, um símbolo da luta contra o colonialismo, ao se referir a sua reeleição, em outubro. “No último dia 25, diante do extremismo e de tentativas de ingerência externa, o povo brasileiro escolheu a soberania, a democracia e a justiça social. Escolheu não abaixar a cabeça quando pôde levantá-la, como escreveu o herói filipino José Rizal.”",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
     {
       "title": "Bombeiros de SP trabalham em rescaldo de incêndio em fábrica de produtos químicos em Salto",
       "url": "https://www.agenciasp.sp.gov.br/seguranca-publica/bombeiros-de-sp-trabalham-em-rescaldo-de-incendio-em-fabrica-de-produtos-quimicos-em-salto/",
@@ -741,7 +757,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-14T18:03:45+00:00",
+  "news_checked_at": "2026-11-14T22:25:16+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
