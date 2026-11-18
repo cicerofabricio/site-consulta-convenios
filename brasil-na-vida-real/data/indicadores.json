@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-17T20:56:25+00:00",
+  "updated_at": "2026-11-18T07:30:01+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202610",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "17/11/2026",
+    "date": "18/11/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=03%2F10%2F2026&dataFinal=17%2F11%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=04%2F10%2F2026&dataFinal=18%2F11%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -365,38 +365,6 @@
       "topic_label": "Tributos E Preços",
       "summary": "O secretário da Receita Federal, Robinson Barreirinhas, afirmou nesta terça-feira (17) que os riscos e desafios da implementação da reforma tributária já foram identificados e que o governo pretende orientar os contribuintes durante a transição para o novo sistema. Em audiência pública na Comissão de Assuntos Econômicos (CAE) do Senado, Barreirinhas reconheceu que as mudanças geram dúvidas entre empresas e profissionais, mas disse que os principais problemas já estão mapeados.",
       "description": "O secretário da Receita Federal, Robinson Barreirinhas, afirmou nesta terça-feira (17) que os riscos e desafios da implementação da reforma tributária já foram identificados e que o governo pretende orientar os contribuintes durante a transição para o novo sistema. Em audiência pública na Comissão de Assuntos Econômicos (CAE) do Senado, Barreirinhas reconheceu que as mudanças geram dúvidas entre empresas e profissionais, mas disse que os principais problemas já estão mapeados.",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "SP leva Jornada de Crédito a Pindamonhangaba com orientações a empreendedores",
-      "url": "https://www.agenciasp.sp.gov.br/desenvolvimento/sp-jornada-credito-pindamonhangaba/",
-      "published": "Tue, 17 Nov 2026 15:12:48 +0000",
-      "source": "Agência SP",
-      "topic": "juros e crédito",
-      "topic_label": "Juros E Crédito",
-      "summary": "Evento gratuito apresenta alternativas de financiamento para empresas investirem em expansão, modernização e inovação",
-      "description": "Evento gratuito apresenta alternativas de financiamento para empresas investirem em expansão, modernização e inovação",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Conta de água e esgoto passa a ter novo visual em SP para ampliar a transparência",
-      "url": "https://www.agenciasp.sp.gov.br/meio-ambiente/conta-de-agua-e-esgoto-passa-a-ter-novo-visual-em-sp-para-ampliar-a-transparencia/",
-      "published": "Tue, 17 Nov 2026 14:55:10 +0000",
-      "source": "Agência SP",
-      "topic": "moradia e contas",
-      "topic_label": "Moradia E Contas",
-      "summary": "Mudança atende às exigências da nova legislação tributária, sem alterações na tarifa, na data de vencimento ou nas formas de pagamento",
-      "description": "Mudança atende às exigências da nova legislação tributária, sem alterações na tarifa, na data de vencimento ou nas formas de pagamento",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
@@ -661,22 +629,6 @@
       "classification": "rule-based"
     },
     {
-      "title": "Governo Federal prorroga até 9 de dezembro a desoneração da gasolina e do etanol",
-      "url": "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/novembro/governo-federal-prorroga-ate-9-de-dezembro-a-desoneracao-da-gasolina-e-do-etanol",
-      "published": "",
-      "source": "Ministério da Fazenda",
-      "topic": "combustíveis e transporte",
-      "topic_label": "Combustíveis E Transporte",
-      "summary": "Governo Federal prorroga até 9 de dezembro a desoneração da gasolina e do etanol",
-      "description": "Governo Federal prorroga até 9 de dezembro a desoneração da gasolina e do etanol",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
       "title": "Brasil leva Lei do Combustível do Futuro à COP31 e apresenta avanços na descarbonização dos transportes",
       "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/novembro-26/brasil-leva-lei-do-combustivel-do-futuro-a-cop31-e-apresenta-avancos-na-descarbonizacao-dos-transportes",
       "published": "",
@@ -725,7 +677,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-17T20:56:25+00:00",
+  "news_checked_at": "2026-11-18T07:30:01+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
