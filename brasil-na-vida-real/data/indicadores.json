@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-18T07:30:01+00:00",
+  "updated_at": "2026-11-18T20:32:33+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202610",
@@ -293,6 +293,38 @@
   },
   "news": [
     {
+      "title": "Senado pede explicações a TCU sobre alíquota de 11,3% da CBS",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/senado-pede-explicacoes-tcu-sobre-aliquota-de-113-da-cbs",
+      "published": "Wed, 18 Nov 2026 17:07:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "tributos e preços",
+      "topic_label": "Tributos E Preços",
+      "summary": "Após dois dias de audiência pública, a Comissão de Assuntos Econômicos (CAE) do Senado aprovou nesta quarta-feira (18) um requerimento para pedir explicações ao Tribunal de Contas da União (TCU) sobre a alíquota de referência de 11,3% da Contribuição sobre Bens e Serviços (CBS) . Os parlamentares querem acesso a estudos, metodologias e atas das reuniões técnicas que fundamentaram a recomendação do TCU para 2027. O pedido, apresentado pelo senador Eduardo Braga (MDB-AM), relator da reforma tributária na Casa, também prevê a solicitação de informações ao Ministério da Fazenda.",
+      "description": "Após dois dias de audiência pública, a Comissão de Assuntos Econômicos (CAE) do Senado aprovou nesta quarta-feira (18) um requerimento para pedir explicações ao Tribunal de Contas da União (TCU) sobre a alíquota de referência de 11,3% da Contribuição sobre Bens e Serviços (CBS) . Os parlamentares querem acesso a estudos, metodologias e atas das reuniões técnicas que fundamentaram a recomendação do TCU para 2027. O pedido, apresentado pelo senador Eduardo Braga (MDB-AM), relator da reforma tribut",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Número de desempregados há dois anos ou mais é o menor já registrado",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/numero-de-desempregados-ha-dois-anos-ou-mais-e-o-menor-ja-registrado",
+      "published": "Wed, 18 Nov 2026 12:36:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "emprego e renda",
+      "topic_label": "Emprego E Renda",
+      "summary": "O número de trabalhadores que procuram emprego há pelo menos dois anos foi o menor em 14 anos no terceiro trimestre de 2026. O dado foi divulgado nesta quarta-feira (18) pelo Instituto Brasileiro de Geografia e Estatística (IBGE), na Pesquisa Nacional por Amostra de Domicílios (Pnad) Contínua. Chamada de desemprego longo, a situação afetava 971 mil pessoas entre julho, agosto e setembro deste ano, o menor número desde 2012, quando começa a série histórica do IBGE.",
+      "description": "O número de trabalhadores que procuram emprego há pelo menos dois anos foi o menor em 14 anos no terceiro trimestre de 2026. O dado foi divulgado nesta quarta-feira (18) pelo Instituto Brasileiro de Geografia e Estatística (IBGE), na Pesquisa Nacional por Amostra de Domicílios (Pnad) Contínua. Chamada de desemprego longo, a situação afetava 971 mil pessoas entre julho, agosto e setembro deste ano, o menor número desde 2012, quando começa a série histórica do IBGE.",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
       "title": "Durigan prevê impacto inicial da reforma tributária sobre inflação",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/durigan-preve-impacto-inicial-da-reforma-tributaria-sobre-inflacao",
       "published": "Tue, 17 Nov 2026 15:56:00 -0300",
@@ -309,22 +341,6 @@
       "classification": "rule-based"
     },
     {
-      "title": "Estado de SP tem 1,2 mil vagas de emprego no setor de alimentação nesta semana; confira",
-      "url": "https://www.agenciasp.sp.gov.br/desenvolvimento/sp-12-mil-vagas-alimentacao/",
-      "published": "Tue, 17 Nov 2026 17:58:41 +0000",
-      "source": "Agência SP",
-      "topic": "alimentação",
-      "topic_label": "Alimentação",
-      "summary": "Ao todo, são 16.912 vagas oferecidas pelos Postos de Atendimento ao Trabalhador no estado de São Paulo",
-      "description": "Ao todo, são 16.912 vagas oferecidas pelos Postos de Atendimento ao Trabalhador no estado de São Paulo",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
       "title": "Durigan defende alíquota da reforma e estima média efetiva de 8,5%",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/durigan-defende-aliquota-da-reforma-e-estima-media-efetiva-de-85",
       "published": "Tue, 17 Nov 2026 14:26:00 -0300",
@@ -335,22 +351,6 @@
       "description": "O ministro da Fazenda, Dario Durigan, afirmou que a reforma tributária trará ganhos permanentes de responsabilidade fiscal, justiça social e transparência ao sistema tributário brasileiro. Ao defender o modelo aprovado, o ministro reiterou que a alíquota máxima estimada para o novo sistema é de 11,3%, mas que a carga efetiva média deverá ficar em 8,5%, enquanto setores beneficiados por regimes diferenciados e parte da população terão tributação menor ou zerada.",
       "stage_label": "Triagem temática",
       "impact_label": "possível pressão; verificar efeitos; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Poço inaugurado com crédito da Desenvolve SP vai abastecer Penápolis pelos próximos 30 anos",
-      "url": "https://www.agenciasp.sp.gov.br/meio-ambiente/desenvolve-sp-reforca-abastecimento-de-agua-em-penapolis-pelos-proximos-30-anos/",
-      "published": "Tue, 17 Nov 2026 17:13:23 +0000",
-      "source": "Agência SP",
-      "topic": "juros e crédito",
-      "topic_label": "Juros E Crédito",
-      "summary": "A obra de poço profundo tem 1.103 metros e capacidade de captar, por hora, 500 mil litros do Aquífero Guarani, 2° maior reserva de água subterrânea da América do Sul",
-      "description": "A obra de poço profundo tem 1.103 metros e capacidade de captar, por hora, 500 mil litros do Aquífero Guarani, 2° maior reserva de água subterrânea da América do Sul",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
       "causal_status": "evidência necessária",
       "confidence": "baixa",
@@ -389,62 +389,78 @@
       "classification": "rule-based"
     },
     {
-      "title": "Durigan explica no Senado alíquota de 11,3% da CBS",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/durigan-explica-no-senado-aliquota-de-113-da-cbs",
-      "published": "Tue, 17 Nov 2026 07:15:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "tributos e preços",
-      "topic_label": "Tributos E Preços",
-      "summary": "Em meio a questionamentos sobre a reforma tributária, o ministro da Fazenda, Dario Durigan, participa nesta terça-feira (17), às 10h, de audiência pública na Comissão de Assuntos Econômicos (CAE) do Senado para discutir a alíquota de referência da Contribuição sobre Bens e Serviços (CBS). Criado pela reforma, o tributo está previsto para entrar em vigor em 2027. O percentual de 11,3% recomendado pelo Tribunal de Contas da União (TCU) provocou questionamentos de parlamentares e representantes do setor produtivo, que pedem esclarecimentos sobre os critérios utilizados no cálculo e discutem a necessidade de adiar a implementação do novo tributo.",
-      "description": "Em meio a questionamentos sobre a reforma tributária, o ministro da Fazenda, Dario Durigan, participa nesta terça-feira (17), às 10h, de audiência pública na Comissão de Assuntos Econômicos (CAE) do Senado para discutir a alíquota de referência da Contribuição sobre Bens e Serviços (CBS). Criado pela reforma, o tributo está previsto para entrar em vigor em 2027. O percentual de 11,3% recomendado pelo Tribunal de Contas da União (TCU) provocou questionamentos de parlamentares e representantes do ",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Beneficiários com NIS de final 2 recebem Bolsa Família de novembro",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/beneficiarios-com-nis-de-final-2-recebem-bolsa-familia-de-novembro",
-      "published": "Tue, 17 Nov 2026 07:02:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "renda e benefícios",
-      "topic_label": "Renda E Benefícios",
-      "summary": "A Caixa Econômica Federal paga nesta terça-feira (17) a parcela de outubro do Bolsa Família aos beneficiários com Número de Inscrição Social (NIS) de final 2. Neste mês, 19,07 milhões de família serão beneficiadas, com o valor médio do benefício em R$ 783,63, com gasto de R$ 14,88 bilhões. Os moradores de 112 municípios de oito estados receberam o crédito na segunda-feira (16), independentemente do número final do NIS. O pagamento unificado beneficiou localidades em situação de emergência ou em estado de calamidade pública nos seguintes estados: Amazonas (23), Minas Gerais (uma), Piauí (22), Paraná (41), Rio Grande do Norte (dez), Roraima (seis), São Paulo (quatro) e Sergipe (cinco).",
-      "description": "A Caixa Econômica Federal paga nesta terça-feira (17) a parcela de outubro do Bolsa Família aos beneficiários com Número de Inscrição Social (NIS) de final 2. Neste mês, 19,07 milhões de família serão beneficiadas, com o valor médio do benefício em R$ 783,63, com gasto de R$ 14,88 bilhões. Os moradores de 112 municípios de oito estados receberam o crédito na segunda-feira (16), independentemente do número final do NIS. O pagamento unificado beneficiou localidades em situação de emergência ou em ",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Dólar sobe para R$ 5,77 e fecha no maior valor desde abril de 2025",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-sobe-para-r-577-e-fecha-no-maior-valor-desde-abril-de-2025",
-      "published": "Mon, 16 Nov 2026 20:06:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "mercados e câmbio",
-      "topic_label": "Mercados E Câmbio",
-      "summary": "O mercado financeiro brasileiro teve uma segunda-feira (16) de forte pressão sobre os ativos. O dólar subiu mais de 2%, aproximou-se de R$ 5,80 e fechou no maior nível em cerca de um ano e meio. Na bolsa, o Ibovespa recuou quase 2%, aos 169 mil pontos, enquanto o petróleo registrou perdas superiores a 3% no mercado internacional.",
-      "description": "O mercado financeiro brasileiro teve uma segunda-feira (16) de forte pressão sobre os ativos. O dólar subiu mais de 2%, aproximou-se de R$ 5,80 e fechou no maior nível em cerca de um ano e meio. Na bolsa, o Ibovespa recuou quase 2%, aos 169 mil pontos, enquanto o petróleo registrou perdas superiores a 3% no mercado internacional.",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
       "title": "Cidadania e Assistência Social",
       "url": "https://www.gov.br/pt-br/noticias/assistencia-social",
       "published": "",
-      "source": "Ministério da Fazenda",
+      "source": "Planalto",
       "topic": "renda e benefícios",
       "topic_label": "Renda E Benefícios",
       "summary": "Cidadania e Assistência Social",
       "description": "Cidadania e Assistência Social",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "“Queremos ser parceiros definitivos da ASEAN”, diz Lula durante conversa com a imprensa nas Filipinas",
+      "url": "https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/noticias/2026/11/201cqueremos-ser-parceiros-definitivos-da-asean201d-diz-lula-durante-conversa-com-a-imprensa-nas-filipinas",
+      "published": "",
+      "source": "Planalto",
+      "topic": "tributos e preços",
+      "topic_label": "Tributos E Preços",
+      "summary": "“Queremos ser parceiros definitivos da ASEAN”, diz Lula durante conversa com a imprensa nas Filipinas",
+      "description": "“Queremos ser parceiros definitivos da ASEAN”, diz Lula durante conversa com a imprensa nas Filipinas",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Lula nas Filipinas: visita consolida aproximação com a Ásia e inaugura novo capítulo do relacionamento bilateral",
+      "url": "https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/noticias/2026/11/lula-nas-filipinas-visita-consolida-aproximacao-com-a-asia-e-inaugura-novo-capitulo-do-relacionamento-bilateral",
+      "published": "",
+      "source": "Planalto",
+      "topic": "tributos e preços",
+      "topic_label": "Tributos E Preços",
+      "summary": "Lula nas Filipinas: visita consolida aproximação com a Ásia e inaugura novo capítulo do relacionamento bilateral",
+      "description": "Lula nas Filipinas: visita consolida aproximação com a Ásia e inaugura novo capítulo do relacionamento bilateral",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Governo Federal prorroga até 9 de dezembro desoneração da gasolina e do etanol",
+      "url": "https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/noticias/2026/11/governo-federal-prorroga-ate-9-de-dezembro-desoneracao-da-gasolina-e-do-etanol",
+      "published": "",
+      "source": "Planalto",
+      "topic": "combustíveis e transporte",
+      "topic_label": "Combustíveis E Transporte",
+      "summary": "Governo Federal prorroga até 9 de dezembro desoneração da gasolina e do etanol",
+      "description": "Governo Federal prorroga até 9 de dezembro desoneração da gasolina e do etanol",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Presidente Lula assina MP que define alíquotas do Imposto Seletivo para 2027",
+      "url": "https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/noticias/2026/11/presidente-lula-assina-mp-que-define-aliquotas-do-imposto-seletivo-para-2027",
+      "published": "",
+      "source": "Planalto",
+      "topic": "tributos e preços",
+      "topic_label": "Tributos E Preços",
+      "summary": "Presidente Lula assina MP que define alíquotas do Imposto Seletivo para 2027",
+      "description": "Presidente Lula assina MP que define alíquotas do Imposto Seletivo para 2027",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
@@ -677,7 +693,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-18T07:30:01+00:00",
+  "news_checked_at": "2026-11-18T20:32:33+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
@@ -715,7 +731,5 @@
       "type": "news-feed"
     }
   ],
-  "warnings": [
-    "Página oficial Planalto sem resposta: Remote end closed connection without response"
-  ]
+  "warnings": []
 }
