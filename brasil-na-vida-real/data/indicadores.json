@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-19T07:28:03+00:00",
+  "updated_at": "2026-11-19T20:38:38+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202610",
@@ -284,7 +284,7 @@
     "unit": "% a.a."
   },
   "anp": {
-    "period": "08/11/2026 a 14/11/2026",
+    "period": "15/11/2026 a 21/11/2026",
     "source_url": "https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas",
     "file_url": "https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/resumo_semanal_lpc_2026_11_08-2026_11_14.xlsx",
     "source_name": "ANP — Levantamento de Preços de Combustíveis",
@@ -292,6 +292,22 @@
     "price_gasoline_unit": "R$/litro"
   },
   "news": [
+    {
+      "title": "BNDES injetou R$ 254 bi de crédito na economia de janeiro a setembro",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/bndes-injetou-r-254-bi-de-credito-na-economia-de-janeiro-setembro",
+      "published": "Thu, 19 Nov 2026 16:24:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "juros e crédito",
+      "topic_label": "Juros E Crédito",
+      "summary": "O Banco Nacional de Desenvolvimento Econômico e Social (BNDES) injetou R$ 254 bilhões na economia, por meio de crédito, nos primeiros nove meses de 2026. O dado faz parte do resultado financeiro da instituição, divulgado nesta quinta-feira (19), em sua sede, no Rio de Janeiro. Esse montante representa crescimento de 9% em relação ao mesmo período do ano passado, sem contar a inflação do período.",
+      "description": "O Banco Nacional de Desenvolvimento Econômico e Social (BNDES) injetou R$ 254 bilhões na economia, por meio de crédito, nos primeiros nove meses de 2026. O dado faz parte do resultado financeiro da instituição, divulgado nesta quinta-feira (19), em sua sede, no Rio de Janeiro. Esse montante representa crescimento de 9% em relação ao mesmo período do ano passado, sem contar a inflação do período.",
+      "stage_label": "Triagem temática",
+      "impact_label": "possível pressão; verificar efeitos; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
     {
       "title": "Dólar sobe para R$ 5,87 com expectativa sobre votação de ajuste fiscal",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-sobe-para-r-587-com-expectativa-sobre-votacao-de-ajuste-fiscal",
@@ -303,22 +319,6 @@
       "description": "O mercado financeiro brasileiro teve mais um dia de perdas nesta quarta-feira (18). O dólar subiu pela quinta sessão consecutiva e atingiu a maior cotação em 19 meses, fechando próximo de R$ 5,87. Na bolsa, o Ibovespa recuou 1,34% , pressionado por ações de bancos e pela cautela dos investidores diante da votação do pacote de ajuste fiscal no Senado. No exterior, o petróleo também caiu, com a perspectiva de recuperação da oferta global.",
       "stage_label": "Triagem temática",
       "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Polícia de SP apreende mais de 722 quilos de drogas com auxílio de cão farejador no interior",
-      "url": "https://www.agenciasp.sp.gov.br/seguranca-publica/policia-de-sp-apreende-mais-de-722-quilos-de-drogas-com-auxilio-de-cao-farejador-no-interior/",
-      "published": "Wed, 18 Nov 2026 20:59:12 +0000",
-      "source": "Agência SP",
-      "topic": "renda e benefícios",
-      "topic_label": "Renda E Benefícios",
-      "summary": "Imóvel em Araraquara, utilizado para armazenar entorpecentes foi localizado após denúncia ao Disque Denúncia 181; maconha, lança-perfume e uma arma de fogo foram apreendidos",
-      "description": "Imóvel em Araraquara, utilizado para armazenar entorpecentes foi localizado após denúncia ao Disque Denúncia 181; maconha, lança-perfume e uma arma de fogo foram apreendidos",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
       "causal_status": "evidência necessária",
       "confidence": "baixa",
@@ -389,22 +389,6 @@
       "classification": "rule-based"
     },
     {
-      "title": "Reforma tributária: Receita descarta punição a erros de boa-fé",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/reforma-tributaria-receita-descarta-punicao-erros-de-boa-fe",
-      "published": "Tue, 17 Nov 2026 12:30:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "tributos e preços",
-      "topic_label": "Tributos E Preços",
-      "summary": "O secretário da Receita Federal, Robinson Barreirinhas, afirmou nesta terça-feira (17) que os riscos e desafios da implementação da reforma tributária já foram identificados e que o governo pretende orientar os contribuintes durante a transição para o novo sistema. Em audiência pública na Comissão de Assuntos Econômicos (CAE) do Senado, Barreirinhas reconheceu que as mudanças geram dúvidas entre empresas e profissionais, mas disse que os principais problemas já estão mapeados.",
-      "description": "O secretário da Receita Federal, Robinson Barreirinhas, afirmou nesta terça-feira (17) que os riscos e desafios da implementação da reforma tributária já foram identificados e que o governo pretende orientar os contribuintes durante a transição para o novo sistema. Em audiência pública na Comissão de Assuntos Econômicos (CAE) do Senado, Barreirinhas reconheceu que as mudanças geram dúvidas entre empresas e profissionais, mas disse que os principais problemas já estão mapeados.",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
       "title": "Cidadania e Assistência Social",
       "url": "https://www.gov.br/pt-br/noticias/assistencia-social",
       "published": "",
@@ -469,14 +453,14 @@
       "classification": "rule-based"
     },
     {
-      "title": "Presidente Lula assina MP que define alíquotas do Imposto Seletivo para 2027",
-      "url": "https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/noticias/2026/11/presidente-lula-assina-mp-que-define-aliquotas-do-imposto-seletivo-para-2027",
+      "title": "Receita Federal e Comitê Gestor do IBS alinham implementação da Reforma Tributária e reforçam compromisso com a conformidade",
+      "url": "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/novembro/receita-federal-e-comite-gestor-do-ibs-alinham-implementacao-da-reforma-tributaria-e-reforcam-compromisso-com-a-conformidade",
       "published": "",
-      "source": "Planalto",
+      "source": "Ministério da Fazenda",
       "topic": "tributos e preços",
       "topic_label": "Tributos E Preços",
-      "summary": "Presidente Lula assina MP que define alíquotas do Imposto Seletivo para 2027",
-      "description": "Presidente Lula assina MP que define alíquotas do Imposto Seletivo para 2027",
+      "summary": "Receita Federal e Comitê Gestor do IBS alinham implementação da Reforma Tributária e reforçam compromisso com a conformidade",
+      "description": "Receita Federal e Comitê Gestor do IBS alinham implementação da Reforma Tributária e reforçam compromisso com a conformidade",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
@@ -645,6 +629,22 @@
       "classification": "rule-based"
     },
     {
+      "title": "MME e Índia avançam em cooperação para petróleo, gás natural e biocombustíveis",
+      "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/mme-e-india-avancam-em-cooperacao-para-petroleo-gas-natural-e-biocombustiveis",
+      "published": "",
+      "source": "Ministério de Minas e Energia",
+      "topic": "combustíveis e transporte",
+      "topic_label": "Combustíveis E Transporte",
+      "summary": "MME e Índia avançam em cooperação para petróleo, gás natural e biocombustíveis",
+      "description": "MME e Índia avançam em cooperação para petróleo, gás natural e biocombustíveis",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
       "title": "Luz para Todos terá R$ 2,1 bilhões para ampliar acesso à energia elétrica no país em 2027",
       "url": "https://www.gov.br/mme/pt-br/assuntos/noticias/novembro-26/luz-para-todos-tera-r-2-1-bilhoes-para-ampliar-acesso-a-energia-eletrica-no-pais-em-2027",
       "published": "",
@@ -693,7 +693,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-19T07:28:03+00:00",
+  "news_checked_at": "2026-11-19T20:38:38+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
