@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-23T23:56:13+00:00",
+  "updated_at": "2026-11-24T09:55:55+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202610",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "23/11/2026",
+    "date": "24/11/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=09%2F10%2F2026&dataFinal=23%2F11%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=10%2F10%2F2026&dataFinal=24%2F11%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -292,6 +292,22 @@
     "price_gasoline_unit": "R$/litro"
   },
   "news": [
+    {
+      "title": "BRB diz que banco segue funcionando após suspensão da CVM",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/brb-diz-que-banco-segue-funcionando-apos-suspensao-da-cvm",
+      "published": "Mon, 23 Nov 2026 21:29:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "renda e benefícios",
+      "topic_label": "Renda E Benefícios",
+      "summary": "Horas depois de ter tido o registro de companhia aberta suspenso pela Comissão de Valores Mobiliários (CVM), o Banco de Brasília (BRB) afirmou que continua em pleno funcionamento. Em comunicado divulgado na noite desta segunda-feira (23), a instituição reconheceu a relevância da situação e informou que a decisão da autarquia se restringe ao mercado de capitais, sem interromper as atividades bancárias. A suspensão foi determinada pela CVM devido ao descumprimento, por mais de 12 meses, das obrigações periódicas de divulgação de informações financeiras. Com a medida, o BRB fica impedido de negociar ações e outros valores mobiliários em mercados regulamentados até que regularize sua situação.",
+      "description": "Horas depois de ter tido o registro de companhia aberta suspenso pela Comissão de Valores Mobiliários (CVM), o Banco de Brasília (BRB) afirmou que continua em pleno funcionamento. Em comunicado divulgado na noite desta segunda-feira (23), a instituição reconheceu a relevância da situação e informou que a decisão da autarquia se restringe ao mercado de capitais, sem interromper as atividades bancárias. A suspensão foi determinada pela CVM devido ao descumprimento, por mais de 12 meses, das obriga",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
     {
       "title": "Governo de SP apresenta crédito emergencial de R$ 2 milhões e amplia diálogo com produtores rurais de Mogi das Cruzes",
       "url": "https://www.agenciasp.sp.gov.br/agro/sp-apresenta-credito-mogi/",
@@ -355,25 +371,9 @@
       "causal_status": "evidência necessária",
       "confidence": "baixa",
       "classification": "rule-based"
-    },
-    {
-      "title": "CMN amplia controle sobre recolhimentos de tributos dos bancos",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/cmn-amplia-controle-sobre-recolhimentos-de-tributos-dos-bancos",
-      "published": "Thu, 19 Nov 2026 20:33:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "tributos e preços",
-      "topic_label": "Tributos E Preços",
-      "summary": "O Conselho Monetário Nacional (CMN) aprovou uma nova regra para ampliar o acompanhamento das informações tributárias das instituições financeiras que operam no Brasil. A partir de 1º de janeiro de 2028, bancos e demais entidades autorizadas pelo Banco Central (BC) deverão enviar mensalmente dados contábeis relacionados à arrecadação de tributos, provisões e créditos fiscais. A medida permitirá que a autoridade monetária tenha informações mais detalhadas e periódicas sobre os registros fiscais do setor financeiro.",
-      "description": "O Conselho Monetário Nacional (CMN) aprovou uma nova regra para ampliar o acompanhamento das informações tributárias das instituições financeiras que operam no Brasil. A partir de 1º de janeiro de 2028, bancos e demais entidades autorizadas pelo Banco Central (BC) deverão enviar mensalmente dados contábeis relacionados à arrecadação de tributos, provisões e créditos fiscais. A medida permitirá que a autoridade monetária tenha informações mais detalhadas e periódicas sobre os registros fiscais do",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-23T23:56:13+00:00",
+  "news_checked_at": "2026-11-24T09:55:55+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
