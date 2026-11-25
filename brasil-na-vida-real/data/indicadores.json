@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-24T22:28:13+00:00",
+  "updated_at": "2026-11-25T08:36:58+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202610",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "24/11/2026",
+    "date": "25/11/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=10%2F10%2F2026&dataFinal=24%2F11%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=11%2F10%2F2026&dataFinal=25%2F11%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -355,25 +355,9 @@
       "causal_status": "evidência necessária",
       "confidence": "baixa",
       "classification": "rule-based"
-    },
-    {
-      "title": "Empresas têm até 30 de novembro para pagar primeira parcela do 13º",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/empresas-tem-ate-30-de-novembro-para-pagar-primeira-parcela-do-13o",
-      "published": "Tue, 24 Nov 2026 07:37:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "renda e benefícios",
-      "topic_label": "Renda E Benefícios",
-      "summary": "Empresas e órgãos públicos têm até a próxima segunda-feira (30) para pagar a primeira parcela do décimo terceiro salário de 2026 aos trabalhadores que têm direito ao benefício. A gratificação natalina pode ser antecipada, mas não deve ultrapassar o prazo previsto na legislação. O pagamento pode ser feito em duas parcelas. A primeira corresponde, em regra, a 50% do valor total estimado do benefício, sem descontos de contribuição previdenciária ou Imposto de Renda. Já a segunda parcela deve ser depositada até 20 de dezembro, com todos os descontos devidos.",
-      "description": "Empresas e órgãos públicos têm até a próxima segunda-feira (30) para pagar a primeira parcela do décimo terceiro salário de 2026 aos trabalhadores que têm direito ao benefício. A gratificação natalina pode ser antecipada, mas não deve ultrapassar o prazo previsto na legislação. O pagamento pode ser feito em duas parcelas. A primeira corresponde, em regra, a 50% do valor total estimado do benefício, sem descontos de contribuição previdenciária ou Imposto de Renda. Já a segunda parcela deve ser de",
-      "stage_label": "Triagem temática",
-      "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-24T22:28:13+00:00",
+  "news_checked_at": "2026-11-25T08:36:58+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
