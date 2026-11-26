@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-25T21:43:39+00:00",
+  "updated_at": "2026-11-26T08:19:59+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202610",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "25/11/2026",
+    "date": "26/11/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=11%2F10%2F2026&dataFinal=25%2F11%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=12%2F10%2F2026&dataFinal=26%2F11%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -292,6 +292,38 @@
     "price_gasoline_unit": "R$/litro"
   },
   "news": [
+    {
+      "title": "CMN e BC anunciam novas regras para conter endividamento das famílias",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/cmn-e-bc-anunciam-novas-regras-para-conter-endividamento-das-familias",
+      "published": "Wed, 25 Nov 2026 20:37:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "juros e crédito",
+      "topic_label": "Juros E Crédito",
+      "summary": "O Conselho Monetário Nacional (CMN) e o Banco Central (BC) aprovaram na noite desta quarta-feira (25) um conjunto de medidas para prevenir o endividamento excessivo no Brasil. As novas regras estabelecem critérios mais rigorosos para a concessão de empréstimos, ampliam a proteção de consumidores com dificuldades financeiras e aumentam as exigências de controle e transparência para instituições financeiras. O pacote também busca tornar mais segura a contratação de crédito, reduzir o uso frequente do rotativo do cartão e melhorar a identificação de clientes com elevado comprometimento da renda.",
+      "description": "O Conselho Monetário Nacional (CMN) e o Banco Central (BC) aprovaram na noite desta quarta-feira (25) um conjunto de medidas para prevenir o endividamento excessivo no Brasil. As novas regras estabelecem critérios mais rigorosos para a concessão de empréstimos, ampliam a proteção de consumidores com dificuldades financeiras e aumentam as exigências de controle e transparência para instituições financeiras. O pacote também busca tornar mais segura a contratação de crédito, reduzir o uso frequente",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Dólar cai para R$ 5,81, em meio à discussão de nomes para Fazenda",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-cai-para-r-581-em-meio-discussao-de-nomes-para-fazenda",
+      "published": "Wed, 25 Nov 2026 19:08:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "mercados e câmbio",
+      "topic_label": "Mercados E Câmbio",
+      "summary": "Em dia de alívio no mercado financeiro, o dólar caiu cerca de 1,5% nesta quarta-feira (25), fechando próximo de R$ 5,82. A bolsa avançou 1,6%, aos 166,7 mil pontos. O mercado brasileiro reagiu às expectativas de novas medidas de ajuste fiscal e às discussões para a escolha do próximo ministro da Fazenda. No exterior, as bolsas estadunidenses tiveram desempenho misto e o petróleo fechou em alta.",
+      "description": "Em dia de alívio no mercado financeiro, o dólar caiu cerca de 1,5% nesta quarta-feira (25), fechando próximo de R$ 5,82. A bolsa avançou 1,6%, aos 166,7 mil pontos. O mercado brasileiro reagiu às expectativas de novas medidas de ajuste fiscal e às discussões para a escolha do próximo ministro da Fazenda. No exterior, as bolsas estadunidenses tiveram desempenho misto e o petróleo fechou em alta.",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
     {
       "title": "Governo deve renovar subsídio ao diesel por mais 30 dias",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/governo-deve-renovar-subsidio-ao-diesel-por-mais-30-dias",
@@ -373,7 +405,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-25T21:43:39+00:00",
+  "news_checked_at": "2026-11-26T08:19:59+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
