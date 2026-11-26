@@ -1,6 +1,8 @@
 """Coleta planos de ação do município na API pública, sem publicar resultados parciais."""
 import json
 import os
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
@@ -14,10 +16,19 @@ MUNICIPIO = "SÃO BERNARDO DO CAMPO"
 def obter(params):
     url = API + "?" + urllib.parse.urlencode(params)
     req = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "ConsultaPublicaSBC/1.0"})
-    with urllib.request.urlopen(req, timeout=45) as resp:
-        if resp.status != 200:
-            raise RuntimeError(f"HTTP {resp.status}")
-        return json.load(resp)
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=45) as resp:
+                if resp.status != 200:
+                    raise RuntimeError(f"HTTP {resp.status}")
+                return json.load(resp)
+        except urllib.error.HTTPError as exc:
+            if exc.code not in (500, 502, 503, 504) or attempt == 2:
+                raise
+        except (urllib.error.URLError, TimeoutError, ConnectionError):
+            if attempt == 2:
+                raise
+        time.sleep(2 ** (attempt + 1))
 
 def lista(obj):
     if isinstance(obj, list):
