@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-26T21:34:18+00:00",
+  "updated_at": "2026-11-27T08:37:06+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202610",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "26/11/2026",
+    "date": "27/11/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=12%2F10%2F2026&dataFinal=26%2F11%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=13%2F10%2F2026&dataFinal=27%2F11%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -293,78 +293,14 @@
   },
   "news": [
     {
-      "title": "Chegada da água tratada melhora atendimento a turistas do Caminho da Fé e beneficia comércio rural em São Bento do Sapucaí",
-      "url": "https://www.agenciasp.sp.gov.br/social/chegada-da-agua-tratada-melhora-atendimento-a-turistas-do-caminho-da-fe-e-beneficia-comercio-rural-em-sao-bento-do-sapucai/",
-      "published": "Thu, 26 Nov 2026 20:13:46 +0000",
-      "source": "Agência SP",
-      "topic": "alimentação",
-      "topic_label": "Alimentação",
-      "summary": "Após décadas de espera, novo sistema de abastecimento beneficia moradores e empreendedores da comunidade rural do Cantagalo",
-      "description": "Após décadas de espera, novo sistema de abastecimento beneficia moradores e empreendedores da comunidade rural do Cantagalo",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Governo prorroga subsídio de R$ 2,12 ao diesel por mais 30 dias",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/governo-prorroga-subsidio-de-r-212-ao-diesel-por-mais-30-dias",
-      "published": "Thu, 26 Nov 2026 16:31:00 -0300",
+      "title": "Bolsa sobe 6% e tem maior alta desde o 1º turno; dólar cai a R$ 5,74",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/bolsa-sobe-6-e-tem-maior-alta-desde-o-1o-turno-dolar-cai-r-574",
+      "published": "Thu, 26 Nov 2026 19:54:00 -0300",
       "source": "Agência Brasil — Economia",
-      "topic": "combustíveis e transporte",
-      "topic_label": "Combustíveis E Transporte",
-      "summary": "O Ministério da Fazenda confirmou nesta quinta-feira (26) a prorrogação, por mais 30 dias, da subvenção de R$ 2,12 por litro de diesel comercializado no país. Segundo a pasta, a portaria que oficializa a medida será publicada nesta sexta-feira (27) no Diário Oficial da União. A renovação busca conter os efeitos da alta internacional do petróleo sobre os combustíveis no mercado brasileiro, evitando reajustes bruscos nas bombas e reduzindo a pressão sobre consumidores e setores dependentes do transporte rodoviário.",
-      "description": "O Ministério da Fazenda confirmou nesta quinta-feira (26) a prorrogação, por mais 30 dias, da subvenção de R$ 2,12 por litro de diesel comercializado no país. Segundo a pasta, a portaria que oficializa a medida será publicada nesta sexta-feira (27) no Diário Oficial da União. A renovação busca conter os efeitos da alta internacional do petróleo sobre os combustíveis no mercado brasileiro, evitando reajustes bruscos nas bombas e reduzindo a pressão sobre consumidores e setores dependentes do tran",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "EducaTrilha na Escola bate recorde em 2026 e reforça educação ambiental",
-      "url": "https://www.agenciasp.sp.gov.br/meio-ambiente/educacao-ambiental-recorde/",
-      "published": "Thu, 26 Nov 2026 16:43:27 +0000",
-      "source": "Agência SP",
-      "topic": "renda e benefícios",
-      "topic_label": "Renda E Benefícios",
-      "summary": "Programa do IPA, em parceria com instituições públicas, universidades e organizações, beneficiou mais de 16 mil pessoas neste ano",
-      "description": "Programa do IPA, em parceria com instituições públicas, universidades e organizações, beneficiou mais de 16 mil pessoas neste ano",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Seca na Amazônia: governo estuda auxílio emergencial para pescadores",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/seca-na-amazonia-governo-estuda-auxilio-emergencial-para-pescadores",
-      "published": "Thu, 26 Nov 2026 12:56:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "renda e benefícios",
-      "topic_label": "Renda E Benefícios",
-      "summary": "O governo federal avalia conceder um auxílio emergencial para atender cerca de 400 mil pescadores artesanais prejudicados pela seca que afeta os rios da Amazônia, dificultando a navegação e provocando a mortandade de pescados. “Temos recebido demandas de entidades representativas da pesca artesanal e de parlamentares do Amazonas e do Pará no sentido de pagarmos um auxílio extraordinário para socorrer os pescadores que não estão podendo trabalhar”, disse o ministro da Pesca e Aquicultura, Édipo Araújo.",
-      "description": "O governo federal avalia conceder um auxílio emergencial para atender cerca de 400 mil pescadores artesanais prejudicados pela seca que afeta os rios da Amazônia, dificultando a navegação e provocando a mortandade de pescados. “Temos recebido demandas de entidades representativas da pesca artesanal e de parlamentares do Amazonas e do Pará no sentido de pagarmos um auxílio extraordinário para socorrer os pescadores que não estão podendo trabalhar”, disse o ministro da Pesca e Aquicultura, Édipo A",
-      "stage_label": "Triagem temática",
-      "impact_label": "misto ou não determinado; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "Contas públicas: demanda por financiamento cresceu 27,1% em 2025",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/contas-publicas-demanda-por-financiamento-cresceu-271-em-2025",
-      "published": "Thu, 26 Nov 2026 11:17:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "juros e crédito",
-      "topic_label": "Juros E Crédito",
-      "summary": "Em 2025, a necessidade de financiamento líquida do governo geral foi de R$ 936,2 bilhões, aumento de 27,1% em relação a 2024. Esse resultado ocorreu, principalmente, em virtude do crescimento de 11,4% da despesa total. Os dados são das Estatísticas de Finanças Públicas e Conta Intermediária de Governo, elaboradas pelo Instituto Brasileiro de Geografia e Estatística (IBGE) em parceria com a Secretaria do Tesouro Nacional (STN) e o Banco Central do Brasil. Na análise dos principais agregados da receita, a arrecadação de impostos cresceu 8,8% em 2025, as contribuições sociais aumentaram 9,8% e outras receitas avançaram 7,9% em relação ao ano anterior. Segundo a pesquisa, a receita tributária to",
-      "description": "Em 2025, a necessidade de financiamento líquida do governo geral foi de R$ 936,2 bilhões, aumento de 27,1% em relação a 2024. Esse resultado ocorreu, principalmente, em virtude do crescimento de 11,4% da despesa total. Os dados são das Estatísticas de Finanças Públicas e Conta Intermediária de Governo, elaboradas pelo Instituto Brasileiro de Geografia e Estatística (IBGE) em parceria com a Secretaria do Tesouro Nacional (STN) e o Banco Central do Brasil. Na análise dos principais agregados da re",
+      "topic": "mercados e câmbio",
+      "topic_label": "Mercados E Câmbio",
+      "summary": "O mercado financeiro brasileiro teve um dia de forte valorização nesta quinta-feira (26). O Ibovespa disparou cerca de 6%, registrando a maior alta diária desde o primeiro turno das eleições de 2026. O dólar recuou para abaixo de R$ 5,80 pela primeira vez em quase duas semanas. O movimento foi impulsionado pela expectativa de Luiz Carlos Trabuco no Ministério da Fazenda, por sinais sobre o ajuste fiscal e pela prévia da inflação abaixo do esperado. Ibovespa: 176.799,84 pontos (+6,07%); Dólar comercial: R$ 5,744 (-1,25%); Petróleo Brent: US$ 91,97 (+1,13%); Petróleo WTI: US$ 84,81 (+1,35%). Bolsa dispara",
+      "description": "O mercado financeiro brasileiro teve um dia de forte valorização nesta quinta-feira (26). O Ibovespa disparou cerca de 6%, registrando a maior alta diária desde o primeiro turno das eleições de 2026. O dólar recuou para abaixo de R$ 5,80 pela primeira vez em quase duas semanas. O movimento foi impulsionado pela expectativa de Luiz Carlos Trabuco no Ministério da Fazenda, por sinais sobre o ajuste fiscal e pela prévia da inflação abaixo do esperado. Ibovespa: 176.799,84 pontos (+6,07%); Dólar com",
       "stage_label": "Triagem temática",
       "impact_label": "misto ou não determinado; sem quantificação causal",
       "impact_direction": "unknown",
@@ -373,7 +309,7 @@
       "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-26T21:34:18+00:00",
+  "news_checked_at": "2026-11-27T08:37:06+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
@@ -413,6 +349,7 @@
   ],
   "warnings": [
     "ANP indisponível nesta execução: <urlopen error [Errno 104] Connection reset by peer>",
+    "Feed Agência SP sem resposta: <urlopen error timed out>",
     "Página oficial Planalto sem resposta: <urlopen error [Errno 104] Connection reset by peer>",
     "Página oficial Ministério da Fazenda sem resposta: <urlopen error [Errno 104] Connection reset by peer>",
     "Página oficial Ministério de Minas e Energia sem resposta: <urlopen error [Errno 104] Connection reset by peer>",
