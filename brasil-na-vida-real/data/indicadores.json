@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "updated_at": "2026-11-27T21:18:28+00:00",
+  "updated_at": "2026-11-28T07:51:21+00:00",
   "status_label": "Dados oficiais coletados automaticamente",
   "ipca": {
     "period": "202610",
@@ -277,9 +277,9 @@
     "weights_are_official_reference": true
   },
   "selic": {
-    "date": "27/11/2026",
+    "date": "28/11/2026",
     "value": 13.75,
-    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=13%2F10%2F2026&dataFinal=27%2F11%2F2026",
+    "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=14%2F10%2F2026&dataFinal=28%2F11%2F2026",
     "source_name": "Banco Central — SGS série 432 (meta Selic; última observação até a data atual)",
     "unit": "% a.a."
   },
@@ -292,6 +292,54 @@
     "price_gasoline_unit": "R$/litro"
   },
   "news": [
+    {
+      "title": "Dólar cai quase 4% e fecha em R$ 5,51, após anúncio de Trabuco",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-cai-quase-4-e-fecha-em-r-551-apos-anuncio-de-trabuco",
+      "published": "Fri, 27 Nov 2026 19:47:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "mercados e câmbio",
+      "topic_label": "Mercados E Câmbio",
+      "summary": "O dólar caiu quase 4% nesta sexta-feira (27) e fechou em R$ 5,51, após a confirmação de Luiz Carlos Trabuco no comando do Ministério da Fazenda no próximo governo de Luiz Inácio Lula da Silva. Na quinta sessão consecutiva de queda, a moeda americana acumulou recuo de pouco mais de 7% na semana, o maior desde outubro de 2008.",
+      "description": "O dólar caiu quase 4% nesta sexta-feira (27) e fechou em R$ 5,51, após a confirmação de Luiz Carlos Trabuco no comando do Ministério da Fazenda no próximo governo de Luiz Inácio Lula da Silva. Na quinta sessão consecutiva de queda, a moeda americana acumulou recuo de pouco mais de 7% na semana, o maior desde outubro de 2008.",
+      "stage_label": "Triagem temática",
+      "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Distribuidoras de energia oferecem descontos para renegociar dívidas",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/distribuidoras-de-energia-oferecem-descontos-para-renegociar-dividas",
+      "published": "Fri, 27 Nov 2026 19:40:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "renda e benefícios",
+      "topic_label": "Renda E Benefícios",
+      "summary": "As distribuidoras de energia elétrica iniciaram campanhas de renegociação de dívidas, com condições especiais para consumidores que buscam regularizar débitos com os recursos do décimo terceiro salário. A primeira parcela do benefício deve ser paga até a próxima segunda-feira (30). As campanhas oferecem condições de parcelamento e descontos, que variam conforme a empresa, e podem ajudar consumidores a evitar a negativação e até o corte de energia. O país tem mais de 40 distribuidoras, e as condições variam de acordo com a localidade, as características da dívida e o perfil do consumidor. Empresas participantes.",
+      "description": "As distribuidoras de energia elétrica iniciaram campanhas de renegociação de dívidas, com condições especiais para consumidores que buscam regularizar débitos com os recursos do décimo terceiro salário. A primeira parcela do benefício deve ser paga até a próxima segunda-feira (30). As campanhas oferecem condições de parcelamento e descontos, que variam conforme a empresa, e podem ajudar consumidores a evitar a negativação e até o corte de energia. O país tem mais de 40 distribuidoras, e as condi",
+      "stage_label": "Triagem temática",
+      "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
+    {
+      "title": "Com bandeira tarifária verde, energia não terá custo extra em dezembro",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/com-bandeira-tarifaria-verde-energia-nao-tera-custo-extra-em-dezembro",
+      "published": "Fri, 27 Nov 2026 19:29:00 -0300",
+      "source": "Agência Brasil — Economia",
+      "topic": "moradia e contas",
+      "topic_label": "Moradia E Contas",
+      "summary": "O mês de dezembro continuará sem cobrança de taxa extra nas contas de energia elétrica dos brasileiros. A Agência Nacional de Energia Elétrica (Aneel) manteve a bandeira tarifária verde pelo terceiro mês seguido . Segundo a Aneel, a manutenção da bandeira verde reflete as condições favoráveis de geração de energia no país.",
+      "description": "O mês de dezembro continuará sem cobrança de taxa extra nas contas de energia elétrica dos brasileiros. A Agência Nacional de Energia Elétrica (Aneel) manteve a bandeira tarifária verde pelo terceiro mês seguido . Segundo a Aneel, a manutenção da bandeira verde reflete as condições favoráveis de geração de energia no país.",
+      "stage_label": "Triagem temática",
+      "impact_label": "misto ou não determinado; sem quantificação causal",
+      "impact_direction": "unknown",
+      "causal_status": "evidência necessária",
+      "confidence": "baixa",
+      "classification": "rule-based"
+    },
     {
       "title": "Vendas do Tesouro Direto registram melhor outubro da história",
       "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/vendas-do-tesouro-direto-registram-melhor-outubro-da-historia",
@@ -317,22 +365,6 @@
       "topic_label": "Tributos E Preços",
       "summary": "Microempreendedores individuais (MEIs) e donos de pequenos negócios podem consultar gratuitamente as mudanças previstas nas regras de faturamento, tributação e regularização de dívidas. O Radar das Mudanças para Pequenos Negócios reúne 11 medidas relacionadas à reforma tributária e ao pacote Prospera MEI , com informações sobre quem será afetado, quando as alterações devem entrar em vigor e quais já têm previsão legal.",
       "description": "Microempreendedores individuais (MEIs) e donos de pequenos negócios podem consultar gratuitamente as mudanças previstas nas regras de faturamento, tributação e regularização de dívidas. O Radar das Mudanças para Pequenos Negócios reúne 11 medidas relacionadas à reforma tributária e ao pacote Prospera MEI , com informações sobre quem será afetado, quando as alterações devem entrar em vigor e quais já têm previsão legal.",
-      "stage_label": "Triagem temática",
-      "impact_label": "possível pressão; verificar efeitos; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
-    },
-    {
-      "title": "SP simplifica a tributação e exclui mais 149 mercadorias da substituição tributária do ICMS",
-      "url": "https://www.agenciasp.sp.gov.br/desenvolvimento/sp-exclui149mercadorias-icms/",
-      "published": "Fri, 27 Nov 2026 16:05:17 +0000",
-      "source": "Agência SP",
-      "topic": "tributos e preços",
-      "topic_label": "Tributos E Preços",
-      "summary": "No fim de 2025, havia 749 mercadorias sujeitas ao regime; com a medida anunciada nesta sexta-feira (27), número cairá para 59",
-      "description": "No fim de 2025, havia 749 mercadorias sujeitas ao regime; com a medida anunciada nesta sexta-feira (27), número cairá para 59",
       "stage_label": "Triagem temática",
       "impact_label": "possível pressão; verificar efeitos; sem quantificação causal",
       "impact_direction": "unknown",
@@ -387,25 +419,9 @@
       "causal_status": "evidência necessária",
       "confidence": "baixa",
       "classification": "rule-based"
-    },
-    {
-      "title": "CMN reduz juros do Fundo Clima para baterias nacionais",
-      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/cmn-reduz-juros-do-fundo-clima-para-baterias-nacionais",
-      "published": "Fri, 27 Nov 2026 07:02:00 -0300",
-      "source": "Agência Brasil — Economia",
-      "topic": "juros e crédito",
-      "topic_label": "Juros E Crédito",
-      "summary": "Projetos de armazenamento de energia ganharam um incentivo para usar baterias produzidas no Brasil. Em reunião extraordinária nessa quinta-feira (26), o Conselho Monetário Nacional (CMN) aprovou a redução da taxa de juros de financiamentos do Fundo Nacional sobre Mudança do Clima, conhecido como Fundo Clima, para empreendimentos do tipo que usem baterias nacionais. Com a mudança, a taxa anual paga pelos tomadores de crédito ao Fundo passa de 6,5% para 3% ao ano. A medida, no entanto, vale apenas para os leilões a serem realizados em 2 de dezembro.",
-      "description": "Projetos de armazenamento de energia ganharam um incentivo para usar baterias produzidas no Brasil. Em reunião extraordinária nessa quinta-feira (26), o Conselho Monetário Nacional (CMN) aprovou a redução da taxa de juros de financiamentos do Fundo Nacional sobre Mudança do Clima, conhecido como Fundo Clima, para empreendimentos do tipo que usem baterias nacionais. Com a mudança, a taxa anual paga pelos tomadores de crédito ao Fundo passa de 6,5% para 3% ao ano. A medida, no entanto, vale apenas",
-      "stage_label": "Triagem temática",
-      "impact_label": "possível alívio; verificar efeitos; sem quantificação causal",
-      "impact_direction": "unknown",
-      "causal_status": "evidência necessária",
-      "confidence": "baixa",
-      "classification": "rule-based"
     }
   ],
-  "news_checked_at": "2026-11-27T21:18:28+00:00",
+  "news_checked_at": "2026-11-28T07:51:21+00:00",
   "news_engine": {
     "mode": "rule-based",
     "label": "Coleta automática; triagem temática por regras (IA generativa não configurada)",
